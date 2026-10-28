@@ -1,0 +1,25 @@
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.nextDevelopment
+release.properties
+
+### Gradle ###
+.gradle/
+build/
+
+### Log files & OS ###
+*.log
+.DS_Store
+Thumbs.db
+
+### Secretos (Opcional pero recomendado) ###
+*.env
