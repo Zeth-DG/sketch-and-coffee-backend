@@ -117,4 +117,9 @@ public void setNombre(String nombre) {
         this.password_hash = password_hash;
     }
 
+    public Object getPasswordHash() {
+    }
+
+    public void setPasswordHash(Object passwordHash) {
+    }
 }// class Usuario
