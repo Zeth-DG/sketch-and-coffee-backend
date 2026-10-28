@@ -22,7 +22,7 @@ public class UsuarioController {
     }
 
     // 2. Obtener un usuario por su ID (GET)
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // http://localhost:8080/sketchcoffee/usuarios/2
     public Optional<Usuario> obtenerPorId(@PathVariable Integer id) {
         return usuarioRepository.findById(id);
     }

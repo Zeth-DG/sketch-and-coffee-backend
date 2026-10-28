@@ -109,17 +109,11 @@ public void setNombre(String nombre) {
     }
 
 // --- GETTERS Y SETTERS PASSWORD ---
-    public String getPassword_hash() {
+    public Object getPasswordHash() {
         return password_hash;
     }
 
-    public void setPassword_hash(String password_hash) {
-        this.password_hash = password_hash;
-    }
-
-    public Object getPasswordHash() {
-    }
-
     public void setPasswordHash(Object passwordHash) {
+        this.password_hash = password_hash;
     }
 }// class Usuario
