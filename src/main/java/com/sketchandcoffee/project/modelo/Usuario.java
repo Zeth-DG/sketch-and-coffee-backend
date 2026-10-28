@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "usuarios") // nombre de la tabla
 public class Usuario {
 
-    @Id // Primary Key
+    @Id // Primary Key del Usuario
     @GeneratedValue(strategy = GenerationType.IDENTITY) //AUTO_INCREMENT
     private Integer id;
 
