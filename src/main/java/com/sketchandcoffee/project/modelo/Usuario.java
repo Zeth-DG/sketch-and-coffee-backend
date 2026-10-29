@@ -32,7 +32,7 @@ public class Usuario {
     private String password_hash;
 
 
-    // --- CONSTRUCTOR VACÍO (Obligatorio para JPA) ---
+    // --- CONSTRUCTOR VACÍO
     public Usuario() {
     }
 
