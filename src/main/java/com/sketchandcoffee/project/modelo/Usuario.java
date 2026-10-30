@@ -1,4 +1,5 @@
 package com.sketchandcoffee.project.modelo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.*;
 
@@ -109,11 +110,12 @@ public void setNombre(String nombre) {
     }
 
 // --- GETTERS Y SETTERS PASSWORD ---
-    public Object getPasswordHash() {
-        return password_hash;
-    }
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    public String getPasswordHash() {
+    return password_hash;
+}
 
-    public void setPasswordHash(Object passwordHash) {
-        this.password_hash = password_hash;
+    public void setPasswordHash(String passwordHash) {
+        this.password_hash = passwordHash;
     }
 }// class Usuario
