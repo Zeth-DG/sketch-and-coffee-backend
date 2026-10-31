@@ -52,6 +52,7 @@ build/
 .DS_Store
 Thumbs.db
 /docs/generales/
+/src/main/resources/application.properties
 
 ### Secretos (Opcional pero recomendado) ###
 *.env
