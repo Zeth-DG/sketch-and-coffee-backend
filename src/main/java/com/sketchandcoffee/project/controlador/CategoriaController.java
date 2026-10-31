@@ -26,21 +26,24 @@ public class CategoriaController {
     }//GET todas las categorías
 
     @GetMapping("/{id}")
-    public ResponseEntity<Categoria> porId(@PathVariable Integer id) {
-        return service.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> porId(@PathVariable Integer id) {
+        Optional<Categoria> categoriaOpt = service.buscarPorId(id);
+        if (categoriaOpt.isPresent()) {
+            return ResponseEntity.ok(categoriaOpt.get());
+        }//if
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Map.of("mensaje", "Categoría con id " + id + " no encontrada"));
     }//GET por id
 
     @PostMapping
     public ResponseEntity<?> crear(@RequestBody Categoria categoria) {
         if (categoria.getNombre() == null || categoria.getNombre().isBlank()) {
             return ResponseEntity.badRequest()
-                    .body(Map.of("mensaeje", "El campo nombre es obligatorio"));
+                    .body(Map.of("mensaje", "El campo nombre es obligatorio"));
         }//if
         if (service.existeNombre(categoria.getNombre())) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body(Map.of("mensaje", "Ya existe un categoría con el nombre" + categoria.getNombre()));
+                    .body(Map.of("mensaje", "Ya existe una categoría con el nombre " + categoria.getNombre()));
         }//if
         Categoria guardada = service.guardarCategoria(categoria);
         return ResponseEntity.status(HttpStatus.CREATED).body(guardada);
@@ -50,7 +53,8 @@ public class CategoriaController {
     public ResponseEntity<?> actualizarCategoria(@PathVariable Integer id, @RequestBody Categoria cambios) {
         Optional<Categoria> existenteOpt = service.buscarPorId(id);
         if(existenteOpt.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("mensaje", "Categoria con id " + id + " no encontrada"));
         }//if
         Categoria existente = existenteOpt.get();
         boolean cambiarNombre = !existente.getNombre().equalsIgnoreCase(cambios.getNombre());
@@ -62,9 +66,10 @@ public class CategoriaController {
     }//PUT
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
+    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
         if (service.buscarPorId(id).isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("mensaje", "Categoria con id " + id + " no encontrada"));
         }//if
         service.eliminarCategoria(id);
         return ResponseEntity.noContent().build();
