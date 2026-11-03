@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DetallePedidoRepositorio extends JpaRepository<DetallePedido, Integer> {
+public interface DetallePedidoRepository extends JpaRepository<DetallePedido, Integer> {
 
     // Metodo de consulta derivado para buscar detalles por el ID del pedido
     List<DetallePedido> findByPedidoId(Integer pedidoId);
