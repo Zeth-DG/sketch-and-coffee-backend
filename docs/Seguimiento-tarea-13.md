@@ -58,6 +58,6 @@
 1. `@CrossOrigin(origins = "*")` está presente en `Categoria`, `Producto` y `Usuario`; falta **unificarlo en `PedidoController` y `DetallePedidoController`** antes de conectar el frontend.
 2. `PedidoController.actualizar()` responde **404** cuando el error es de validación (total negativo); el contrato esperaría **400**.
 3. `UsuarioService.actualizarUsuario()` crea el usuario si el id no existe (comportamiento "upsert") en lugar de responder **404**.
-4. `POST /usuarios/login` compara la contraseña en **texto plano** y la respuesta incluye el hash electrónico; se registra como **deuda de seguridad** (fuera del alcance de la Tarea 13, se propone resolverla junto al módulo de seguridad.JWT).
+4. `POST /usuarios/login` compara la contraseña en **texto plano** y la respuesta incluye el hash electrónico; se registra como **deuda de seguridad** (fuera del alcance de la Tarea 13, pero en proceso).
 
 Estas observaciones no modifican la aceptación de la Tarea 13: corresponden a mejoras y refactors acordados para la siguiente iteración.
