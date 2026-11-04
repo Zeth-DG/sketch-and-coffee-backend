@@ -19,7 +19,7 @@ public class Pedido {
     @Column(nullable = false)
     private LocalDateTime fecha = LocalDateTime.now();
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = EstadoPedidoConverter.class)
     @Column(nullable = false, length = 50)
     private EstadoPedido estado;
 

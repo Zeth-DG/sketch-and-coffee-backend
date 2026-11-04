@@ -30,6 +30,26 @@ public class UsuarioService {
                         HttpStatus.NOT_FOUND, "El usuario con el id [" + id + "] no existe"));
     }
 
+    /**
+     * Reglas de rol/activo compartidas por crear y registrar. El ENUM de la
+     * tabla solo acepta 'cliente' y 'admin' (NOT NULL), asi que sin valor se
+     * usa el default del CREATE TABLE ("cliente") y un valor raro responde
+     * 400, no 500 de violacion de llave.
+     */
+    private void aplicarDefaultsRolActivo(Usuario usuario) {
+        if (usuario.getRol() == null || usuario.getRol().isBlank()) {
+            usuario.setRol("cliente");
+        } else if (!usuario.getRol().equalsIgnoreCase("cliente")
+                && !usuario.getRol().equalsIgnoreCase("admin")) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "El rol solo puede ser 'cliente' o 'admin'");
+        }// if rol
+
+        if (usuario.getActivo() == null) {
+            usuario.setActivo(Boolean.TRUE);
+        }// if activo
+    }// aplicarDefaultsRolActivo
+
     public Usuario crearUsuario(Usuario usuario) {
         if (usuario.getCorreo() != null) {
             String correoLimpio = usuario.getCorreo().trim().toLowerCase();
@@ -38,6 +58,7 @@ public class UsuarioService {
             }
             usuario.setCorreo(correoLimpio);
         }
+        aplicarDefaultsRolActivo(usuario);
         return usuarioRepository.save(usuario);
     }
 
@@ -47,8 +68,20 @@ public class UsuarioService {
             usuario.setApellido(usuarioDetalles.getApellido());
             usuario.setTelefono(usuarioDetalles.getTelefono());
             usuario.setCorreo(usuarioDetalles.getCorreo());
-            usuario.setRol(usuarioDetalles.getRol());
-            usuario.setActivo(usuarioDetalles.getActivo());
+            // rol y activo son NOT NULL en la tabla: si el cuerpo no los
+            // trae se conserva el valor actual para no provocar un 500; si
+            // trae un rol raro, la validacion de abajo responde 400.
+            if (usuarioDetalles.getRol() != null) {
+                usuario.setRol(usuarioDetalles.getRol());
+            }
+            if (usuarioDetalles.getActivo() != null) {
+                usuario.setActivo(usuarioDetalles.getActivo());
+            }
+            if (!"cliente".equalsIgnoreCase(usuario.getRol())
+                    && !"admin".equalsIgnoreCase(usuario.getRol())) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                        "El rol solo puede ser 'cliente' o 'admin'");
+            }
             usuario.setPasswordHash(usuarioDetalles.getPasswordHash());
             return usuarioRepository.save(usuario);
         }).orElseGet(() -> {
@@ -89,6 +122,7 @@ public class UsuarioService {
         }
 
         usuario.setCorreo(correoLimpio);
+        aplicarDefaultsRolActivo(usuario);
         return usuarioRepository.save(usuario);
     }
 
