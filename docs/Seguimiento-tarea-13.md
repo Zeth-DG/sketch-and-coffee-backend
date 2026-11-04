@@ -30,9 +30,9 @@
 |---|---|---|---|---|---|
 | **Categorías** | `zeth` | Zeth | Aprobado | Revisado por Laura | Ejecutado |
 | **Usuarios** | `vanya` | Vanya & Alexandra | Aprobado | Revisado por Zeth | Ejecutado |
-| **Productos** | `gonzalo` | Gonzalo | Aprobado | Revisado por Luis / Zeth | Ejecutado |
+| **Productos** | `gonzalo` | Gonzalo | Aprobado | Revisado por Laura | Ejecutado |
 | **Pedidos** | `laura` | Laura | Aprobado | Revisado por Zeth | Ejecutado |
-| **DetallePedido** | `manuel` | Manuel | Aprobado | Revisado por Luis / Zeth | Ejecutado |
+| **DetallePedido** | `manuel` | Manuel | Aprobado | Revisado por Zeth | Ejecutado |
 
 ---
 
