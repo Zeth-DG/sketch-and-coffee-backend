@@ -1,4 +1,5 @@
 package com.sketchandcoffee.project.modelo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.*;
 
@@ -28,23 +29,23 @@ public class Usuario {
     @Column(name = "activo", length = 20)
     private Boolean activo;
 
-    @Column(name = "password_hash", length = 255)
-    private String password_hash;
+    @Column(name = "password", length = 255)
+    private String password;
 
 
-    // --- CONSTRUCTOR VACÍO (Obligatorio para JPA) ---
+    // --- CONSTRUCTOR VACÍO
     public Usuario() {
     }
 
     // --- CONSTRUCTOR CON PARÁMETROS ---
-    public Usuario(String nombre, String apellido, String telefono, String correo, String rol, Boolean activo, String password_hash) {
+    public Usuario(String nombre, String apellido, String telefono, String correo, String rol, Boolean activo, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.correo = correo;
         this.rol = rol;
         this.activo = activo;
-        this.password_hash = password_hash;
+        this.password = password;
     }
 
     // --- GETTERS Y SETTERS ID ---
@@ -56,14 +57,14 @@ public class Usuario {
         this.id = id;
     }// id
 
-// --- GETTERS Y SETTERS NOMBRE ---
+    // --- GETTERS Y SETTERS NOMBRE ---
     public String getNombre() {return nombre;}
 
-public void setNombre(String nombre) {
-    this.nombre = nombre.toUpperCase();
-}
+    public void setNombre(String nombre) {
+        this.nombre = nombre.toUpperCase();
+    }
 
-// --- GETTERS Y SETTERS APELLIDO ---
+    // --- GETTERS Y SETTERS APELLIDO ---
     public String getApellido() {
         return apellido;
     }
@@ -72,7 +73,7 @@ public void setNombre(String nombre) {
         this.apellido = apellido.toUpperCase();
     }
 
-// --- GETTERS Y SETTERS TELEFONO ---
+    // --- GETTERS Y SETTERS TELEFONO ---
     public String getTelefono() {
         return telefono;
     }
@@ -81,7 +82,7 @@ public void setNombre(String nombre) {
         this.telefono = telefono;
     }
 
-// --- GETTERS Y SETTERS CORREO ---
+    // --- GETTERS Y SETTERS CORREO ---
     public String getCorreo() {
         return correo;
     }
@@ -90,7 +91,7 @@ public void setNombre(String nombre) {
         this.correo = correo.toLowerCase();
     }
 
-// --- GETTERS Y SETTERS ROL ---
+    // --- GETTERS Y SETTERS ROL ---
     public String getRol() {
         return rol;
     }
@@ -99,7 +100,7 @@ public void setNombre(String nombre) {
         this.rol = rol;
     }
 
-// --- GETTERS Y SETTERS ACTIVO/INACTIVO ---
+    // --- GETTERS Y SETTERS ACTIVO/INACTIVO ---
     public Boolean getActivo() {
         return activo;
     }
@@ -108,12 +109,13 @@ public void setNombre(String nombre) {
         this.activo = activo;
     }
 
-// --- GETTERS Y SETTERS PASSWORD ---
-    public Object getPasswordHash() {
-        return password_hash;
+    // --- GETTERS Y SETTERS PASSWORD ---
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(Object passwordHash) {
-        this.password_hash = password_hash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }// class Usuario

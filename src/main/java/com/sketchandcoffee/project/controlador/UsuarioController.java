@@ -43,7 +43,7 @@ public class UsuarioController {
             usuario.setCorreo(usuarioDetalles.getCorreo());
             usuario.setRol(usuarioDetalles.getRol());
             usuario.setActivo(usuarioDetalles.getActivo());
-            usuario.setPasswordHash(usuarioDetalles.getPasswordHash());
+            usuario.setPassword(usuarioDetalles.getPassword());
             return usuarioRepository.save(usuario);
         }).orElseGet(() -> {
             usuarioDetalles.setId(id);
