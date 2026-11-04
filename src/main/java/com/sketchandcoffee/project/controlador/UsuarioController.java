@@ -1,59 +1,68 @@
 package com.sketchandcoffee.project.controlador;
+
 import com.sketchandcoffee.project.modelo.Usuario;
-import com.sketchandcoffee.project.repositorio.UsuarioRepository;
+import com.sketchandcoffee.project.servicio.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/sketchcoffee/usuarios") //http://localhost:8080/sketchcoffee/usuarios
+@RequestMapping("/sketchcoffee/usuarios") // http://localhost:8080/sketchcoffee/usuarios
 @CrossOrigin(origins = "*") // Postman
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioService usuarioService;
 
-    // 1. Obtener todos los usuarios (GET)
+    @Autowired
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
+
     @GetMapping
     public List<Usuario> obtenerTodos() {
-        return usuarioRepository.findAll();
+        return usuarioService.obtenerTodos();
     }
 
-    // 2. Obtener un usuario por su ID (GET)
-    @GetMapping("/{id}") // http://localhost:8080/sketchcoffee/usuarios/2
-    public Optional<Usuario> obtenerPorId(@PathVariable Integer id) {
-        return usuarioRepository.findById(id);
+    @GetMapping("/{id}")
+    public Usuario obtenerPorId(@PathVariable Integer id) {
+        return usuarioService.obtenerPorId(id);
     }
 
-    // 3. Crear un nuevo usuario (POST)
     @PostMapping
-    public Usuario crearUsuario(@RequestBody Usuario usuario) {
-        return usuarioRepository.save(usuario);
+    public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
+        Usuario nuevo = usuarioService.crearUsuario(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(nuevo);
     }
 
-    // 4. Actualizar un usuario existente (PUT)
     @PutMapping("/{id}")
     public Usuario actualizarUsuario(@PathVariable Integer id, @RequestBody Usuario usuarioDetalles) {
-        return usuarioRepository.findById(id).map(usuario -> {
-            usuario.setNombre(usuarioDetalles.getNombre());
-            usuario.setApellido(usuarioDetalles.getApellido());
-            usuario.setTelefono(usuarioDetalles.getTelefono());
-            usuario.setCorreo(usuarioDetalles.getCorreo());
-            usuario.setRol(usuarioDetalles.getRol());
-            usuario.setActivo(usuarioDetalles.getActivo());
-            usuario.setPassword(usuarioDetalles.getPassword());
-            return usuarioRepository.save(usuario);
-        }).orElseGet(() -> {
-            usuarioDetalles.setId(id);
-            return usuarioRepository.save(usuarioDetalles);
-        });
+        return usuarioService.actualizarUsuario(id, usuarioDetalles);
     }
 
-    // 5. Eliminar un usuario (DELETE)
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminarUsuario(@PathVariable Integer id) {
-        usuarioRepository.deleteById(id);
+        usuarioService.eliminarUsuario(id);
+    }
+
+    // --- MÉTODOS DE AUTENTICACIÓN Y SEGURIDAD (Alexandra) ---
+
+    @PostMapping("/registro")
+    public ResponseEntity<Usuario> registrar(@RequestBody Usuario usuario) {
+        Usuario creado = usuarioService.registrar(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(creado);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Usuario> login(@RequestBody Map<String, String> credenciales) {
+        String correo = credenciales.get("correo");
+        String passwordHash = credenciales.get("passwordHash");
+
+        Usuario usuarioAutenticado = usuarioService.login(correo, passwordHash);
+        return ResponseEntity.ok(usuarioAutenticado);
     }
 }

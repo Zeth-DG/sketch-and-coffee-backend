@@ -29,8 +29,8 @@ public class Usuario {
     @Column(name = "activo", length = 20)
     private Boolean activo;
 
-    @Column(name = "password", length = 255)
-    private String password;
+    @Column(name = "password_hash", length = 255)
+    private String password_hash;
 
 
     // --- CONSTRUCTOR VACÍO
@@ -38,14 +38,14 @@ public class Usuario {
     }
 
     // --- CONSTRUCTOR CON PARÁMETROS ---
-    public Usuario(String nombre, String apellido, String telefono, String correo, String rol, Boolean activo, String password) {
+    public Usuario(String nombre, String apellido, String telefono, String correo, String rol, Boolean activo, String password_hash) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.correo = correo;
         this.rol = rol;
         this.activo = activo;
-        this.password = password;
+        this.password_hash = password_hash;
     }
 
     // --- GETTERS Y SETTERS ID ---
@@ -57,14 +57,14 @@ public class Usuario {
         this.id = id;
     }// id
 
-    // --- GETTERS Y SETTERS NOMBRE ---
+// --- GETTERS Y SETTERS NOMBRE ---
     public String getNombre() {return nombre;}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre.toUpperCase();
-    }
+public void setNombre(String nombre) {
+    this.nombre = nombre.toUpperCase();
+}
 
-    // --- GETTERS Y SETTERS APELLIDO ---
+// --- GETTERS Y SETTERS APELLIDO ---
     public String getApellido() {
         return apellido;
     }
@@ -73,7 +73,7 @@ public class Usuario {
         this.apellido = apellido.toUpperCase();
     }
 
-    // --- GETTERS Y SETTERS TELEFONO ---
+// --- GETTERS Y SETTERS TELEFONO ---
     public String getTelefono() {
         return telefono;
     }
@@ -82,7 +82,7 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    // --- GETTERS Y SETTERS CORREO ---
+// --- GETTERS Y SETTERS CORREO ---
     public String getCorreo() {
         return correo;
     }
@@ -91,7 +91,7 @@ public class Usuario {
         this.correo = correo.toLowerCase();
     }
 
-    // --- GETTERS Y SETTERS ROL ---
+// --- GETTERS Y SETTERS ROL ---
     public String getRol() {
         return rol;
     }
@@ -100,7 +100,7 @@ public class Usuario {
         this.rol = rol;
     }
 
-    // --- GETTERS Y SETTERS ACTIVO/INACTIVO ---
+// --- GETTERS Y SETTERS ACTIVO/INACTIVO ---
     public Boolean getActivo() {
         return activo;
     }
@@ -109,13 +109,13 @@ public class Usuario {
         this.activo = activo;
     }
 
-    // --- GETTERS Y SETTERS PASSWORD ---
+// --- GETTERS Y SETTERS PASSWORD ---
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    public String getPassword() {
-        return password;
-    }
+    public String getPasswordHash() {
+    return password_hash;
+}
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.password_hash = passwordHash;
     }
 }// class Usuario
