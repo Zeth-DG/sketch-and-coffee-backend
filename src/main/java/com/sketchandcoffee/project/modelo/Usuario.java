@@ -1,14 +1,14 @@
 package com.sketchandcoffee.project.modelo;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "usuarios") // nombre de la tabla
+@Table(name = "usuarios")
 public class Usuario {
 
-    @Id // Primary Key del Usuario
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //AUTO_INCREMENT
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "nombre", nullable = false, length = 50)
@@ -32,8 +32,7 @@ public class Usuario {
     @Column(name = "password_hash", length = 255)
     private String password_hash;
 
-
-    // --- CONSTRUCTOR VACÍO
+    // --- CONSTRUCTOR VACÍO ---
     public Usuario() {
     }
 
@@ -48,23 +47,23 @@ public class Usuario {
         this.password_hash = password_hash;
     }
 
-    // --- GETTERS Y SETTERS ID ---
+    // --- GETTERS Y SETTERS ---
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }// id
+    }
 
-// --- GETTERS Y SETTERS NOMBRE ---
-    public String getNombre() {return nombre;}
+    public String getNombre() {
+        return nombre;
+    }
 
-public void setNombre(String nombre) {
-    this.nombre = nombre.toUpperCase();
-}
+    public void setNombre(String nombre) {
+        this.nombre = nombre.toUpperCase();
+    }
 
-// --- GETTERS Y SETTERS APELLIDO ---
     public String getApellido() {
         return apellido;
     }
@@ -73,7 +72,6 @@ public void setNombre(String nombre) {
         this.apellido = apellido.toUpperCase();
     }
 
-// --- GETTERS Y SETTERS TELEFONO ---
     public String getTelefono() {
         return telefono;
     }
@@ -82,7 +80,6 @@ public void setNombre(String nombre) {
         this.telefono = telefono;
     }
 
-// --- GETTERS Y SETTERS CORREO ---
     public String getCorreo() {
         return correo;
     }
@@ -91,7 +88,6 @@ public void setNombre(String nombre) {
         this.correo = correo.toLowerCase();
     }
 
-// --- GETTERS Y SETTERS ROL ---
     public String getRol() {
         return rol;
     }
@@ -100,7 +96,6 @@ public void setNombre(String nombre) {
         this.rol = rol;
     }
 
-// --- GETTERS Y SETTERS ACTIVO/INACTIVO ---
     public Boolean getActivo() {
         return activo;
     }
@@ -109,13 +104,13 @@ public void setNombre(String nombre) {
         this.activo = activo;
     }
 
-// --- GETTERS Y SETTERS PASSWORD ---
+    // JSON (Seguridad)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public String getPasswordHash() {
-    return password_hash;
-}
+        return password_hash;
+    }
 
     public void setPasswordHash(String passwordHash) {
         this.password_hash = passwordHash;
     }
-}// class Usuario
+}

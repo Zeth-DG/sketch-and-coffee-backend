@@ -10,7 +10,8 @@ public class PasswordDto {
         this.passwordNuevo = passwordNuevo;
     }// constructor
 
-    public PasswordDto(){ }// constructor vacío
+    public PasswordDto() {
+    }// constructor vacío
 
     public String getPasswordActual() {
         return passwordActual;
@@ -20,4 +21,12 @@ public class PasswordDto {
         return passwordNuevo;
     }// getPasswordNuevo
 
-}// class PasswordDto
+    public void setPasswordActual(String passwordActual) {
+        this.passwordActual = passwordActual;
+    }// setPasswordActual
+
+    public void setPasswordNuevo(String passwordNuevo) {
+        this.passwordNuevo = passwordNuevo;
+    }// setPasswordNuevo
+
+}// class PasswordDto (Data Transfer Object)
