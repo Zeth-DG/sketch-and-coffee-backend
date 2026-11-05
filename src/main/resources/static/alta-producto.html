@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Alta de productos (pruebas) | Sketch & Coffee</title>
+    <link rel="stylesheet" href="/css/productos.css">
+    <script src="/js/alta-producto.js" defer></script>
+</head>
+<body>
+    <header class="encabezado">
+        <div class="contenedor encabezado-interior">
+            <div>
+                <p class="etiqueta">Plot twist: sí hay café.</p>
+                <h1>Sketch & Coffee</h1>
+            </div>
+            <nav aria-label="Navegación del módulo de pruebas">
+                <a href="/catalogo-productos.html">Catálogo</a>
+                <a href="/alta-producto.html" aria-current="page">Alta de producto (pruebas)</a>
+            </nav>
+        </div>
+    </header>
+    <main class="contenedor">
+        <section class="cabecera-pagina">
+            <p class="etiqueta">Módulo de integración · Tarea 14</p>
+            <h2>Registrar un producto</h2>
+            <p>Este formulario envía un POST a Spring Boot; los datos se guardan en MySQL.</p>
+            <p class="advertencia"><strong>Solo para pruebas locales:</strong> el endpoint POST aún no tiene control de acceso de administrador. No publicar esta vista ni exponer el endpoint sin protección.</p>
+        </section>
+        <form id="formularioProducto" class="formulario-producto">
+            <div class="grupo-campo">
+                <label for="skuProducto">SKU *</label>
+                <input id="skuProducto" name="sku" maxlength="30" required placeholder="CAF-001">
+            </div>
+            <div class="grupo-campo">
+                <label for="nombreProducto">Nombre *</label>
+                <input id="nombreProducto" name="nombre" maxlength="100" required placeholder="Latte">
+            </div>
+            <div class="grupo-campo">
+                <label for="precioProducto">Precio (MXN) *</label>
+                <input id="precioProducto" name="precio" type="number" min="0" max="99999999.99" step="0.01" required placeholder="65.00">
+            </div>
+            <div class="grupo-campo">
+                <label for="categoriaProducto">Categoría *</label>
+                <select id="categoriaProducto" name="categoriaId" required>
+                    <option value="">Selecciona una categoría</option>
+                </select>
+            </div>
+            <div class="grupo-campo">
+                <label for="existenciasProducto">Existencias</label>
+                <input id="existenciasProducto" name="existencias" type="number" min="0" step="1" value="0" required>
+            </div>
+            <div class="grupo-campo">
+                <label for="imagenProducto">URL de imagen (opcional)</label>
+                <input id="imagenProducto" name="imagen" maxlength="255" placeholder="https://... o /img/producto.jpg">
+            </div>
+            <div class="grupo-campo ancho-completo">
+                <label for="descripcionProducto">Descripción</label>
+                <textarea id="descripcionProducto" name="descripcion" rows="3"></textarea>
+            </div>
+            <div class="grupo-campo ancho-completo campo-check">
+                <label><input id="activoProducto" name="activo" type="checkbox" checked> Producto activo</label>
+            </div>
+            <div class="ancho-completo">
+                <button type="submit" id="botonGuardar">Registrar producto</button>
+                <p id="estadoRegistro" role="status" aria-live="polite"></p>
+            </div>
+        </form>
+    </main>
+    <footer class="pie contenedor">Sketch & Coffee · Vista provisional de pruebas de integración.</footer>
+</body>
+</html>

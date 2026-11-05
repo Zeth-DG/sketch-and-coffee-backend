@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de productos | Sketch & Coffee</title>
+    <link rel="stylesheet" href="/css/productos.css">
+    <script src="/js/catalogo-productos.js" defer></script>
+</head>
+<body>
+    <header class="encabezado">
+        <div class="contenedor encabezado-interior">
+            <div>
+                <p class="etiqueta">Plot twist: sí hay café.</p>
+                <h1>Sketch & Coffee</h1>
+            </div>
+            <nav aria-label="Navegación del módulo de pruebas">
+                <a href="/catalogo-productos.html" aria-current="page">Catálogo</a>
+                <a href="/alta-producto.html">Alta de producto (pruebas)</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        <section class="cabecera-pagina" aria-labelledby="titulo-catalogo">
+            <p class="etiqueta">Módulo de integración · Tarea 14</p>
+            <h2 id="titulo-catalogo">Nuestro catálogo</h2>
+            <p>Los productos se consultan desde MySQL por medio de la API de Spring Boot.</p>
+            <div class="filtros">
+                <label for="categoriaFiltro">Categoría</label>
+                <select id="categoriaFiltro">
+                    <option value="">Todas las categorías</option>
+                </select>
+                <button id="botonActualizar" type="button">Actualizar listado</button>
+            </div>
+        </section>
+        <p id="estadoCatalogo" role="status" aria-live="polite">Preparando catálogo...</p>
+        <section id="listaProductos" class="rejilla-productos" aria-label="Productos disponibles"></section>
+    </main>
+
+    <footer class="pie contenedor">Sketch & Coffee · Vista provisional de integración de productos.</footer>
+</body>
+</html>
