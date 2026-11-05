@@ -1,0 +1,1726 @@
+{
+	"id": "4d4b957b-6854-4e7a-9b88-16d19abbc5ab",
+	"name": "Sketch & Coffee - Pruebas de integracion (Actividad 14)",
+	"timestamp": "2026-11-05T17:40:13.407Z",
+	"collection_id": "59594103-8bdd0dbe-8a52-4ae5-b7c1-e2362f662a7d",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 74,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2026-11-05T17:40:04.431Z",
+	"totalFail": 10,
+	"results": [
+		{
+			"id": "211e5996-eb20-489e-b09c-81cbddd78240",
+			"name": "GET /productos (prueba de humo)",
+			"url": "http://localhost:8080/sketchcoffee/productos",
+			"time": 355,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true,
+				"Devuelve una lista": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Devuelve una lista": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				355
+			],
+			"allTests": [
+				{
+					"Responde 200": true,
+					"Devuelve una lista": true
+				}
+			]
+		},
+		{
+			"id": "06d5676f-f3c2-4a78-a70e-5f90a97a13d9",
+			"name": "POST /usuarios/registro — valido",
+			"url": "http://localhost:8080/sketchcoffee/usuarios/registro",
+			"time": 43,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Responde 201": true,
+				"La respuesta NO expone passwordHash": true
+			},
+			"testPassFailCounts": {
+				"Responde 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"La respuesta NO expone passwordHash": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				43
+			],
+			"allTests": [
+				{
+					"Responde 201": true,
+					"La respuesta NO expone passwordHash": true
+				}
+			]
+		},
+		{
+			"id": "26ec6aad-f3d4-44aa-97c8-440d9bf7e833",
+			"name": "POST /usuarios/registro — correo duplicado",
+			"url": "http://localhost:8080/sketchcoffee/usuarios/registro",
+			"time": 79,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Responde 409": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+			},
+			"testPassFailCounts": {
+				"Responde 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				79
+			],
+			"allTests": [
+				{
+					"Responde 409": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+				}
+			]
+		},
+		{
+			"id": "e09b7242-9577-4ef2-aa66-5cadb2c3a234",
+			"name": "POST /usuarios/registro — sin correo",
+			"url": "http://localhost:8080/sketchcoffee/usuarios/registro",
+			"time": 142,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Responde 400": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+			},
+			"testPassFailCounts": {
+				"Responde 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				142
+			],
+			"allTests": [
+				{
+					"Responde 400": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+				}
+			]
+		},
+		{
+			"id": "fd0acbf2-eea9-45b7-be95-df1ac329c25d",
+			"name": "POST /usuarios/registro — correo con formato invalido",
+			"url": "http://localhost:8080/sketchcoffee/usuarios/registro",
+			"time": 29,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Responde 400": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+			},
+			"testPassFailCounts": {
+				"Responde 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				29
+			],
+			"allTests": [
+				{
+					"Responde 400": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+				}
+			]
+		},
+		{
+			"id": "e4dc324f-1a05-4981-b542-bfe043b8bc78",
+			"name": "POST /usuarios/login — credenciales correctas",
+			"url": "http://localhost:8080/sketchcoffee/usuarios/login",
+			"time": 125,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true,
+				"La respuesta NO expone passwordHash": true,
+				"Devuelve el id del usuario para que el front sepa quien es": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"La respuesta NO expone passwordHash": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Devuelve el id del usuario para que el front sepa quien es": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				125
+			],
+			"allTests": [
+				{
+					"Responde 200": true,
+					"La respuesta NO expone passwordHash": true,
+					"Devuelve el id del usuario para que el front sepa quien es": true
+				}
+			]
+		},
+		{
+			"id": "bc9ed4fe-8504-4148-80d7-b16e254f0ea6",
+			"name": "POST /usuarios/login — contrasena incorrecta",
+			"url": "http://localhost:8080/sketchcoffee/usuarios/login",
+			"time": 47,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Responde 401": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+			},
+			"testPassFailCounts": {
+				"Responde 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				47
+			],
+			"allTests": [
+				{
+					"Responde 401": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+				}
+			]
+		},
+		{
+			"id": "13256256-42d5-40e0-ac4a-87d7d64c5b0a",
+			"name": "POST /usuarios/login — correo que no existe",
+			"url": "http://localhost:8080/sketchcoffee/usuarios/login",
+			"time": 94,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Responde 401": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+			},
+			"testPassFailCounts": {
+				"Responde 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				94
+			],
+			"allTests": [
+				{
+					"Responde 401": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+				}
+			]
+		},
+		{
+			"id": "2b3fa3b7-57d5-47f2-9559-86dcb9f2fea2",
+			"name": "GET /usuarios — la lista no debe traer contrasenas",
+			"url": "http://localhost:8080/sketchcoffee/usuarios",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true,
+				"La respuesta NO expone passwordHash": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"La respuesta NO expone passwordHash": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Responde 200": true,
+					"La respuesta NO expone passwordHash": true
+				}
+			]
+		},
+		{
+			"id": "c3b956a2-7d09-422f-aa59-be694e3f1675",
+			"name": "GET /usuarios/999999 — id inexistente",
+			"url": "http://localhost:8080/sketchcoffee/usuarios/999999",
+			"time": 48,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Responde 404": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+			},
+			"testPassFailCounts": {
+				"Responde 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				48
+			],
+			"allTests": [
+				{
+					"Responde 404": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+				}
+			]
+		},
+		{
+			"id": "564c44a6-d0e9-44d0-8560-cfd2bfceca7a",
+			"name": "GET /categorias",
+			"url": "http://localhost:8080/sketchcoffee/categorias",
+			"time": 25,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				25
+			],
+			"allTests": [
+				{
+					"Responde 200": true
+				}
+			]
+		},
+		{
+			"id": "798bb701-961e-47f2-9793-fa4d56d7b058",
+			"name": "POST /categorias — valida",
+			"url": "http://localhost:8080/sketchcoffee/categorias",
+			"time": 67,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Responde 201": true
+			},
+			"testPassFailCounts": {
+				"Responde 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				67
+			],
+			"allTests": [
+				{
+					"Responde 201": true
+				}
+			]
+		},
+		{
+			"id": "93b107c2-5330-467a-a785-83a5ce8ce6c5",
+			"name": "POST /categorias — nombre duplicado",
+			"url": "http://localhost:8080/sketchcoffee/categorias",
+			"time": 20,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Responde 409": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				20
+			],
+			"allTests": [
+				{
+					"Responde 409": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "6e1a3eaf-cdc9-4e16-a761-e41a92ee139c",
+			"name": "POST /categorias — sin nombre",
+			"url": "http://localhost:8080/sketchcoffee/categorias",
+			"time": 25,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Responde 400": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				25
+			],
+			"allTests": [
+				{
+					"Responde 400": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "c8092ab8-18f3-4fb5-be46-2f7703b508a3",
+			"name": "GET /categorias/{id} — existente",
+			"url": "http://localhost:8080/sketchcoffee/categorias/7",
+			"time": 52,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				52
+			],
+			"allTests": [
+				{
+					"Responde 200": true
+				}
+			]
+		},
+		{
+			"id": "7b627bc3-3527-4809-84c1-b6e35d89e598",
+			"name": "GET /categorias/999999 — inexistente",
+			"url": "http://localhost:8080/sketchcoffee/categorias/999999",
+			"time": 28,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Responde 404": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Responde 404": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "2d74f551-0ab2-4e90-86b5-18ff095cca1f",
+			"name": "PUT /categorias/{id}",
+			"url": "http://localhost:8080/sketchcoffee/categorias/7",
+			"time": 308,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				308
+			],
+			"allTests": [
+				{
+					"Responde 200": true
+				}
+			]
+		},
+		{
+			"id": "e65ed7f3-eea7-40b0-834e-d4871407e84d",
+			"name": "GET /productos",
+			"url": "http://localhost:8080/sketchcoffee/productos",
+			"time": 39,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				39
+			],
+			"allTests": [
+				{
+					"Responde 200": true
+				}
+			]
+		},
+		{
+			"id": "43882846-d602-4342-937c-b8e5cc2d9328",
+			"name": "POST /productos — valido",
+			"url": "http://localhost:8080/sketchcoffee/productos",
+			"time": 52,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Responde 201": true,
+				"El precio vuelve con 2 decimales": true,
+				"La respuesta incluye la categoria anidada con su nombre": true
+			},
+			"testPassFailCounts": {
+				"Responde 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El precio vuelve con 2 decimales": {
+					"pass": 1,
+					"fail": 0
+				},
+				"La respuesta incluye la categoria anidada con su nombre": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				52
+			],
+			"allTests": [
+				{
+					"Responde 201": true,
+					"El precio vuelve con 2 decimales": true,
+					"La respuesta incluye la categoria anidada con su nombre": true
+				}
+			]
+		},
+		{
+			"id": "24a53829-0bca-4eba-a642-09e4da941695",
+			"name": "POST /productos — SKU duplicado",
+			"url": "http://localhost:8080/sketchcoffee/productos",
+			"time": 17,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Responde 409": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Responde 409": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "eba74d81-26ff-4856-94e1-49d91ebad23a",
+			"name": "POST /productos — sin nombre",
+			"url": "http://localhost:8080/sketchcoffee/productos",
+			"time": 10,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Responde 400": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Responde 400": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "ea338e45-7b6c-4c9f-9f35-ad430575fa04",
+			"name": "POST /productos — precio negativo",
+			"url": "http://localhost:8080/sketchcoffee/productos",
+			"time": 47,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Responde 400": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				47
+			],
+			"allTests": [
+				{
+					"Responde 400": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "33f9f39a-b2ee-412c-9ae4-33dcec73f5cb",
+			"name": "POST /productos — existencias negativas",
+			"url": "http://localhost:8080/sketchcoffee/productos",
+			"time": 32,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Responde 400": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				32
+			],
+			"allTests": [
+				{
+					"Responde 400": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "eb9b3979-75cf-4a4f-8194-ceed40115139",
+			"name": "POST /productos — categoriaId que no existe",
+			"url": "http://localhost:8080/sketchcoffee/productos",
+			"time": 76,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Responde 404": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				76
+			],
+			"allTests": [
+				{
+					"Responde 404": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "dda4bc97-af67-4812-b880-190f98a8318c",
+			"name": "GET /productos/{id} — existente",
+			"url": "http://localhost:8080/sketchcoffee/productos/7",
+			"time": 22,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Responde 200": true
+				}
+			]
+		},
+		{
+			"id": "4dac463a-fa72-4cd5-970f-10f8e3194924",
+			"name": "GET /productos/999999 — inexistente",
+			"url": "http://localhost:8080/sketchcoffee/productos/999999",
+			"time": 32,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Responde 404": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				32
+			],
+			"allTests": [
+				{
+					"Responde 404": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "f880641c-4cdd-4c52-8c8d-a4f775281366",
+			"name": "GET /productos/categoria/{id} — categoria valida",
+			"url": "http://localhost:8080/sketchcoffee/productos/categoria/7",
+			"time": 417,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true,
+				"Devuelve una lista": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Devuelve una lista": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				417
+			],
+			"allTests": [
+				{
+					"Responde 200": true,
+					"Devuelve una lista": true
+				}
+			]
+		},
+		{
+			"id": "bbffb18b-6e95-4e1a-95e7-1e1703382693",
+			"name": "GET /productos/categoria/999999 — categoria inexistente",
+			"url": "http://localhost:8080/sketchcoffee/productos/categoria/999999",
+			"time": 14,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Responde 404": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Responde 404": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "ab5593e1-486e-4b9c-b8b5-07ea0f46e263",
+			"name": "PUT /productos/{id} — conservando su propio SKU",
+			"url": "http://localhost:8080/sketchcoffee/productos/7",
+			"time": 31,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true,
+				"El precio si cambio a 70.00": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El precio si cambio a 70.00": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				31
+			],
+			"allTests": [
+				{
+					"Responde 200": true,
+					"El precio si cambio a 70.00": true
+				}
+			]
+		},
+		{
+			"id": "5190b47c-f771-4a77-ac29-ce75354116a2",
+			"name": "GET /pedidos",
+			"url": "http://localhost:8080/sketchcoffee/pedidos",
+			"time": 36,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				36
+			],
+			"allTests": [
+				{
+					"Responde 200": true
+				}
+			]
+		},
+		{
+			"id": "7ee61d96-e4c9-4c9d-a0c8-8efa1fb675f7",
+			"name": "POST /pedidos — valido",
+			"url": "http://localhost:8080/sketchcoffee/pedidos",
+			"time": 205,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Responde 201": true,
+				"El estado se guarda y regresa como PENDIENTE": true,
+				"El backend asigno la fecha solo": true
+			},
+			"testPassFailCounts": {
+				"Responde 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El estado se guarda y regresa como PENDIENTE": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El backend asigno la fecha solo": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				205
+			],
+			"allTests": [
+				{
+					"Responde 201": true,
+					"El estado se guarda y regresa como PENDIENTE": true,
+					"El backend asigno la fecha solo": true
+				}
+			]
+		},
+		{
+			"id": "40747f6a-d0c9-45fa-aa6c-d985c357e66b",
+			"name": "GET /pedidos/{id} — existente",
+			"url": "http://localhost:8080/sketchcoffee/pedidos/7",
+			"time": 42,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true,
+				"El estado se lee bien de la base (minusculas en MySQL)": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El estado se lee bien de la base (minusculas en MySQL)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				42
+			],
+			"allTests": [
+				{
+					"Responde 200": true,
+					"El estado se lee bien de la base (minusculas en MySQL)": true
+				}
+			]
+		},
+		{
+			"id": "318ea17c-ab82-408f-82b0-1486f025e87c",
+			"name": "GET /pedidos/999999 — inexistente",
+			"url": "http://localhost:8080/sketchcoffee/pedidos/999999",
+			"time": 30,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Responde 404": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				30
+			],
+			"allTests": [
+				{
+					"Responde 404": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "9e5455ca-05c1-4f80-9c37-1979a3abc2dd",
+			"name": "GET /detalles",
+			"url": "http://localhost:8080/sketchcoffee/detalles",
+			"time": 257,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				257
+			],
+			"allTests": [
+				{
+					"Responde 200": true
+				}
+			]
+		},
+		{
+			"id": "62b026c7-a123-46ef-8d21-93f7d3d38fa1",
+			"name": "POST /detalles — valido",
+			"url": "http://localhost:8080/sketchcoffee/detalles",
+			"time": 344,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Responde 201": true
+			},
+			"testPassFailCounts": {
+				"Responde 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				344
+			],
+			"allTests": [
+				{
+					"Responde 201": true
+				}
+			]
+		},
+		{
+			"id": "8a56a034-7023-4194-a492-5aa15e1a3481",
+			"name": "POST /detalles — cantidad en cero",
+			"url": "http://localhost:8080/sketchcoffee/detalles",
+			"time": 7,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Responde 400": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Responde 400": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "6a361c57-824c-42ca-8bf3-45678a4ac609",
+			"name": "POST /detalles — producto inexistente",
+			"url": "http://localhost:8080/sketchcoffee/detalles",
+			"time": 26,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Responde 404": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Responde 404": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "f61b43d2-9a4b-480e-8027-0fe86dfe533a",
+			"name": "POST /detalles — pedido inexistente",
+			"url": "http://localhost:8080/sketchcoffee/detalles",
+			"time": 34,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Responde 404": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				34
+			],
+			"allTests": [
+				{
+					"Responde 404": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "2f8b3798-f361-42d1-bd67-1bf4574dd5e8",
+			"name": "GET /detalles/pedido/{id} — pedido valido",
+			"url": "http://localhost:8080/sketchcoffee/detalles/pedido/7",
+			"time": 55,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Responde 200": true
+			},
+			"testPassFailCounts": {
+				"Responde 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				55
+			],
+			"allTests": [
+				{
+					"Responde 200": true
+				}
+			]
+		},
+		{
+			"id": "7f330a22-46f9-4ac2-993d-d2b7b9569244",
+			"name": "GET /detalles/pedido/999999 — pedido inexistente",
+			"url": "http://localhost:8080/sketchcoffee/detalles/pedido/999999",
+			"time": 36,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Responde 404": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				36
+			],
+			"allTests": [
+				{
+					"Responde 404": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "d9cff4d5-d745-40d5-a774-548ce3d3ce26",
+			"name": "DELETE /productos/{id} — producto usado en un pedido",
+			"url": "http://localhost:8080/sketchcoffee/productos/7",
+			"time": 46,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Responde 409": true,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+			},
+			"testPassFailCounts": {
+				"Responde 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				46
+			],
+			"allTests": [
+				{
+					"Responde 409": true,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": true
+				}
+			]
+		},
+		{
+			"id": "71b1823f-5a1f-4512-a8b0-f275be66f3fc",
+			"name": "DELETE /categorias/{id} — categoria que todavia tiene productos",
+			"url": "http://localhost:8080/sketchcoffee/categorias/7",
+			"time": 78,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Responde 409": false,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+			},
+			"testPassFailCounts": {
+				"Responde 409": {
+					"pass": 0,
+					"fail": 1
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				78
+			],
+			"allTests": [
+				{
+					"Responde 409": false,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+				}
+			]
+		},
+		{
+			"id": "05cab397-4b67-42ab-9573-d46e895fe348",
+			"name": "DELETE /usuarios/{id} — usuario que tiene un pedido",
+			"url": "http://localhost:8080/sketchcoffee/usuarios/7",
+			"time": 46,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Responde 409": false,
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+			},
+			"testPassFailCounts": {
+				"Responde 409": {
+					"pass": 0,
+					"fail": 1
+				},
+				"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				46
+			],
+			"allTests": [
+				{
+					"Responde 409": false,
+					"El cuerpo del error trae el campo mensaje (regla 1 del contrato)": false
+				}
+			]
+		},
+		{
+			"id": "50108896-8d3a-4003-a9f9-d338ec1d2a1e",
+			"name": "DELETE /detalles/{id}",
+			"url": "http://localhost:8080/sketchcoffee/detalles/6",
+			"time": 493,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Responde 204": true
+			},
+			"testPassFailCounts": {
+				"Responde 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				493
+			],
+			"allTests": [
+				{
+					"Responde 204": true
+				}
+			]
+		},
+		{
+			"id": "8b125e69-5e0c-48e0-a9bc-029af78a28b2",
+			"name": "DELETE /pedidos/{id}",
+			"url": "http://localhost:8080/sketchcoffee/pedidos/7",
+			"time": 28,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Responde 204": true
+			},
+			"testPassFailCounts": {
+				"Responde 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Responde 204": true
+				}
+			]
+		},
+		{
+			"id": "c1d241b4-ab12-4247-be94-79d0438a8f12",
+			"name": "DELETE /productos/{id} — ahora si, ya sin detalle",
+			"url": "http://localhost:8080/sketchcoffee/productos/7",
+			"time": 43,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Responde 204": true
+			},
+			"testPassFailCounts": {
+				"Responde 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				43
+			],
+			"allTests": [
+				{
+					"Responde 204": true
+				}
+			]
+		},
+		{
+			"id": "74ee4adf-2cba-4f23-b10b-9476a57a5d8f",
+			"name": "DELETE /categorias/{id} — ahora si, ya sin producto",
+			"url": "http://localhost:8080/sketchcoffee/categorias/7",
+			"time": 58,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Responde 204": true
+			},
+			"testPassFailCounts": {
+				"Responde 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				58
+			],
+			"allTests": [
+				{
+					"Responde 204": true
+				}
+			]
+		},
+		{
+			"id": "a5a8f3ef-8a22-4992-8f56-14b238e51db6",
+			"name": "DELETE /usuarios/{id} — ahora si, ya sin pedido",
+			"url": "http://localhost:8080/sketchcoffee/usuarios/7",
+			"time": 39,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Responde 204": true
+			},
+			"testPassFailCounts": {
+				"Responde 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				39
+			],
+			"allTests": [
+				{
+					"Responde 204": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 4195,
+	"collection": {
+		"requests": [
+			{
+				"id": "211e5996-eb20-489e-b09c-81cbddd78240",
+				"method": "GET"
+			},
+			{
+				"id": "06d5676f-f3c2-4a78-a70e-5f90a97a13d9",
+				"method": "POST"
+			},
+			{
+				"id": "26ec6aad-f3d4-44aa-97c8-440d9bf7e833",
+				"method": "POST"
+			},
+			{
+				"id": "e09b7242-9577-4ef2-aa66-5cadb2c3a234",
+				"method": "POST"
+			},
+			{
+				"id": "fd0acbf2-eea9-45b7-be95-df1ac329c25d",
+				"method": "POST"
+			},
+			{
+				"id": "e4dc324f-1a05-4981-b542-bfe043b8bc78",
+				"method": "POST"
+			},
+			{
+				"id": "bc9ed4fe-8504-4148-80d7-b16e254f0ea6",
+				"method": "POST"
+			},
+			{
+				"id": "13256256-42d5-40e0-ac4a-87d7d64c5b0a",
+				"method": "POST"
+			},
+			{
+				"id": "2b3fa3b7-57d5-47f2-9559-86dcb9f2fea2",
+				"method": "GET"
+			},
+			{
+				"id": "c3b956a2-7d09-422f-aa59-be694e3f1675",
+				"method": "GET"
+			},
+			{
+				"id": "564c44a6-d0e9-44d0-8560-cfd2bfceca7a",
+				"method": "GET"
+			},
+			{
+				"id": "798bb701-961e-47f2-9793-fa4d56d7b058",
+				"method": "POST"
+			},
+			{
+				"id": "93b107c2-5330-467a-a785-83a5ce8ce6c5",
+				"method": "POST"
+			},
+			{
+				"id": "6e1a3eaf-cdc9-4e16-a761-e41a92ee139c",
+				"method": "POST"
+			},
+			{
+				"id": "c8092ab8-18f3-4fb5-be46-2f7703b508a3",
+				"method": "GET"
+			},
+			{
+				"id": "7b627bc3-3527-4809-84c1-b6e35d89e598",
+				"method": "GET"
+			},
+			{
+				"id": "2d74f551-0ab2-4e90-86b5-18ff095cca1f",
+				"method": "PUT"
+			},
+			{
+				"id": "e65ed7f3-eea7-40b0-834e-d4871407e84d",
+				"method": "GET"
+			},
+			{
+				"id": "43882846-d602-4342-937c-b8e5cc2d9328",
+				"method": "POST"
+			},
+			{
+				"id": "24a53829-0bca-4eba-a642-09e4da941695",
+				"method": "POST"
+			},
+			{
+				"id": "eba74d81-26ff-4856-94e1-49d91ebad23a",
+				"method": "POST"
+			},
+			{
+				"id": "ea338e45-7b6c-4c9f-9f35-ad430575fa04",
+				"method": "POST"
+			},
+			{
+				"id": "33f9f39a-b2ee-412c-9ae4-33dcec73f5cb",
+				"method": "POST"
+			},
+			{
+				"id": "eb9b3979-75cf-4a4f-8194-ceed40115139",
+				"method": "POST"
+			},
+			{
+				"id": "dda4bc97-af67-4812-b880-190f98a8318c",
+				"method": "GET"
+			},
+			{
+				"id": "4dac463a-fa72-4cd5-970f-10f8e3194924",
+				"method": "GET"
+			},
+			{
+				"id": "f880641c-4cdd-4c52-8c8d-a4f775281366",
+				"method": "GET"
+			},
+			{
+				"id": "bbffb18b-6e95-4e1a-95e7-1e1703382693",
+				"method": "GET"
+			},
+			{
+				"id": "ab5593e1-486e-4b9c-b8b5-07ea0f46e263",
+				"method": "PUT"
+			},
+			{
+				"id": "5190b47c-f771-4a77-ac29-ce75354116a2",
+				"method": "GET"
+			},
+			{
+				"id": "7ee61d96-e4c9-4c9d-a0c8-8efa1fb675f7",
+				"method": "POST"
+			},
+			{
+				"id": "40747f6a-d0c9-45fa-aa6c-d985c357e66b",
+				"method": "GET"
+			},
+			{
+				"id": "318ea17c-ab82-408f-82b0-1486f025e87c",
+				"method": "GET"
+			},
+			{
+				"id": "9e5455ca-05c1-4f80-9c37-1979a3abc2dd",
+				"method": "GET"
+			},
+			{
+				"id": "62b026c7-a123-46ef-8d21-93f7d3d38fa1",
+				"method": "POST"
+			},
+			{
+				"id": "8a56a034-7023-4194-a492-5aa15e1a3481",
+				"method": "POST"
+			},
+			{
+				"id": "6a361c57-824c-42ca-8bf3-45678a4ac609",
+				"method": "POST"
+			},
+			{
+				"id": "f61b43d2-9a4b-480e-8027-0fe86dfe533a",
+				"method": "POST"
+			},
+			{
+				"id": "2f8b3798-f361-42d1-bd67-1bf4574dd5e8",
+				"method": "GET"
+			},
+			{
+				"id": "7f330a22-46f9-4ac2-993d-d2b7b9569244",
+				"method": "GET"
+			},
+			{
+				"id": "d9cff4d5-d745-40d5-a774-548ce3d3ce26",
+				"method": "DELETE"
+			},
+			{
+				"id": "71b1823f-5a1f-4512-a8b0-f275be66f3fc",
+				"method": "DELETE"
+			},
+			{
+				"id": "05cab397-4b67-42ab-9573-d46e895fe348",
+				"method": "DELETE"
+			},
+			{
+				"id": "50108896-8d3a-4003-a9f9-d338ec1d2a1e",
+				"method": "DELETE"
+			},
+			{
+				"id": "8b125e69-5e0c-48e0-a9bc-029af78a28b2",
+				"method": "DELETE"
+			},
+			{
+				"id": "c1d241b4-ab12-4247-be94-79d0438a8f12",
+				"method": "DELETE"
+			},
+			{
+				"id": "74ee4adf-2cba-4f23-b10b-9476a57a5d8f",
+				"method": "DELETE"
+			},
+			{
+				"id": "a5a8f3ef-8a22-4992-8f56-14b238e51db6",
+				"method": "DELETE"
+			}
+		]
+	}
+}
