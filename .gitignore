@@ -53,6 +53,7 @@ build/
 Thumbs.db
 /docs/generales/
 /src/main/resources/application.properties
+docs/despliegue/
 
 ### Secretos (Opcional pero recomendado) ###
 *.env
