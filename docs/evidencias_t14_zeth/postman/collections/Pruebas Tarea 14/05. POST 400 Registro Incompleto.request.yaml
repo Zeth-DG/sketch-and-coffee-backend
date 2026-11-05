@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{base_url}}/sketchcoffee/usuarios/registro"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"apellido\": \"SinNombre\",\r
+
+    \  \"correo\": \"sin_nombre_400@test.com\",\r
+
+    \  \"passwordHash\": \"123\"\r
+
+    }"
+order: 5000
