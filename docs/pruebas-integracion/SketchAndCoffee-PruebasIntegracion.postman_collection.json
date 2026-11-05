@@ -1,0 +1,2246 @@
+{
+  "info": {
+    "name": "Sketch & Coffee - Pruebas de integracion (Actividad 14)",
+    "description": "Pruebas de integracion de la API REST. Responsable: Gonzalo Vargas.\n\nCOMO USARLA:\n1. Arranca el backend (ProjectApplication en IntelliJ).\n2. En Postman: boton Run collection, orden tal cual, delay 0.\n3. Las peticiones estan encadenadas: la carpeta 07 borra todo lo que crearon las anteriores, asi que la base queda como estaba.\n\nSi una peticion de la carpeta 01 o 02 falla, las siguientes fallaran en cascada porque no tendran los ids. Eso es normal: arregla la primera.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "00 - Backend encendido",
+      "item": [
+        {
+          "name": "GET /productos (prueba de humo)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Si esto falla, el backend no esta corriendo. Todo lo demas fallara tambien.",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Devuelve una lista\", function () {",
+                  "    pm.expect(pm.response.json()).to.be.an(\"array\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/productos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "01 - Usuarios (registro y login)",
+      "item": [
+        {
+          "name": "POST /usuarios/registro — valido",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Un correo distinto en cada corrida para no chocar con filas viejas",
+                  "pm.collectionVariables.set(\"correoQA\", \"qa\" + Date.now() + \"@prueba.com\");",
+                  "pm.collectionVariables.set(\"passQA\", \"Prueba123\");"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "if (pm.response.code < 300) {",
+                  "    pm.collectionVariables.set(\"usuarioQAId\", pm.response.json().id);",
+                  "    console.log(\"usuarioQAId =\", pm.collectionVariables.get(\"usuarioQAId\"));",
+                  "}",
+                  "",
+                  "pm.test(\"La respuesta NO expone passwordHash\", function () {",
+                  "    var texto = pm.response.text();",
+                  "    pm.expect(texto).to.not.include(\"passwordHash\");",
+                  "    pm.expect(texto).to.not.include(\"password_hash\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/usuarios/registro",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usuarios",
+                "registro"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"QA\",\n  \"apellido\": \"Integracion\",\n  \"telefono\": \"5500000000\",\n  \"correo\": \"{{correoQA}}\",\n  \"passwordHash\": \"{{passQA}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /usuarios/registro — correo duplicado",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Mismo correo que la peticion anterior.",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 409\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/usuarios/registro",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usuarios",
+                "registro"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"QA\",\n  \"apellido\": \"Integracion\",\n  \"telefono\": \"5500000000\",\n  \"correo\": \"{{correoQA}}\",\n  \"passwordHash\": \"{{passQA}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /usuarios/registro — sin correo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/usuarios/registro",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usuarios",
+                "registro"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"QA\",\n  \"apellido\": \"Integracion\",\n  \"passwordHash\": \"Prueba123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /usuarios/registro — correo con formato invalido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/usuarios/registro",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usuarios",
+                "registro"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"QA\",\n  \"apellido\": \"Integracion\",\n  \"correo\": \"esto-no-es-correo\",\n  \"passwordHash\": \"Prueba123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /usuarios/login — credenciales correctas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"La respuesta NO expone passwordHash\", function () {",
+                  "    var texto = pm.response.text();",
+                  "    pm.expect(texto).to.not.include(\"passwordHash\");",
+                  "    pm.expect(texto).to.not.include(\"password_hash\");",
+                  "});",
+                  "",
+                  "pm.test(\"Devuelve el id del usuario para que el front sepa quien es\", function () {",
+                  "    pm.expect(pm.response.json()).to.have.property(\"id\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/usuarios/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usuarios",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"correo\": \"{{correoQA}}\",\n  \"passwordHash\": \"{{passQA}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /usuarios/login — contrasena incorrecta",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/usuarios/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usuarios",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"correo\": \"{{correoQA}}\",\n  \"passwordHash\": \"contrasenaEquivocada\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /usuarios/login — correo que no existe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// El contrato pide el MISMO mensaje que con contrasena mala, para no revelar que el correo existe.",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/usuarios/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usuarios",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"correo\": \"noexiste_jamas@prueba.com\",\n  \"passwordHash\": \"loquesea\"\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /usuarios — la lista no debe traer contrasenas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"La respuesta NO expone passwordHash\", function () {",
+                  "    var texto = pm.response.text();",
+                  "    pm.expect(texto).to.not.include(\"passwordHash\");",
+                  "    pm.expect(texto).to.not.include(\"password_hash\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/usuarios",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usuarios"
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /usuarios/999999 — id inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/usuarios/999999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usuarios",
+                "999999"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 - Categorias",
+      "item": [
+        {
+          "name": "GET /categorias",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200 && pm.response.json().length > 0) {",
+                  "    pm.collectionVariables.set(\"categoriaExistenteId\", pm.response.json()[0].id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categorias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categorias"
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST /categorias — valida",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"nombreCatQA\", \"QA-Categoria-\" + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "if (pm.response.code < 300) {",
+                  "    pm.collectionVariables.set(\"categoriaQAId\", pm.response.json().id);",
+                  "    console.log(\"categoriaQAId =\", pm.collectionVariables.get(\"categoriaQAId\"));",
+                  "}",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categorias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categorias"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"{{nombreCatQA}}\",\n  \"descripcion\": \"Creada por las pruebas de integracion\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /categorias — nombre duplicado",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 409\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categorias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categorias"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"{{nombreCatQA}}\",\n  \"descripcion\": \"Repetida a proposito\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /categorias — sin nombre",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categorias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categorias"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"descripcion\": \"Sin nombre\"\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /categorias/{id} — existente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categorias/{{categoriaQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categorias",
+                "{{categoriaQAId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /categorias/999999 — inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categorias/999999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categorias",
+                "999999"
+              ]
+            }
+          }
+        },
+        {
+          "name": "PUT /categorias/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categorias/{{categoriaQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categorias",
+                "{{categoriaQAId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"{{nombreCatQA}}\",\n  \"descripcion\": \"Descripcion actualizada por QA\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 - Productos",
+      "item": [
+        {
+          "name": "GET /productos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/productos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos"
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST /productos — valido",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"skuQA\", \"QA-\" + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "if (pm.response.code < 300) {",
+                  "    pm.collectionVariables.set(\"productoQAId\", pm.response.json().id);",
+                  "    console.log(\"productoQAId =\", pm.collectionVariables.get(\"productoQAId\"));",
+                  "}",
+                  "",
+                  "pm.test(\"El precio vuelve con 2 decimales\", function () {",
+                  "    pm.expect(String(pm.response.json().precio)).to.match(/^\\d+(\\.\\d{1,2})?$/);",
+                  "});",
+                  "",
+                  "pm.test(\"La respuesta incluye la categoria anidada con su nombre\", function () {",
+                  "    pm.expect(pm.response.json().categoria).to.have.property(\"nombre\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/productos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"{{skuQA}}\",\n  \"nombre\": \"Producto de prueba QA\",\n  \"descripcion\": \"Creado por las pruebas de integracion\",\n  \"precio\": 55.0,\n  \"existencias\": 20,\n  \"categoriaId\": {{categoriaQAId}}\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /productos — SKU duplicado",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 409\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/productos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"{{skuQA}}\",\n  \"nombre\": \"Otro producto\",\n  \"precio\": 10.0,\n  \"existencias\": 1,\n  \"categoriaId\": {{categoriaQAId}}\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /productos — sin nombre",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/productos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"QA-SIN-NOMBRE\",\n  \"precio\": 10.0,\n  \"existencias\": 1,\n  \"categoriaId\": {{categoriaQAId}}\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /productos — precio negativo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/productos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"QA-NEGATIVO\",\n  \"nombre\": \"Precio malo\",\n  \"precio\": -5.0,\n  \"existencias\": 1,\n  \"categoriaId\": {{categoriaQAId}}\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /productos — existencias negativas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/productos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"QA-EXIST\",\n  \"nombre\": \"Existencias malas\",\n  \"precio\": 10.0,\n  \"existencias\": -3,\n  \"categoriaId\": {{categoriaQAId}}\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /productos — categoriaId que no existe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Llave foranea inexistente: el contrato pide 404, no 400.",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/productos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"QA-FK\",\n  \"nombre\": \"Categoria fantasma\",\n  \"precio\": 10.0,\n  \"existencias\": 1,\n  \"categoriaId\": 999999\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /productos/{id} — existente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/productos/{{productoQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos",
+                "{{productoQAId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /productos/999999 — inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/productos/999999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos",
+                "999999"
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /productos/categoria/{id} — categoria valida",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Devuelve una lista\", function () {",
+                  "    pm.expect(pm.response.json()).to.be.an(\"array\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/productos/categoria/{{categoriaQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos",
+                "categoria",
+                "{{categoriaQAId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /productos/categoria/999999 — categoria inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/productos/categoria/999999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos",
+                "categoria",
+                "999999"
+              ]
+            }
+          }
+        },
+        {
+          "name": "PUT /productos/{id} — conservando su propio SKU",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// No debe dar 409 contra si mismo.",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"El precio si cambio a 70.00\", function () {",
+                  "    pm.expect(Number(pm.response.json().precio)).to.eql(70);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/productos/{{productoQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos",
+                "{{productoQAId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"{{skuQA}}\",\n  \"nombre\": \"Producto QA actualizado\",\n  \"precio\": 70.0,\n  \"existencias\": 15,\n  \"categoriaId\": {{categoriaQAId}}\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 - Pedidos",
+      "item": [
+        {
+          "name": "GET /pedidos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pedidos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pedidos"
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST /pedidos — valido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// OJO: el contrato dice usuarioId plano, pero el codigo recibe el objeto anidado.",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "if (pm.response.code < 300) {",
+                  "    pm.collectionVariables.set(\"pedidoQAId\", pm.response.json().id);",
+                  "    console.log(\"pedidoQAId =\", pm.collectionVariables.get(\"pedidoQAId\"));",
+                  "}",
+                  "",
+                  "pm.test(\"El estado se guarda y regresa como PENDIENTE\", function () {",
+                  "    pm.expect(pm.response.json().estado).to.eql(\"PENDIENTE\");",
+                  "});",
+                  "",
+                  "pm.test(\"El backend asigno la fecha solo\", function () {",
+                  "    pm.expect(pm.response.json().fecha).to.not.be.null;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pedidos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pedidos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario\": {\n    \"id\": {{usuarioQAId}}\n  },\n  \"estado\": \"PENDIENTE\",\n  \"total\": 110.0\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /pedidos/{id} — existente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"El estado se lee bien de la base (minusculas en MySQL)\", function () {",
+                  "    pm.expect(pm.response.json().estado).to.eql(\"PENDIENTE\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pedidos/{{pedidoQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pedidos",
+                "{{pedidoQAId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /pedidos/999999 — inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pedidos/999999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pedidos",
+                "999999"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 - Detalles de pedido",
+      "item": [
+        {
+          "name": "GET /detalles",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/detalles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "detalles"
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST /detalles — valido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "if (pm.response.code < 300) {",
+                  "    pm.collectionVariables.set(\"detalleQAId\", pm.response.json().id);",
+                  "    console.log(\"detalleQAId =\", pm.collectionVariables.get(\"detalleQAId\"));",
+                  "}",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/detalles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "detalles"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pedidoId\": {{pedidoQAId}},\n  \"productoId\": {{productoQAId}},\n  \"cantidad\": 2,\n  \"precioUnitario\": 70.0\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /detalles — cantidad en cero",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// La tabla tiene CHECK (cantidad > 0).",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/detalles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "detalles"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pedidoId\": {{pedidoQAId}},\n  \"productoId\": {{productoQAId}},\n  \"cantidad\": 0,\n  \"precioUnitario\": 70.0\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /detalles — producto inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/detalles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "detalles"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pedidoId\": {{pedidoQAId}},\n  \"productoId\": 999999,\n  \"cantidad\": 1,\n  \"precioUnitario\": 70.0\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /detalles — pedido inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/detalles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "detalles"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pedidoId\": 999999,\n  \"productoId\": {{productoQAId}},\n  \"cantidad\": 1,\n  \"precioUnitario\": 70.0\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /detalles/pedido/{id} — pedido valido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/detalles/pedido/{{pedidoQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "detalles",
+                "pedido",
+                "{{pedidoQAId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /detalles/pedido/999999 — pedido inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/detalles/pedido/999999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "detalles",
+                "pedido",
+                "999999"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 - Integridad referencial",
+      "item": [
+        {
+          "name": "DELETE /productos/{id} — producto usado en un pedido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// La FK detalles_pedido -> productos es ON DELETE RESTRICT. Debe responder 409, no 500.",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 409\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/productos/{{productoQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos",
+                "{{productoQAId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "DELETE /categorias/{id} — categoria que todavia tiene productos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// MISMO caso que el anterior pero en Categorias. Si aqui sale 500 en lugar de 409, es un HALLAZGO: al controlador le falta atrapar DataIntegrityViolationException. Anotalo en el reporte.",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 409\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categorias/{{categoriaQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categorias",
+                "{{categoriaQAId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "DELETE /usuarios/{id} — usuario que tiene un pedido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// La FK pedidos -> usuarios es ON DELETE RESTRICT. Mismo caso. Si sale 500, es otro hallazgo.",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 409\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});",
+                  "",
+                  "pm.test(\"El cuerpo del error trae el campo mensaje (regla 1 del contrato)\", function () {",
+                  "    var cuerpo;",
+                  "    try { cuerpo = pm.response.json(); } catch (e) {",
+                  "        pm.expect.fail(\"La respuesta no es JSON: \" + pm.response.text());",
+                  "    }",
+                  "    pm.expect(cuerpo, \"cuerpo recibido: \" + JSON.stringify(cuerpo))",
+                  "      .to.have.property(\"mensaje\");",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/usuarios/{{usuarioQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usuarios",
+                "{{usuarioQAId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 - Limpieza (deja la base como estaba)",
+      "item": [
+        {
+          "name": "DELETE /detalles/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 204\", function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/detalles/{{detalleQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "detalles",
+                "{{detalleQAId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "DELETE /pedidos/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 204\", function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pedidos/{{pedidoQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pedidos",
+                "{{pedidoQAId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "DELETE /productos/{id} — ahora si, ya sin detalle",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 204\", function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/productos/{{productoQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productos",
+                "{{productoQAId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "DELETE /categorias/{id} — ahora si, ya sin producto",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 204\", function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categorias/{{categoriaQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categorias",
+                "{{categoriaQAId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "DELETE /usuarios/{id} — ahora si, ya sin pedido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "console.log(pm.info.requestName, \"->\", pm.response.code,",
+                  "            pm.response.text().substring(0, 300));",
+                  "",
+                  "pm.test(\"Responde 204\", function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/usuarios/{{usuarioQAId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usuarios",
+                "{{usuarioQAId}}"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/sketchcoffee"
+    }
+  ]
+}
