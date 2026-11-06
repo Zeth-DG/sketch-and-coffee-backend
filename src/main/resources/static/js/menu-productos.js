@@ -20,7 +20,9 @@ export async function cargarProductosCatalogo() {
 
   // 1. Cargar productos desde el Backend de Spring Boot (API REST / MySQL)
   try {
-    const response = await fetch("http://localhost:8080/sketchcoffee/productos", {
+    // Ruta relativa: pasa por nginx en produccion (AWS) y funciona igual
+    // en local porque Spring Boot sirve el frontend en el mismo origen.
+    const response = await fetch("/sketchcoffee/productos", {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -50,7 +52,11 @@ export async function cargarProductosCatalogo() {
           disponible: prod.activo ?? true, // Traduce el "activo" del backend a disponibilidad
           existencias: prod.existencias || 0,
           descripcion: prod.descripcion || infoExtra?.descripcion || descripcionesBreves[claveEncontrada] || "Una opción deliciosa para disfrutar en Sketch & Coffee.",
-          imagen: infoExtra ? infoExtra.imagen : (prod.imagen || "./img/default.jpg")
+          // La imagen de la base manda: asi las fotos reales subidas desde
+          // el panel de administracion se muestran aunque el nombre del
+          // producto coincida con una imagen hardcodeada. El fallback es
+          // un arte de marca que SI existe (./img/default.jpg nunca existó).
+          imagen: prod.imagen || (infoExtra ? infoExtra.imagen : "imagenes/cafeteria/Sketch&Coffee_cuadro1.png")
         };
       });
 

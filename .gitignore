@@ -53,7 +53,10 @@ build/
 Thumbs.db
 /docs/generales/
 /src/main/resources/application.properties
-docs/despliegue/
+/docs/despliegue/
 
 ### Secretos (Opcional pero recomendado) ###
 *.env
+
+### Imagenes subidas en local (ImagenController) ###
+/imagenes-publicadas/

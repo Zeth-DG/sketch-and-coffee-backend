@@ -80,7 +80,8 @@ function configurarSesion(header) {
 
   if (botonCuenta) botonCuenta.classList.add("d-none");
   if (botonCerrarSesion) botonCerrarSesion.classList.remove("d-none");
-  if (usuario.rol === "administrador" && enlacePanel) {
+  // La base guarda el rol como ENUM('cliente','admin'), no 'administrador'.
+  if (usuario.rol === "admin" && enlacePanel) {
     enlacePanel.classList.remove("d-none");
   }
 

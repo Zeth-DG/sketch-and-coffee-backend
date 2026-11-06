@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             localStorage.setItem("app_authenticated_user", JSON.stringify(usuarioEncontrado));
             
             // Redirección según rol obtenido de la base de datos
-            if (usuarioEncontrado.rol && usuarioEncontrado.rol.toLowerCase() === "administrador") {
+            if (usuarioEncontrado.rol && usuarioEncontrado.rol.toLowerCase() === "admin") {
                 window.location.href = "creacion_de_producto.html";
             } else {
                 window.location.href = "index.html";
