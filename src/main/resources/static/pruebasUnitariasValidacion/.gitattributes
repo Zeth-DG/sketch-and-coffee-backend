@@ -1,0 +1,7 @@
+# Manejo consistente de saltos de línea
+* text=auto
+
+# Forzar LF en archivos específicos si necesitas
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf

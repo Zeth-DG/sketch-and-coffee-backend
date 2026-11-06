@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenid@ a Sketch & Coffee</title>
+    <link rel="icon" type="image/x-icon" href="./imagenes/favicon.ico">
+    <!--enlace de bootstrap y estilos de css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <!--enlace tipografía-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Caveat:wght@400..700&family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!--el header se mueve a un archivo especifico para importarse en cada página-->
+    <header id="header-global"></header>
+
+    <main class="tarjeta-contenedor">
+
+        <!-- Detalle visual de marca -->
+        <div class="logo-seccion">
+            <span>SKETCH & COFFEE</span>
+        </div>
+
+        <h1 class="titulo-seccion">Iniciar Sesión</h1>
+
+        <!-- Alerta general de error/éxito conectada al script -->
+        <div id="alertaGeneralLogin" class="alert alert-danger d-none" role="alert" tabindex="-1"></div>
+
+        <form id="formularioLogin" novalidate>
+            <!-- Correo electrónico -->
+            <div class="mb-3">
+                <label for="campoUsuarioLogin" class="form-label">Correo electrónico</label>
+                <input type="email" id="campoUsuarioLogin" class="form-control" required aria-required="true"
+                    aria-describedby="errorUsuarioLogin" placeholder="ejemplo@correo.com">
+                <p id="errorUsuarioLogin" class="mensaje-error d-none" aria-live="polite"></p>
+            </div>
+
+            <!-- Contraseña con botón interactivo -->
+            <div class="mb-3">
+                <label for="campoContrasenaLogin" class="form-label">Contraseña</label>
+                <div class="input-grupo">
+                    <input type="password" id="campoContrasenaLogin" class="form-control" required aria-required="true"
+                        aria-describedby="errorContrasenaLogin" placeholder="Escribe tu contraseña">
+                    <button type="button" id="btnTogglePassword" class="btn-ver-password"
+                        aria-label="Mostrar contraseña">Ver</button>
+                </div>
+                <p id="errorContrasenaLogin" class="mensaje-error d-none" aria-live="polite"></p>
+            </div>
+
+            <!-- Opciones extra con el ID añadido para la Opción 3 -->
+            <div class="opciones-formulario">
+                <label>
+                    <input type="checkbox" id="recordarSesion"> Recuérdame
+                </label>
+                <a href="#" id="btnOlvidastePassword">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button type="submit" class="btn-submit">Ingresar</button>
+        </form>
+
+        <div class="enlace-registro">
+            ¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a>
+        </div>
+
+        <!-- Zonas de anuncio dinámico para lectores de pantalla -->
+        <div id="notificacion-polite" aria-live="polite" class="sr-only"></div>
+        <div id="notificacion-assertive" aria-live="assertive" class="sr-only"></div>
+    </main>
+
+    <!-- Script visual para el botón "Ver/Ocultar" contraseña -->
+    <script>
+        const btnToggle = document.getElementById('btnTogglePassword');
+        const inputPass = document.getElementById('campoContrasenaLogin');
+
+        if (btnToggle && inputPass) {
+            btnToggle.addEventListener('click', () => {
+                const tipoActual = inputPass.getAttribute('type');
+                if (tipoActual === 'password') {
+                    inputPass.setAttribute('type', 'text');
+                    btnToggle.textContent = 'Ocultar';
+                    btnToggle.setAttribute('aria-label', 'Ocultar contraseña');
+                } else {
+                    inputPass.setAttribute('type', 'password');
+                    btnToggle.textContent = 'Ver';
+                    btnToggle.setAttribute('aria-label', 'Mostrar contraseña');
+                }
+            });
+        }
+    </script>
+
+    <!-- SECCIÓN NEWSLETTER SUSCRÍBETE -->
+    <section class="section-newsletter text-center" aria-labelledby="newsletter-heading">
+        <div class="container">
+            <h2 id="newsletter-heading" class="mb-4">¡Únete a nuestra comunidad!</h2>
+            <p id="desc-newsletter" class="mb-4">
+                Recibe nuestras novedades, promociones y eventos especiales en tu correo.
+            </p>
+
+            <form id="formNewsletter" class="row g-2 justify-content-center align-items-center" novalidate>
+                <div class="col-12 col-sm-auto">
+                    <label for="inputEmailNewsletter" class="visually-hidden">Correo electrónico</label>
+                    <input id="inputEmailNewsletter" type="email"
+                        class="form-control form-control-lg text-center text-sm-start newsletter-input"
+                        placeholder="ejemplo@correo.com">
+                </div>
+                <div class="col-12 col-sm-auto">
+                    <button type="submit" class="btn btn-custom-magenta w-100">Enviar</button>
+                </div>
+            </form>
+            <div id="alertNewsletter" class="mt-3 col-12 col-md-6 mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- Footer global para importarse en cada página -->
+    <footer id="footer-global" role="contentinfo">
+        <div class="site-footer">
+            <div class="footer-container">
+                <!-- Información de derechos de autor y marca -->
+                <p>&copy; 2026 Sketch & Coffee. Todos los derechos reservados.</p>
+
+                <!-- Navegación de enlaces legales -->
+                <nav class="footer-legal-nav" aria-label="Enlaces legales">
+                    <ul>
+                        <li>
+                            <a href="terminos.html" title="Ver Términos y Condiciones de Uso">Términos y Condiciones</a>
+                        </li>
+                        <li>
+                            <a href="aviso.html" title="Ver Aviso de Privacidad">Aviso de Privacidad</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/newsletter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js" type="module"></script>
+    <script src="./js/login.js" type="module"></script>
+
+    <!-- Botón -->
+    <button type="button" class="btn btn-primary rounded-circle shadow-lg" id="btnSubir">
+        <svg xmlns="http://w3.org" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+        </svg>
+    </button>
+
+</body>
+
+</html>

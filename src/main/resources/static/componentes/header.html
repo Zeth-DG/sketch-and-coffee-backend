@@ -1,0 +1,43 @@
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-centrada">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html"><img src="../imagenes/logo/logo-fondo-negro.jpg" alt="logo sketch and coffee" class="brand-logo" style="height: 50px; width: auto;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../menu.html">Nuestro menú</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../acerca_de_nosotros.html">Acerca de nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contacto.html">Contacto</a>
+                    </li>
+                </ul>
+                <div class="d-flex gap-3 align-items-center">
+                    <form class="d-flex" role="search" action="menu.html" method="get">
+                        <input class="form-control me-2" id="buscar-producto" name="buscar" type="search"
+                            placeholder="Buscar producto" aria-label="Buscar por nombre de producto"/>
+                        <button class="btn" type="submit">Buscar</button>
+                    </form>
+
+                    <!--<button id="btnCambiarIdioma" class="btn" type="button">Idioma</button>-->
+                    <button id="btnVerCarrito" class="btn position-relative" type="button"
+                        data-bs-toggle="modal" data-bs-target="#modalCarrito">
+                        Carrito
+                        <span id="contador-carrito"
+                            class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+                    </button>
+                    <a href="inicio-sesion.html" id="btnCuenta" class="btn" role="button">Mi cuenta</a>
+                    <a href="creacion_de_producto.html" id="btnPanelAdmin" class="btn d-none">Panel admin</a>
+                    <button id="btnCerrarSesion" class="btn d-none" type="button">Cerrar sesión</button>
+                </div>       
+            </div>
+        </div>
+    </nav>

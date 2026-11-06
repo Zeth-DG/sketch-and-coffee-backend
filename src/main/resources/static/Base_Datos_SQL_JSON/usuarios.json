@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ana",
+    "apellido": "Ramírez",
+    "telefono": "7641000001",
+    "correo": "ana.ramirez@ejemplo.com",
+    "rol": "cliente",
+    "activo": true,
+    "password_hash": null
+  },
+  {
+    "id": 2,
+    "nombre": "Carlos",
+    "apellido": "Mendoza",
+    "telefono": "7641000002",
+    "correo": "carlos.mendoza@ejemplo.com",
+    "rol": "cliente",
+    "activo": true,
+    "password_hash": null
+  },
+  {
+    "id": 3,
+    "nombre": "Daniela",
+    "apellido": "Ortiz",
+    "telefono": "7641000003",
+    "correo": "daniela.ortiz@ejemplo.com",
+    "rol": "cliente",
+    "activo": true,
+    "password_hash": null
+  },
+  {
+    "id": 4,
+    "nombre": "Miguel",
+    "apellido": "Hernández",
+    "telefono": "7641000004",
+    "correo": "miguel.hernandez@ejemplo.com",
+    "rol": "cliente",
+    "activo": false,
+    "password_hash": null
+  },
+  {
+    "id": 5,
+    "nombre": "Sketch",
+    "apellido": "Admin",
+    "telefono": "7641000005",
+    "correo": "admin@sketchandcoffee.mx",
+    "rol": "admin",
+    "activo": true,
+    "password_hash": null
+  }
+]

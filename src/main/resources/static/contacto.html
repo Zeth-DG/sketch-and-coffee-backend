@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contáctanos</title>
+    <link rel="icon" type="image/x-icon" href="./imagenes/favicon.ico">
+    <!--enlace de bootstrap y estilos de css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <!--el header se mueve a un archivo especifico para importarse en cada página-->
+    <header id="header-global"></header>
+
+
+    <!--UNION DE FORMULARIO DE LAURA Y TARJETAS QUE HICE-->
+    <main class="contenedor-contacto container my-4">
+
+        <div class="row g-4">
+
+            <!-- TARJETA PRINCIPAL: FORMULARIO -->
+            <section class="col-lg-7 col-xl-8" aria-labelledby="titulo-formulario">
+                <div class="tarjeta-boceto tarjeta-boceto-principal">
+                    <h2 id="titulo-formulario">Escríbenos</h2>
+                    <p class="subtitulo">Respondemos en un máximo de 24 horas hábiles</p>
+
+                    <!-- Formulario -->
+                    <form id="formularioContacto" aria-describedby="instrucciones-formulario" novalidate>
+                        <span id="instrucciones-formulario" class="visually-hidden">
+                            Todos los campos marcados como obligatorios deben ser completados para enviar el mensaje.
+                        </span>
+
+                        <!-- Nombre y Teléfono -->
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="campoNombre" class="visually-hidden">Nombre completo</label>
+                                <input type="text" id="campoNombre" class="form-control" placeholder="Nombre" required
+                                    aria-required="true">
+                                <p id="errorNombre" class="mensaje-error"></p>    
+                            </div>
+                            <div class="col-md-6">
+                                <label for="campoTelefono" class="visually-hidden">Número de teléfono</label>
+                                <input type="tel" id="campoTelefono" class="form-control" placeholder="Teléfono" required aria-required="true">
+                                <p id="errorTelefono" class="mensaje-error"></p>
+                            </div>
+                        </div>
+
+                        <!-- Correo electrónico -->
+                        <div class="mb-3">
+                            <label for="campoCorreo" class="visually-hidden">Correo electrónico</label>
+                            <input type="email" id="campoCorreo" class="form-control" placeholder="Correo electrónico"
+                                required aria-required="true">
+                            <p id="errorEmail" class="mensaje-error"></p>    
+                        </div>
+
+                        <!-- Asunto -->
+                        <div class="mb-3">
+                            <label for="campoAsunto" class="visually-hidden">Selecciona el asunto del mensaje</label>
+                            <select id="campoAsunto" class="form-select" required aria-required="true">
+                                <option value="" disabled selected hidden>Asunto: Pedidos / Eventos / Mayoreo / Otro
+                                </option>
+                                <option value="pedidos">Pedidos</option>
+                                <option value="eventos">Eventos</option>
+                                <option value="mayoreo">Mayoreo</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                            <p id="errorAsunto" class="mensaje-error"></p>
+                        </div>
+
+                        <!-- Mensaje -->
+                        <div class="mb-3">
+                            <label for="campoMensaje" class="visually-hidden">Escribe tu mensaje</label>
+                            <textarea id="campoMensaje" class="form-control" rows="5" placeholder="Mensaje" required
+                                aria-required="true"></textarea>
+                            <p id="errorMensaje" class="mensaje-error"></p>     
+                        </div>
+
+                        <!-- Checkbox Aviso de privacidad -->
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="campoPrivacidad" required
+                                aria-required="true">
+                            <label class="form-check-label small" for="campoPrivacidad">
+                                Acepto el <a href="./aviso.html" class="text-dark fw-semibold">aviso de privacidad</a>
+                            </label>
+
+                            <p id="errorPrivacidad" class="mensaje-error"></p>
+                        </div>
+
+                        <!-- reCAPTCHA y Botón -->
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
+                            <div class="caja-recaptcha" role="region" aria-label="Verificación de seguridad anti-bot">
+                                <i class="bi bi-shield-check me-1" aria-hidden="true"></i> reCAPTCHA
+                            </div>
+                            <button id="btnEnviar" type="submit" class="boton-magenta">ENVIAR MENSAJE</button>
+                        </div>
+
+                    </form>
+
+                    <!-- Mensaje de Agradecimiento -->
+                    <div id="successMessage" style="display: none;">
+                        ¡Gracias por tu mensaje! En breve nos comunicaremos.
+                    </div>
+                </div>
+
+
+
+            </section>
+
+            <!-- COLUMNA DERECHA: TARJETAS INFORMATIVAS -->
+            <aside class="col-lg-5 col-xl-4 d-flex flex-column gap-4">
+
+                <!-- Tarjeta 1: ¿Cómo nos encuentras? -->
+                <article class="tarjeta-boceto" aria-labelledby="titulo-encuentranos">
+                    <h3 id="titulo-encuentranos">¿Cómo nos encuentras?</h3>
+                    <div class="mt-3">
+
+                        <div class="bloque-info">
+                            <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                            <div>
+                                <strong>Dirección:</strong> Patricio Sanz 242-Loc B, código 2, Col del Valle, Benito
+                                Juárez, 03100 Ciudad de México, CDMX
+                            </div>
+                        </div>
+
+                        <div class="bloque-info">
+                            <i class="bi bi-whatsapp" aria-hidden="true"></i>
+                            <div>
+                                <strong>WhatsApp:</strong> <a href="https://wa.me/525542921810?text=¡Hola!%20Quiero%20más%20información" 
+                                    aria-label="Enviar mensaje por WhatsApp al número +52 55 4292 1810">+52 55 4292
+                                    1810</a>
+                            </div>
+                        </div>
+
+                        <div class="bloque-info">
+                            <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+                            <div>
+                                <strong>Correo:</strong> <a
+                                    href="mailto:sketchandcoffee.mx@gmail.com">sketchandcoffee.mx@gmail.com</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <!-- Tarjeta 2: Horarios -->
+                <article class="tarjeta-boceto d-flex flex-column justify-content-between"
+                    aria-labelledby="titulo-horarios">
+                    <div>
+                        <h3 id="titulo-horarios">Horarios</h3>
+                        <div class="mt-3">
+
+                            <div class="fila-horario">
+                                <strong>Lunes a viernes:</strong> 07:30 am - 20:30 pm
+                            </div>
+
+                            <div class="fila-horario">
+                                <strong>Sábado y domingo:</strong> 08:30 am - 13:30 pm
+                            </div>
+
+                            <div class="fila-horario text-muted fst-italic">
+                                Días festivos no abrimos
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-2">
+                        <a href="https://maps.app.goo.gl/nX96iwoTugFLviHM6" target="_blank"
+                            class="boton-magenta d-block text-center text-decoration-none" role="button">
+                            Ver en Google Maps
+                        </a>
+                    </div>
+                </article>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+<!--Mapa de Ubicacion-->
+
+   <!-- SECCIÓN UBICACIÓN / MAPA -->
+<section id="seccion-mapa" tabindex="-1" class="seccion-mapa my-5" aria-labelledby="titulo-ubicacion">
+  <div class="container">
+    <h2 id="titulo-ubicacion" class="mb-3">Ubicación</h2>
+
+    <div class="contenedor-iframe-mapa">
+      <iframe
+        src="https://maps.google.com/maps?q=Sketch%20%26%20Coffee%2C%20Patricio%20Sanz%20242%2C%20Del%20Valle%20Norte%2C%20CDMX&t=&z=17&ie=UTF8&iwloc=B&output=embed"
+        title="Mapa interactivo con la ubicación de Sketch & Coffee en la Ciudad de México"
+        width="100%" 
+        height="400" 
+        style="border:0;"
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!----------------------------------------------------------AQUI ACABA MI PARTE---------------------------------------------------------------------->
+
+<!-- INICIO DE LA SECCION DE PREGUNTAS FRECUENTES (Vanya) -->
+
+
+<section id="faq" tabindex="-1" class="container my-5 px-3 px-md-5">
+  <h2 class="mb-4">Preguntas frecuentes</h2>
+  <div class="accordion" id="faqAccordion">
+
+    <!-- Pregunta 1 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="preguntaUno">
+        <button class="accordion-button collapsed faq-btn" type="button"
+          data-bs-toggle="collapse" data-bs-target="#respuestaUno"
+          aria-expanded="false" aria-controls="respuestaUno">
+          ¿Cuáles son sus horarios de atención y dónde están ubicados?
+        </button>
+      </h2>
+      <div id="respuestaUno" class="accordion-collapse collapse"
+        aria-labelledby="preguntaUno" data-bs-parent="#faqAccordion">
+        <div class="accordion-body faq-body">
+           Estamos ubicados en Patricio Sanz 242-Loc B, código 2, Col. Del valle, Benito Juárez, 03100 Ciudad de México, CDMX. Abrimos de lunes a viernes de 7:30 a.m. a 8:30 p.m., y sábados y domingos de 8:30 a.m. a 01:30 p.m. ¡Te esperamos!
+        </div>
+      </div>
+    </div>
+
+    <!-- Pregunta 2 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="preguntaDos">
+        <button class="accordion-button collapsed faq-btn" type="button"
+          data-bs-toggle="collapse" data-bs-target="#respuestaDos"
+          aria-expanded="false" aria-controls="respuestaDos">
+          ¿Cuentan con Wi-Fi y espacio para trabajar o estudiar?
+        </button>
+      </h2>
+      <div id="respuestaDos" class="accordion-collapse collapse"
+        aria-labelledby="preguntaDos" data-bs-parent="#faqAccordion">
+        <div class="accordion-body faq-body">
+          ¡Por supuesto! Tenemos Wi-Fi de alta velocidad gratis y conexiones eléctricas en la mayoría de nuestras mesas. Diseñamos un ambiente cómodo para que puedas concentrarte mientras disfrutas de tu café favorito.
+        </div>
+      </div>
+    </div>
+
+    <!-- Pregunta 3 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="preguntaTres">
+        <button class="accordion-button collapsed faq-btn" type="button"
+          data-bs-toggle="collapse" data-bs-target="#respuestaTres"
+          aria-expanded="false" aria-controls="respuestaTres">
+          ¿Qué métodos de pago aceptan?
+        </button>
+      </h2>
+      <div id="respuestaTres" class="accordion-collapse collapse"
+        aria-labelledby="preguntaTres" data-bs-parent="#faqAccordion">
+        <div class="accordion-body faq-body">
+           Aceptamos efectivo, tarjetas de crédito y débito (Visa, Mastercard, Amex), y pagos sin contacto como Apple Pay y Google Pay.
+        </div>
+      </div>
+    </div>
+
+    <!-- Pregunta 4 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="preguntaCuatro">
+        <button class="accordion-button collapsed faq-btn" type="button"
+          data-bs-toggle="collapse" data-bs-target="#respuestaCuatro"
+          aria-expanded="false" aria-controls="respuestaCuatro">
+          ¿Aceptan mascotas en el establecimiento?
+        </button>
+      </h2>
+      <div id="respuestaCuatro" class="accordion-collapse collapse"
+        aria-labelledby="preguntaCuatro" data-bs-parent="#faqAccordion">
+        <div class="accordion-body faq-body">
+           Sí, somos un espacio 100% pet-friendly. Tus amigos de cuatro patas son bienvenidos tanto en nuestra terraza como en el interior del local, siempre y cuando permanezcan con su correa.
+        </div>
+      </div>
+    </div>
+
+     <!-- Pregunta 5 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="preguntaCinco">
+        <button class="accordion-button collapsed faq-btn" type="button"
+          data-bs-toggle="collapse" data-bs-target="#respuestaCinco"
+          aria-expanded="false" aria-controls="respuestaCinco">
+          ¿Tienen opciones de comida veganas, vegetarianas o sin gluten?
+        </button>
+      </h2>
+      <div id="respuestaCinco" class="accordion-collapse collapse"
+        aria-labelledby="preguntaCinco" data-bs-parent="#faqAccordion">
+        <div class="accordion-body faq-body">
+           Por ahora ofrecemos únicamente opciones sin gluten. Valoramos mucho las sugerencias de nuestros clientes y estamos abiertos a incorporar alternativas veganas y vegetarianas en el futuro.
+        </div>
+      </div>
+    </div>
+
+    <!-- Pregunta 6 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="preguntaSeis">
+        <button class="accordion-button collapsed faq-btn" type="button"
+          data-bs-toggle="collapse" data-bs-target="#respuestaSeis"
+          aria-expanded="false" aria-controls="respuestaSeis">
+          ¿Ofrecen servicio a domicilio o pedidos para llevar?
+        </button>
+      </h2>
+      <div id="respuestaSeis" class="accordion-collapse collapse"
+        aria-labelledby="preguntaSeis" data-bs-parent="#faqAccordion">
+        <div class="accordion-body faq-body">
+           ¡Sí! Puedes hacer tu pedido para llevar directamente en nuestra barra o llamarnos para tenerlo listo cuando pases por él. Para servicio a domicilio, nos encuentras en las principales aplicaciones de entrega (Uber Eats, Rappi y Didi Food) o puedes pedir directamente a nuestro WhatsApp de servicio.
+        </div>
+      </div>
+    </div>
+
+    <!-- Pregunta 7 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="preguntaSiete">
+        <button class="accordion-button collapsed faq-btn" type="button"
+          data-bs-toggle="collapse" data-bs-target="#respuestaSiete"
+          aria-expanded="false" aria-controls="respuestaSiete">
+          ¿Tienen estacionamiento?
+        </button>
+      </h2>
+      <div id="respuestaSiete" class="accordion-collapse collapse"
+        aria-labelledby="preguntaSiete" data-bs-parent="#faqAccordion">
+        <div class="accordion-body faq-body">
+           No contamos con estacionamiento propio, pero en la calle de Patricio Sanz no hay parquímetro y puedes estacionarte libremente si encuentras lugar.  <br>
+      También tienes la opción de usar estacionamientos cercanos:  
+      <ul>
+        <li><a href="https://maps.app.goo.gl/jkKbZLnYPLtkX7to9?g_st=ic" target="_blank" rel="noopener noreferrer">Estacionamiento 1</a></li>
+        <li><a href="https://maps.app.goo.gl/bfXyhFHCNboSe5FAA?g_st=ic" target="_blank" rel="noopener noreferrer">Estacionamiento 2</a></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+    
+  </div> <!-- Cierre de div class="accordion" id="faqAccordion" -->
+</section> <!-- Cierre de id="faq" class="container my-5 px-3 px-md-10" -->
+
+<!-- FIN DE LA SECCIÓN DE PREGUNTAS FRECUENTES -->
+
+
+<!--Footer global para importarse en cada página-->
+<footer id="footer-global" role="contentinfo"></footer>
+
+<script src="./js/newsletter.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="./js/main.js" type="module"></script>
+<script src="./js/formulario.js" type = "module"></script>
+</body>
+
+</html>

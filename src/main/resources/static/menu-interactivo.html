@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿hambre? ve nuestro menú</title>
+    <link rel="icon" type="image/x-icon" href="./imagenes/favicon.ico">
+    <!--enlace de bootstrap y estilos de css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <!--enlace tipografía-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Caveat:wght@400..700&family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <!--Encabezado y menu - Liz-->
+    <!--el header se mueve a un archivo especifico para importarse en cada página-->
+    <header id="header-global"></header>
+
+    <!-- HERO (Asimétrico: 1 destacada + 3 secundarias) -->
+    <section id="hero" class="container-fluid hero-section text-center d-flex flex-column justify-content-center">
+        <div class="container text-center mb-4">
+            <h1 class="mb-2 hero-titulo">Diseña tu antojo</h1>
+
+            <!-- CTA principal -->
+            <a href="#menu-seccion" class="btn btn-dark btn-lg rounded-pill px-5 shadow-sm cta-hero">
+                <i class="bi bi-arrow-down-circle me-2"></i> Ver el menú completo
+            </a>
+        </div>
+
+        <div class="container">
+            <div class="row g-3 justify-content-center align-items-stretch">
+                <!--hero-->
+                <div class="row g-3 justify-content-center align-items-stretch" style="max-height: 450px;">
+
+                    <!-- Tarjeta Izquierda: Bebidas -->
+                    <div class="col-12 col-md-6 mb-3 mb-lg-0" style="height: 450px;">
+                        <div class="card bg-dark text-white h-100 shadow-sm card-hero card-hero-secundaria overflow-hidden position-relative"
+                            onclick="seleccionarCategoriaDesdeHero('bebidas')">
+
+                            <img src="./imagenes/menu-interactivo/bebidas.jpg"
+                                class="card-hero-img-fondo w-100 h-100 object-fit-cover position-absolute top-0 start-0 z-0"
+                                alt="Latte con arte de oso">
+                            <div class="card-hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 60%); z-index: 0;"></div>
+
+                            <div
+                                class="card-body-hero position-absolute bottom-0 start-0 end-0 p-4 d-flex justify-content-between align-items-end z-1">
+                                <div class="text-start">
+                                    <span class="badge bg-danger mb-2">Lo más pedido</span>
+                                    <h5 class="card-title m-0 fs-3 text-white fw-bold">Bebidas</h5>
+                                    <small class="text-white fw-bold">Cafés, frappés, tés y más</small>
+                                </div>
+                                <i class="bi bi-arrow-right-circle fs-3 text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: 3 Tarjetas apiladas -->
+                    <div class="col-12 col-md-6" style="height: 450px;">
+                        <div class="d-flex flex-column gap-3 h-100">
+
+                            <!-- Platillos -->
+                            <div class="card bg-dark text-white shadow-sm card-hero card-hero-secundaria flex-fill overflow-hidden position-relative"
+                                onclick="seleccionarCategoriaDesdeHero('platillos')">
+                                <img src="./imagenes/menu-interactivo/paquetes.jpeg"
+                                    class="card-hero-img-fondo w-100 h-100 object-fit-cover position-absolute top-0 start-0 z-0"
+                                    alt="Croissant">
+                                <div class="card-hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 60%); z-index: 0;"></div>
+                                <div
+                                    class="card-body-hero position-absolute bottom-0 start-0 end-0 p-3 d-flex justify-content-between align-items-end z-1">
+                                    <div class="text-start">
+                                        <h6 class="card-title m-0 fs-5 text-white fw-bold">Platillos</h6>
+                                        <small class="text-white fw-bold">Chilaquiles, molletes y más</small>
+                                    </div>
+                                    <i class="bi bi-arrow-right-circle fs-5 text-white"></i>
+                                </div>
+                            </div>
+
+                            <!-- Crepas y waffles -->
+                            <div class="card bg-dark text-white shadow-sm card-hero card-hero-secundaria flex-fill overflow-hidden position-relative"
+                                onclick="seleccionarCategoriaDesdeHero('crepas-waffles')">
+                                <img src="./imagenes/menu-interactivo/crepas.jpg"
+                                    class="card-hero-img-fondo w-100 h-100 object-fit-cover position-absolute top-0 start-0 z-0"
+                                    alt="Crepa">
+                                <div class="card-hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 60%); z-index: 0;"></div>
+                                <div
+                                    class="card-body-hero position-absolute bottom-0 start-0 end-0 p-3 d-flex justify-content-between align-items-end z-1">
+                                    <div class="text-start">
+                                        <h6 class="card-title m-0 fs-5 text-white fw-bold">Crepas y waffles</h6>
+                                        <small class="text-white fw-bold">Ármalos a tu gusto</small>
+                                    </div>
+                                    <i class="bi bi-arrow-right-circle fs-5 text-white"></i>
+                                </div>
+                            </div>
+
+                            <!-- Postres -->
+                            <div class="card bg-dark text-white shadow-sm card-hero card-hero-secundaria flex-fill overflow-hidden position-relative"
+                                onclick="seleccionarCategoriaDesdeHero('postres')">
+                                <img src="./imagenes/menu-interactivo/postres2.jpg"
+                                    class="card-hero-img-fondo w-100 h-100 object-fit-cover position-absolute top-0 start-0 z-0"
+                                    alt="Postres">
+                                <div class="card-hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 60%); z-index: 0;"></div>
+                                <div
+                                    class="card-body-hero position-absolute bottom-0 start-0 end-0 p-3 d-flex justify-content-between align-items-end z-1">
+                                    <div class="text-start">
+                                        <h6 class="card-title m-0 fs-5 text-white fw-bold">Postres</h6>
+                                        <small class="text-white fw-bold">Panqué, brownie, flan y más</small>
+                                    </div>
+                                    <i class="bi bi-arrow-right-circle fs-5 text-white"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Indicador de scroll -->
+            <div class="scroll-indicator text-center mt-4">
+                <a href="#menu-seccion"
+                    class="text-decoration-none text-dark d-inline-flex flex-column align-items-center">
+                    <i class="bi bi-chevron-double-down fs-4"></i>
+                    <span class="small">Desliza para ver el menú</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DEL MENÚ DINÁMICO (Cargado por JavaScript) -->
+    <section id="menu-seccion" class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Carta de alimentos y bebidas</h2>
+            <div id="categorias-tabs" class="nav nav-pills justify-content-center gap-2 mt-4">
+                <!-- Las pestañas de categorías se cargan dinámicamente -->
+            </div>
+        </div>
+
+        <!-- Contenedor donde se despliega el menú -->
+        <div id="menu-contenedor" class="row g-4">
+            <!-- Se inyecta mediante JS -->
+        </div>
+    </section>
+    </main>
+
+
+    <!-- MODAL PARA CARRITO / RESUMEN DE PEDIDO -->
+    <div class="modal fade" id="modalCarrito" tabindex="-1" aria-labelledby="modalCarritoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header border-0 pb-2">
+                    <h5 class="modal-title fw-bold" id="modalCarritoLabel">Resumen de tu Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body pt-0 pb-2">
+                    <div id="lista-carrito" class="list-group mb-3">
+                        <!-- Items agregados dinámicamente -->
+                    </div>
+                    <div
+                        class="d-flex justify-content-between align-items-center fw-bold fs-5 px-3 py-3 rounded-3 bg-light border">
+                        <span>Total estimado:</span>
+                        <span id="total-carrito" class="text-dark">$0 MXN</span>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0 pt-0 pb-3 px-3 flex-column gap-3">
+
+                    <!-- CTA principal -->
+                    <button type="button" class="btn btn-dark w-100 rounded-pill py-2 fw-semibold" id="btnMostrarMesero"
+                        data-bs-dismiss="modal">
+                        <i class="bi bi-check2-circle me-2"></i> Mostrar a Mesero
+                    </button>
+
+                    <!-- Acciones secundarias como links -->
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <button type="button" class="btn btn-link btn-sm text-secondary text-decoration-none p-0"
+                            data-bs-dismiss="modal">
+                            <i class="bi bi-arrow-left me-1"></i> Seguir viendo
+                        </button>
+                        <button type="button" class="btn btn-link btn-sm text-danger text-decoration-none p-0"
+                            onclick="vaciarCarrito()">
+                            <i class="bi bi-trash3 me-1"></i> Vaciar pedido
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Pedido Listo -->
+    <div class="modal fade" id="modalPedidoListo" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-sketch-content">
+                <div class="modal-header border-0 pb-0 justify-content-end">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-3 p-md-4 pt-0 text-center">
+                    <div class="caja-sketch-emergente pb-4">
+
+                        <div class="mb-3 mt-2">
+                            <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                        </div>
+
+                        <h2 class="titulo-seccion-modal mb-3">¡Pedido anotado!</h2>
+
+                        <p class="text-muted mb-4 px-2" style="font-size: 1.1rem;">
+                            Muestra esta pantalla en barra o a tu mesero para preparar tus alimentos.
+                        </p>
+
+                        <button type="button" class="btn btn-dark w-100 rounded-pill py-3 fw-bold fs-5 shadow-sm" data-bs-dismiss="modal">
+                            Entendido
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA CREPAS Y WAFFLES (WIZARD DE 4 PASOS) -->
+    <div class="modal fade" id="modalCrepa" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Arma tu Crepa o Waffle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-3">
+
+                    <!-- PASO 1: Waffle o Crepa -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark">1. ¿Qué se te antoja hoy?</label>
+                        <div class="row g-2" id="tipo-producto-container">
+                            <div class="col-6">
+                                <input type="radio" class="btn-check" name="tipoCrepaWaffle" id="tipoCrepa"
+                                    value="Crepa" checked autocomplete="off">
+                                <label class="btn btn-outline-dark w-100 py-2" for="tipoCrepa">Crepa</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="btn-check" name="tipoCrepaWaffle" id="tipoWaffle"
+                                    value="Waffle" autocomplete="off">
+                                <label class="btn btn-outline-dark w-100 py-2" for="tipoWaffle">Waffle</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PASO 2: Tipo de Masa (Normal, Red Velvet / Sin Gluten) -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark">2. Elige tu tipo de masa</label>
+                        <div id="bases-container" class="d-flex flex-column gap-2">
+                            <!-- Se llena dinámicamente con JS -->
+                        </div>
+                    </div>
+
+                    <!-- PASO 3: 2 Ingredientes Incluidos -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark">3. Elige tus 2 ingredientes incluidos</label>
+                        <p class="text-muted small mb-2">Selecciona exactamente hasta 2 opciones.</p>
+                        <div id="ingredientes-incluidos-container" class="row row-cols-2 row-cols-md-3 g-2">
+                            <!-- Se llena dinámicamente con JS -->
+                        </div>
+                    </div>
+
+                    <!-- PASO 4: Ingredientes Extra (Opcional con costo adicional) -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <label class="form-label fw-bold text-dark m-0">4. ¿Deseas agregar más ingredientes
+                                extra?</label>
+                            <span class="badge bg-secondary fs-6" id="precio-extra-badge">+$15 c/u</span>
+                        </div>
+                        <p class="text-muted small mb-2">Puedes marcar o desmarcar las veces que quieras.</p>
+                        <div id="ingredientes-extra-container" class="row row-cols-2 row-cols-md-3 g-2">
+                            <!-- Se llena dinámicamente con JS -->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer border-0 pt-0 justify-content-between align-items-center">
+                    <div class="fw-bold fs-5">
+                        Total estimado: <span id="modal-total-crepa" class="text-dark">$0 MXN</span>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-dark btn-sm rounded-pill px-4"
+                            onclick="agregarCrepaPersonalizada()">Agregar al pedido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA SELECCIÓN DE SABOR DE BEBIDAS -->
+    <div class="modal fade" id="modalSaborBebida" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header border-0 pb-0 justify-content-center position-relative">
+                    <h5 class="modal-title fw-bold" id="tituloModalSabor">Elige tu sabor</h5>
+                    <button type="button" class="btn-close position-absolute end-0 me-3" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-3">
+                    <p class="text-muted small mb-3">Selecciona tu opción favorita:</p>
+                    <!-- Contenedor centrado para los botones de sabor -->
+                    <div id="contenedor-sabores-radio" class="row g-2 justify-content-center w-100">
+                        <!-- Se llena dinámicamente con JS -->
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0 justify-content-center">
+                    <button type="button" class="btn btn-dark btn-sm rounded-pill px-4"
+                        onclick="confirmarSaborYBebida()">Agregar al pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR DE NOTIFICACIONES TOAST -->
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 1090;">
+        <div id="toastAgregarCarrito"
+            class="toast align-items-center text-white bg-dark border-0 shadow-lg rounded-pill px-3 py-1" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="toast-body d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                    <span id="toastMensaje" class="fw-medium">¡Producto agregado al pedido!</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white ms-3" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer-global" role="contentinfo">
+        <div class="site-footer">
+            <div class="footer-container">
+                <!-- Información de derechos de autor y marca -->
+                <p>&copy; 2026 Sketch & Coffee. Todos los derechos reservados.</p>
+
+                <!-- Navegación de enlaces legales -->
+                <nav class="footer-legal-nav" aria-label="Enlaces legales">
+                    <ul>
+                        <li>
+                            <a href="terminos.html" title="Ver Términos y Condiciones de Uso">Términos y Condiciones</a>
+                        </li>
+                        <li>
+                            <a href="aviso.html" title="Ver Aviso de Privacidad">Aviso de Privacidad</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/newsletter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script src="./js/main.js" type="module"></script>
+    <script src="./js/menu-interactivo.js"></script>
+    <script src="./js/modales-menu-interactivo.js"></script>
+    <script src="./js/especialidades-menu-interactivo.js"></script>
+    <script src="./js/carrito-menu-interactivo.js"></script>
+    <!-- Botón -->
+    <button type="button" class="btn btn-primary rounded-circle shadow-lg" id="btnSubir">
+        <svg xmlns="http://w3.org" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+        </svg>
+    </button>
+
+</body>
+
+</html>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+    <!-- MODAL PARA CARRITO / RESUMEN DE PEDIDO -->
+    <div class="modal fade" id="modalCarrito" tabindex="-1" aria-labelledby="modalCarritoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header border-0 pb-2">
+                    <h5 class="modal-title fw-bold" id="modalCarritoLabel">Resumen de tu Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body pt-0 pb-2">
+                    <div id="lista-carrito" class="list-group mb-3">
+                        <!-- Items agregados dinámicamente -->
+                    </div>
+                    <div
+                        class="d-flex justify-content-between align-items-center fw-bold fs-5 px-3 py-3 rounded-3 bg-light border">
+                        <span>Total estimado:</span>
+                        <span id="total-carrito" class="text-dark">$0 MXN</span>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0 pt-0 pb-3 px-3 flex-column gap-3">
+
+                    <!-- CTA principal -->
+                    <button type="button" class="btn btn-dark w-100 rounded-pill py-2 fw-semibold" id="btnMostrarMesero"
+                        data-bs-dismiss="modal">
+                        <i class="bi bi-check2-circle me-2"></i> Mostrar a Mesero
+                    </button>
+
+                    <!-- Acciones secundarias como links -->
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <button type="button" class="btn btn-link btn-sm text-secondary text-decoration-none p-0"
+                            data-bs-dismiss="modal">
+                            <i class="bi bi-arrow-left me-1"></i> Seguir viendo
+                        </button>
+                        <button type="button" class="btn btn-link btn-sm text-danger text-decoration-none p-0"
+                            onclick="vaciarCarrito()">
+                            <i class="bi bi-trash3 me-1"></i> Vaciar pedido
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Pedido Listo -->
+    <div class="modal fade" id="modalPedidoListo" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-sketch-content">
+                <div class="modal-header border-0 pb-0 justify-content-end">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-3 p-md-4 pt-0 text-center">
+                    <div class="caja-sketch-emergente pb-4">
+
+                        <div class="mb-3 mt-2">
+                            <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                        </div>
+
+                        <h2 class="titulo-seccion-modal mb-3">¡Pedido anotado!</h2>
+
+                        <p class="text-muted mb-4 px-2" style="font-size: 1.1rem;">
+                            Muestra esta pantalla en barra o a tu mesero para preparar tus alimentos.
+                        </p>
+
+                        <button type="button" class="btn btn-dark w-100 rounded-pill py-3 fw-bold fs-5 shadow-sm" data-bs-dismiss="modal">
+                            Entendido
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR DE NOTIFICACIONES TOAST -->
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 1090;">
+        <div id="toastAgregarCarrito"
+            class="toast align-items-center text-white bg-dark border-0 shadow-lg rounded-pill px-3 py-1" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="toast-body d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                    <span id="toastMensaje" class="fw-medium">¡Producto agregado al pedido!</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white ms-3" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>

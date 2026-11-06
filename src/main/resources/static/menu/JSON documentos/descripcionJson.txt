@@ -1,0 +1,44 @@
+Descripción TOP 10 de productos.
+
+-Croissant:(True)
+Láminas doradas y crujienntes de fino hojaldre artesanal, horneadas a la perfección para lograr una textura ligera, suave y esponjosa por dentro.
+- - - Actualización: Láminas doradas y crujientes de fino hojaldre artesanal, horneadas a la perfección para lograr una textura ligera, suave y esponjosa por dentro.
+
+-----------------------------------------------------------------------
+-Enchiladas: (True)
+Tortillas artesanales con pechuga de pollo bañadas en deliciosa crema y salsa de la casa, queso,cebolla fresca y cilantro recien cortado, listas para deleitar tu paladar.
+- - - Actualización: Tortillas artesanales con pechuga de pollo bañadas en deliciosa crema y salsa de la casa, queso, cebolla fresca y cilantro recién cortado, listas para deleitar tu paladar.
+
+-----------------------------------------------------------------------
+-Chilaquiles: (True)
+Totopos crujientes bañados con salsa especiada, enriquesidos con crema ácida, queso espolvoreado y el punto exacto de picor.
+
+-----------------------------------------------------------------------
+-Latte: (True)
+Un balance armonioso entre la intensidad del espresso de especialidad y una nube de leche al vapor suave y cremosa.
+
+-----------------------------------------------------------------------
+-Capuchino: 
+Espresso de altura coronado con una densa capa de microespuma de leche de tu preferencia.
+
+-----------------------------------------------------------------------
+-Americano: (True)
+Extracción limpia de grano recién molido con notas todtas, aroma envoolvente y un perfil suave pero ocn carácter.
+- - - Actualización: “Extracción limpia de grano recién molido con notas tostadas, aroma envolvente y un perfil suave pero con carácter.”
+
+-----------------------------------------------------------------------
+-Chai Latte: (True)
+Infusión aromática de tés negros con cardamomo, canela y jengibre, matizadacon leche cremosa para un perfil dulce y reconfortante.
+
+-----------------------------------------------------------------------
+-Chocolate caliente: 
+Cacao puro funfido en leche entera, logrando una bebida rica, espesa y con el dulzor perfecto para reconfortar el alma.
+- - - Actualización: Cacao puro fundido en leche entera, logrando una bebida rica, espesa y con el dulzor perfecto para reconfortar el alma.
+
+-----------------------------------------------------------------------
+-Tisana Pink Blossom:  (True)
+Infusión frutal de notas florales y matices rosados vibrantes; un elixir fresco, ligero y naturalmente dulce. 
+
+-----------------------------------------------------------------------
+Crepa con Nutella y Philadephia: (True)
+Fina crepa artesanal dorada a la plancha, rebozante de suave queso crema y abundante crema de avellana y cacao.
