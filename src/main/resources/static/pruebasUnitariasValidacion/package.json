@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "jest": "^30.5.2"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true,
+    "unrs-resolver@1.12.2": true
+  }, 
+
+  "scripts": {
+    "test": "jest"
+  }
+}
+
+

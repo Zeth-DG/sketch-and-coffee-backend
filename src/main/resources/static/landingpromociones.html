@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Promociones Especiales | Sketch & Coffee</title>
+    <link rel="icon" type="image/x-icon" href="./imagenes/favicon.ico">
+    <!--enlace de bootstrap y estilos de css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <!--enlace tipografía-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Caveat:wght@400..700&family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Enlace de salto inicial para Accesibilidad WCAG AA -->
+    <a href="#contenido-principal" class="enlace-salto">Saltar al contenido principal</a>
+
+    <!-- Header global -->
+    <header id="header-global" role="banner" aria-label="Navegación principal del sitio Sketch & Coffee"></header>
+
+    <main id="contenido-principal">
+
+        <!-- 1. Hero Section con Cuenta Regresiva Flash (Urgencia) -->
+        <section class="seccion-hero-promos text-center py-5" aria-labelledby="titulo-hero">
+            <div class="container py-3">
+
+                <!-- Alerta de Urgencia / Cuenta Regresiva -->
+                <div class="banner-flash-urgencia mb-4 p-3 rounded-3 d-inline-flex align-items-center gap-3 flex-wrap justify-content-center shadow-sm"
+                    style="background-color: var(--color-negro); border: 1px solid var(--color-blanco-puro); color: var(--color-blanco-puro);">
+                    <span class="fw-bold text-uppercase small tracking-wide">⚡ Oferta Flash Expira en:</span>
+                    <div class="temporizador d-flex gap-2 text-white" aria-live="polite" id="contador-regresivo">
+                        <span class="badge bg-dark p-2" id="horas">12</span>h :
+                        <span class="badge bg-dark p-2" id="minutos">45</span>m :
+                        <span class="badge bg-dark p-2" id="segundos">30</span>s
+                    </div>
+                </div>
+
+                <span class="insignia-destacada d-inline-block mb-2">Ofertas Por Tiempo Limitado</span>
+                <h1 id="titulo-hero" class="display-4 fw-bold mb-3">Ofertas que Inspiran tu Día</h1>
+                <p class="lead mx-auto col-md-8 text-secundario mb-4">
+                Disfruta de una buena taza de cafe en compañia, admirando nuestro arte 2D.
+                </p>
+
+                <!-- 2. Selector Rápido de Promociones (Filtros Polimórficos) -->
+                <div class="selector-rapido mt-4 pt-2">
+                    <p class="small fw-bold text-uppercase mb-2 text-muted">¿Qué buscas hoy?</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-2" role="group"
+                        aria-label="Filtros rápidos de promociones">
+                        <button type="button" class="btn btn-filtro-activo boton-pildora activo" data-filtro="todos"
+                            aria-pressed="true">
+                            Ver Todas</button>
+                        <button type="button" class="btn btn-filtro-inactivo boton-pildora" data-filtro="combo-bebidas"
+                            aria-pressed="false">Bebidas</button>
+                        <button type="button" class="btn btn-filtro-inactivo boton-pildora" data-filtro="combo-snacks"
+                            aria-pressed="false">Snack</button>
+                        <button type="button" class="btn btn-filtro-inactivo boton-pildora" data-filtro="combo-postres"
+                            aria-pressed="false">Postres</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Grid de Ofertas Principales (Carga Dinámica en Tiempo Real) -->
+        <section class="seccion-catalogo-promos py-5" aria-labelledby="titulo-promociones">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                    <h2 id="titulo-promociones" class="h3 m-0">Promociones Activas</h2>
+                    <span class="badge text-bg-light fs-6" aria-live="polite"
+                        id="contador-promos">Sincronizando...</span>
+                </div>
+
+                <!-- Contenedor donde el motor asíncrono y polimórfico inyectará las tarjetas -->
+                <div class="row g-4" id="grid-promociones" role="region"
+                    aria-label="Lista de promociones en tiempo real">
+                    <!-- Estado de carga inicial accesible -->
+                    <div class="col-12 text-center py-5">
+                        <p class="text-muted" aria-live="polite">Sincronizando promociones desde redes sociales...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SECCIÓN NEWSLETTER SUSCRÍBETE -->
+    <section class="section-newsletter text-center" aria-labelledby="newsletter-heading">
+        <div class="container">
+            <h2 id="newsletter-heading" class="mb-4">¡Únete a nuestra comunidad!</h2>
+            <p id="desc-newsletter" class="mb-4">
+                Recibe nuestras novedades, promociones y eventos especiales en tu correo.
+            </p>
+
+            <form id="formNewsletter" class="row g-2 justify-content-center align-items-center" novalidate>
+                <div class="col-12 col-sm-auto">
+                    <label for="inputEmailNewsletter" class="visually-hidden">Correo electrónico</label>
+                    <input id="inputEmailNewsletter" type="email"
+                        class="form-control form-control-lg text-center text-sm-start newsletter-input"
+                        placeholder="ejemplo@correo.com">
+                </div>
+                <div class="col-12 col-sm-auto">
+                    <button type="submit" class="btn btn-custom-magenta w-100">Enviar</button>
+                </div>
+            </form>
+            <div id="alertNewsletter" class="mt-3 col-12 col-md-6 mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- Footer global para importarse en cada página -->
+    <footer id="footer-global" role="contentinfo">
+        <div class="site-footer">
+            <div class="footer-container">
+                <p>&copy; 2026 Sketch & Coffee. Todos los derechos reservados.</p>
+                <nav class="footer-legal-nav" aria-label="Enlaces legales">
+                    <ul>
+                        <li>
+                            <a href="terminos.html" title="Ver Términos y Condiciones de Uso">Términos y Condiciones</a>
+                        </li>
+                        <li>
+                            <a href="aviso.html" title="Ver Aviso de Privacidad">Aviso de Privacidad</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts y Módulos -->
+    <script src="./js/landing.js" type="module"></script>
+    <script src="./js/newsletter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js" type="module"></script>
+
+    <!-- Botón Subir -->
+    <button type="button" class="btn btn-primary rounded-circle shadow-lg" id="btnSubir"
+        aria-label="Subir al inicio de la página">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+        </svg>
+    </button>
+
+</body>
+
+</html>

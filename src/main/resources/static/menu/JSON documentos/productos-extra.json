@@ -1,0 +1,56 @@
+[
+  {
+    "nombre": "Café Veracruz Tostado Medio 500g",
+    "departamento": "Café en grano",
+    "precio": "280.00",
+    "sku": "grano-veracruz-500",
+    "disponible": true,
+    "descripcion": "Café de especialidad con notas de nuez y cacao. Origen Veracruz, Tostado Medio, Presentación 500g.",
+    "imagen": "./imagenes/fotosComidaTop10/cafe-veracruz.webp"
+  },
+  {
+    "nombre": "Café Chiapas Tostado Oscuro 1kg",
+    "departamento": "Café en grano",
+    "precio": "450.00",
+    "sku": "grano-chiapas-1kg",
+    "disponible": true,
+    "descripcion": "Cuerpo intenso y notas achocolatadas. Origen Chiapas, Tostado Oscuro, Presentación 1kg.",
+    "imagen": "./imagenes/fotosComidaTop10/cafe-chiapas.webp"
+  },
+  {
+    "nombre": "Café Oaxaca Tostado Claro 250g",
+    "departamento": "Café en grano",
+    "precio": "160.00",
+    "sku": "grano-oaxaca-250",
+    "disponible": true,
+    "descripcion": "Perfil cítrico y brillante. Origen Oaxaca, Tostado Claro, Presentación 250g.",
+    "imagen": "./imagenes/fotosComidaTop10/cafe-oaxaca.avif"
+  },
+  {
+    "nombre": "Brownie",
+    "departamento": "Postres",
+    "precio": "75.00",
+    "sku": "pos_5",
+    "disponible": true,
+    "descripcion": "Brownie de chocolate húmedo.",
+    "imagen": "./imagenes/fotosComidaTop10/brownie.jpg"
+  },
+  {
+    "nombre": "Panqué",
+    "departamento": "Postres",
+    "precio": "65.00",
+    "sku": "pos_3",
+    "disponible": true,
+    "descripcion": "Delicioso panqué casero. Elige tu sabor: Nata, Limón, Elote o Plátano.",
+    "imagen": "./imagenes/fotosComidaTop10/panque_elote.jpg"
+  },
+  {
+    "nombre": "Pay",
+    "departamento": "Postres",
+    "precio": "120.00",
+    "sku": "pos_6",
+    "disponible": true,
+    "descripcion": "Porción de pay artesanal. Elige tu sabor: Limón o Queso.",
+    "imagen": "./imagenes/fotosComidaTop10/pay_queso.webp"
+  }
+]

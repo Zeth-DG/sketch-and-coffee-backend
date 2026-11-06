@@ -1,0 +1,970 @@
+{
+  "nombre": "Sketch & Coffee",
+  "version": 1,
+  "fuentes": [
+    "menu_interactivo..json",
+    "menu.json",
+    "productos-extra.json",
+    "base_datos.sql"
+  ],
+  "resumenProductos": [
+    {
+      "categoria": "Bebidas calientes",
+      "cantidad": 16
+    },
+    {
+      "categoria": "Bebidas frías",
+      "cantidad": 17
+    },
+    {
+      "categoria": "Postres (incluye crepas y waffles)",
+      "cantidad": 13
+    },
+    {
+      "categoria": "Platillos",
+      "cantidad": 6
+    },
+    {
+      "categoria": "Café en grano",
+      "cantidad": 4
+    }
+  ],
+  "totalProductos": 56,
+  
+  "nota": "Las categorias e IDs siguen la estructura acordada de cinco categorias.",
+  "categorias": [
+    {
+      "id": 1,
+      "nombre": "Bebidas calientes",
+      "descripcion": "Bebidas calientes del menú interactivo.",
+      "productos": [
+        {
+          "idMenu": "beb_c_1",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "menu-beb_c_1",
+          "nombre": "Vaso de leche",
+          "descripcion": "Leche fresca.",
+          "precio": 20,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_c_2",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "menu-beb_c_2",
+          "nombre": "Espresso caliente",
+          "descripcion": "Shot de espresso puro.",
+          "precio": 45,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": true
+        },
+        {
+          "idMenu": "beb_c_3",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "menu-beb_c_3",
+          "nombre": "Macchiato",
+          "descripcion": "Espresso manchado con espuma.",
+          "precio": 48,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": true
+        },
+        {
+          "idMenu": "beb_c_4",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "520015361",
+          "nombre": "Americano",
+          "descripcion": "Café americano tradicional.",
+          "precio": 55,
+          "imagen": "./imagenes/alimentos-menu/americano.jpeg",
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": true,
+          "disponible": true,
+          "departamentoCatalogo": "BEBIDA CALIENTE",
+          "nombreCatalogo": "AMERICANO CALIENTE"
+        },
+        {
+          "idMenu": "beb_c_5",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "1052001536177",
+          "nombre": "Americano cortado",
+          "descripcion": "Americano con un toque de leche.",
+          "precio": 58,
+          "imagen": "./imagenes/alimentos-menu/americano.jpeg",
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": true,
+          "disponible": true,
+          "departamentoCatalogo": "BEBIDA CALIENTE",
+          "nombreCatalogo": "AMERICANO CORTADO"
+        },
+        {
+          "idMenu": "beb_c_6",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "menu-beb_c_6",
+          "nombre": "Flat White",
+          "descripcion": "Doble espresso con microespuma de leche.",
+          "precio": 65,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": true
+        },
+        {
+          "idMenu": "beb_c_7",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "520015362",
+          "nombre": "Chai latte caliente",
+          "descripcion": "Té chai especiado con leche caliente.",
+          "precio": 70,
+          "imagen": "./imagenes/alimentos-menu/chai-latte.jpeg",
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false,
+          "disponible": true,
+          "departamentoCatalogo": "BEBIDA CALIENTE",
+          "nombreCatalogo": "CHAI LATTE CALIENTE"
+        },
+        {
+          "idMenu": "beb_c_8",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "520015363",
+          "nombre": "Latte caliente",
+          "descripcion": "Café con leche texturizada.",
+          "precio": 70,
+          "imagen": "./imagenes/fotosComidaTop10/Sketch&Coffe_Latte.jpg",
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": true,
+          "disponible": true,
+          "departamentoCatalogo": "BEBIDA CALIENTE",
+          "nombreCatalogo": "LATTE CALIENTE"
+        },
+        {
+          "idMenu": "beb_c_9",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "520015364",
+          "nombre": "Capuchino Caliente",
+          "descripcion": "Espresso con leche vaporizada y espuma cremosa.",
+          "precio": 70,
+          "imagen": "./imagenes/alimentos-menu/capuchino.jpeg",
+          "existencias": 40,
+          "activo": true,
+          "tieneCafe": true,
+          "disponible": true,
+          "departamentoCatalogo": "BEBIDA CALIENTE",
+          "nombreCatalogo": "CAPUCHINO CALIENTE"
+        },
+        {
+          "idMenu": "beb_c_10",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "menu-beb_c_10",
+          "nombre": "Mocha",
+          "descripcion": "Espresso, chocolate y leche.",
+          "precio": 80,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": true
+        },
+        {
+          "idMenu": "beb_c_11",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "menu-beb_c_11",
+          "nombre": "Taro",
+          "descripcion": "Bebida caliente sabor taro.",
+          "precio": 80,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_c_12",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "menu-beb_c_12",
+          "nombre": "Matcha caliente",
+          "descripcion": "Té matcha tradicional caliente.",
+          "precio": 80,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_c_13",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "520015365",
+          "nombre": "Chocolate caliente",
+          "descripcion": "Chocolate espeso de la casa.",
+          "precio": 80,
+          "imagen": "./imagenes/alimentos-menu/chocolate-caliente.jpeg",
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false,
+          "disponible": true,
+          "departamentoCatalogo": "BEBIDA CALIENTE",
+          "nombreCatalogo": "CHOCOLATE CALIENTE"
+        },
+        {
+          "idMenu": "beb_c_14",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "menu-beb_c_14",
+          "nombre": "Dirty Chai",
+          "descripcion": "Chai latte con un shot de espresso.",
+          "precio": 85,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": true
+        },
+        {
+          "idMenu": "beb_c_15",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "menu-beb_c_15",
+          "nombre": "Tisanas calientes",
+          "descripcion": "Mezcla frutal reconfortante.",
+          "precio": 60,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "opcionesSabores": [
+            "Pink blossom",
+            "Guava spice",
+            "Kiwi berry splash",
+            "Golden bee"
+          ],
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_c_16",
+          "categoria_id": 1,
+          "subcategoria": "Calientes",
+          "sku": "menu-beb_c_16",
+          "nombre": "Tés calientes",
+          "descripcion": "Bebida caliente con diversos sabores.",
+          "precio": 60,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "opcionesSabores": [
+            "Zarzamora",
+            "frutos rojos",
+            "menta",
+            "matcha"
+          ],
+          "tieneCafe": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Bebidas frías",
+      "descripcion": "Bebidas frías del menú interactivo; incluye aguas, refrescos, jugos y otras bebidas.",
+      "productos": [
+        {
+          "idMenu": "beb_f_1",
+          "categoria_id": 2,
+          "subcategoria": "Frías",
+          "sku": "1052001536134",
+          "nombre": "Chai Latte Frio",
+          "descripcion": "Te chai con leche y hielo, con canela y cardamomo.",
+          "precio": 80,
+          "imagen": "./imagenes/alimentos-menu/chai-latte.jpeg",
+          "existencias": 25,
+          "activo": true,
+          "tieneCafe": false,
+          "disponible": true,
+          "departamentoCatalogo": "BEBIDA HELADA",
+          "nombreCatalogo": "CHAI LATTE FRIO"
+        },
+        {
+          "idMenu": "beb_f_2",
+          "categoria_id": 2,
+          "subcategoria": "Frías",
+          "sku": "5200153623",
+          "nombre": "Latte",
+          "descripcion": "Espresso con leche fría y hielo.",
+          "precio": 80,
+          "imagen": "./imagenes/alimentos-menu/latte-frio.jpeg",
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": true,
+          "disponible": true,
+          "departamentoCatalogo": "BEBIDA HELADA",
+          "nombreCatalogo": "LATTE FRIO"
+        },
+        {
+          "idMenu": "beb_f_3",
+          "categoria_id": 2,
+          "subcategoria": "Frías",
+          "sku": "5200153624",
+          "nombre": "Capuchino",
+          "descripcion": "Clásico capuchino frío.",
+          "precio": 80,
+          "imagen": "./imagenes/alimentos-menu/capuchino.jpeg",
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": true,
+          "disponible": true,
+          "departamentoCatalogo": "BEBIDA HELADA",
+          "nombreCatalogo": "CAPUCHINO FRIO"
+        },
+        {
+          "idMenu": "beb_f_4",
+          "categoria_id": 2,
+          "subcategoria": "Frías",
+          "sku": "menu-beb_f_4",
+          "nombre": "Matcha",
+          "descripcion": "Té matcha ceremonial frío.",
+          "precio": 90,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_f_5",
+          "categoria_id": 2,
+          "subcategoria": "Frías",
+          "sku": "menu-beb_f_5",
+          "nombre": "Chocolate",
+          "descripcion": "Chocolate frío de la casa.",
+          "precio": 90,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_f_6",
+          "categoria_id": 2,
+          "subcategoria": "Frías",
+          "sku": "menu-beb_f_6",
+          "nombre": "Tés fríos",
+          "descripcion": "Refrescante infusión de té.",
+          "precio": 60,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "opcionesSabores": [
+            "Zarzamora",
+            "Frutos rojos",
+            "Menta",
+            "Matcha"
+          ],
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_f_7",
+          "categoria_id": 2,
+          "subcategoria": "Frías",
+          "sku": "menu-beb_f_7",
+          "nombre": "Tisanas frías",
+          "descripcion": "Mezcla frutal reconfortante.",
+          "precio": 80,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "opcionesSabores": [
+            "Pink blossom",
+            "Guava spice",
+            "Kiwi berry splash",
+            "Golden bee"
+          ],
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_f_8",
+          "categoria_id": 2,
+          "subcategoria": "Frías",
+          "sku": "menu-beb_f_8",
+          "nombre": "Frapes",
+          "descripcion": "Bebida helada batida.",
+          "precio": 100,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "opcionesSabores": [
+            "Capuchino",
+            "Chocolate",
+            "Oreo",
+            "Matcha"
+          ],
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_f_9",
+          "categoria_id": 2,
+          "subcategoria": "Frías",
+          "sku": "menu-beb_f_9",
+          "nombre": "Soda italiana",
+          "descripcion": "Bebida con agua mineral y jarabe frutal.",
+          "precio": 100,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "opcionesSabores": [
+            "Berry dream",
+            "Passion breeza",
+            "Blueberry boom"
+          ],
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_f_10",
+          "categoria_id": 2,
+          "subcategoria": "Frías",
+          "sku": "menu-beb_f_10",
+          "nombre": "Smoothies",
+          "descripcion": "Batido cremoso de fruta.",
+          "precio": 85,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "opcionesSabores": [
+            "Mango",
+            "Chamoyada",
+            "Blueberry",
+            "Fresa"
+          ],
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_f_11",
+          "categoria_id": 2,
+          "subcategoria": "Frías",
+          "sku": "menu-beb_f_11",
+          "nombre": "Bubble tea",
+          "descripcion": "Bebida con perlas de tapioca o poppings.",
+          "precio": 125,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "opcionesSabores": [
+            "Mango storm",
+            "Pink velvet milk tea",
+            "Berry smoothie"
+          ],
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_o_1",
+          "categoria_id": 2,
+          "subcategoria": "Otras bebidas",
+          "sku": "menu-beb_o_1",
+          "nombre": "Agua natural - Sketch & coffee",
+          "descripcion": "Botella 1 litro.",
+          "precio": 25,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_o_2",
+          "categoria_id": 2,
+          "subcategoria": "Otras bebidas",
+          "sku": "menu-beb_o_2",
+          "nombre": "Agua mineral - Peñafiel",
+          "descripcion": "Botella 296 ml.",
+          "precio": 30,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_o_3",
+          "categoria_id": 2,
+          "subcategoria": "Otras bebidas",
+          "sku": "menu-beb_o_3",
+          "nombre": "Suero",
+          "descripcion": "Bebida hidratante.",
+          "precio": 35,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false
+        },
+        {
+          "idMenu": "beb_o_4",
+          "categoria_id": 2,
+          "subcategoria": "Otras bebidas",
+          "sku": "menu-beb_o_4",
+          "nombre": "Refresco",
+          "descripcion": "Refresco 335 ml.",
+          "precio": 38,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false,
+          "opcionesSabores": [
+            "Coca-Cola original",
+            "Coca-Cola light",
+            "Coca-Cola zero",
+            "Fanta",
+            "Sidral Mundet",
+            "Fresca",
+            "Jarrito naranja",
+            "Jarrito piña",
+            "Jarrito limón"
+          ]
+        },
+        {
+          "idMenu": "beb_o_5",
+          "categoria_id": 2,
+          "subcategoria": "Otras bebidas",
+          "sku": "menu-beb_o_5",
+          "nombre": "Jugo Del Valle",
+          "descripcion": "Jugo 355 ml.",
+          "precio": 38,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false,
+          "opcionesSabores": [
+            "Mango",
+            "Manzana",
+            "Durazno"
+          ]
+        },
+        {
+          "idMenu": "beb_o_6",
+          "categoria_id": 2,
+          "subcategoria": "Otras bebidas",
+          "sku": "menu-beb_o_6",
+          "nombre": "Limonada natural",
+          "descripcion": "Preparada al momento.",
+          "precio": 45,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tieneCafe": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Postres",
+      "descripcion": "Postres y productos de panadería; incluye crepas y waffles personalizables.",
+      "productos": [
+        {
+          "idMenu": "pos_1",
+          "categoria_id": 3,
+          "subcategoria": null,
+          "sku": "menu-pos_1",
+          "nombre": "Pan",
+          "descripcion": "Pieza de pan artesanal del día.",
+          "precio": 30,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true
+        },
+        {
+          "idMenu": "pos_2",
+          "categoria_id": 3,
+          "subcategoria": null,
+          "sku": "menu-pos_2",
+          "nombre": "Bolsa de galletas",
+          "descripcion": "Galletas caseras de mantequilla/chocolate.",
+          "precio": 60,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true
+        },
+        {
+          "idMenu": "pos_3",
+          "categoria_id": 3,
+          "subcategoria": null,
+          "sku": "pos_3",
+          "nombre": "Panqué",
+          "descripcion": "Delicioso panqué casero. Elige tu sabor: Nata, Limón, Elote o Plátano.",
+          "precio": 65,
+          "imagen": "./imagenes/fotosComidaTop10/panque_elote.jpg",
+          "existencias": 0,
+          "activo": true,
+          "opcionesSabores": [
+            "Nata",
+            "Limón",
+            "Elote",
+            "Plátano"
+          ],
+          "departamentoCatalogo": "Postres",
+          "disponible": true
+        },
+        {
+          "idMenu": "pos_4",
+          "categoria_id": 3,
+          "subcategoria": null,
+          "sku": "menu-pos_4",
+          "nombre": "Flan",
+          "descripcion": "Flan cremoso de la casa.",
+          "precio": 65,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "opcionesSabores": [
+            "Cajeta",
+            "Caramelo"
+          ]
+        },
+        {
+          "idMenu": "pos_5",
+          "categoria_id": 3,
+          "subcategoria": null,
+          "sku": "pos_5",
+          "nombre": "Brownie",
+          "descripcion": "Brownie de chocolate húmedo.",
+          "precio": 75,
+          "imagen": "./imagenes/fotosComidaTop10/brownie.jpg",
+          "existencias": 0,
+          "activo": true,
+          "departamentoCatalogo": "Postres",
+          "disponible": true
+        },
+        {
+          "idMenu": "pos_6",
+          "categoria_id": 3,
+          "subcategoria": null,
+          "sku": "pos_6",
+          "nombre": "Pay",
+          "descripcion": "Porción de pay artesanal. Elige tu sabor: Limón o Queso.",
+          "precio": 120,
+          "imagen": "./imagenes/fotosComidaTop10/pay_queso.webp",
+          "existencias": 0,
+          "activo": true,
+          "opcionesSabores": [
+            "Limón",
+            "Queso"
+          ],
+          "departamentoCatalogo": "Postres",
+          "disponible": true
+        },
+        {
+          "idMenu": "pos_7",
+          "categoria_id": 3,
+          "subcategoria": null,
+          "sku": "menu-pos_7",
+          "nombre": "Croissant dulce",
+          "descripcion": "Relleno con compota de frutos rojos y queso philadelphia.",
+          "precio": 110,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true
+        },
+        {
+          "categoria_id": 3,
+          "subcategoria": "Crepa",
+          "sku": "postre-crepa-waffle-1",
+          "nombre": "Crepa tradicional",
+          "descripcion": "Base personalizable; incluye dos ingredientes. Ingrediente extra con costo adicional.",
+          "precio": 120,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "esPersonalizable": true,
+          "tipo": "Crepa",
+          "idMenu": "crepa-waffle-1"
+        },
+        {
+          "categoria_id": 3,
+          "subcategoria": "Crepa",
+          "sku": "postre-crepa-waffle-2",
+          "nombre": "Crepa red velvet con chispas de chocolate",
+          "descripcion": "Base personalizable; incluye dos ingredientes. Ingrediente extra con costo adicional.",
+          "precio": 120,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "esPersonalizable": true,
+          "tipo": "Crepa",
+          "idMenu": "crepa-waffle-2"
+        },
+        {
+          "categoria_id": 3,
+          "subcategoria": "Waffle",
+          "sku": "postre-crepa-waffle-3",
+          "nombre": "Waffle tradicional",
+          "descripcion": "Base personalizable; incluye dos ingredientes. Ingrediente extra con costo adicional.",
+          "precio": 120,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "esPersonalizable": true,
+          "tipo": "Waffle",
+          "idMenu": "crepa-waffle-3"
+        },
+        {
+          "categoria_id": 3,
+          "subcategoria": "Waffle",
+          "sku": "postre-crepa-waffle-4",
+          "nombre": "Waffle sin gluten",
+          "descripcion": "Base personalizable; incluye dos ingredientes. Ingrediente extra con costo adicional.",
+          "precio": 150,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "esPersonalizable": true,
+          "tipo": "Waffle",
+          "idMenu": "crepa-waffle-4"
+        },
+        {
+          "categoria_id": 3,
+          "sku": "1052001536198",
+          "nombre": "Croissant Dulce",
+          "descripcion": "Hojaldre horneado el mismo dia, con mantequilla.",
+          "precio": 110,
+          "existencias": 15,
+          "activo": true,
+          "imagen": null
+        },
+        {
+          "categoria_id": 3,
+          "sku": "52001536118",
+          "nombre": "Panque de Limon",
+          "descripcion": "Panque casero de limon con glaseado.",
+          "precio": 65,
+          "existencias": 12,
+          "activo": true,
+          "imagen": null
+        }
+      ],
+      "personalizacion": {
+        "esPersonalizable": true,
+        "bases": [
+          {
+            "nombre": "Crepa tradicional",
+            "precioBase": 120,
+            "tipo": "Crepa"
+          },
+          {
+            "nombre": "Crepa red velvet con chispas de chocolate",
+            "precioBase": 120,
+            "tipo": "Crepa"
+          },
+          {
+            "nombre": "Waffle tradicional",
+            "precioBase": 120,
+            "tipo": "Waffle"
+          },
+          {
+            "nombre": "Waffle sin gluten",
+            "precioBase": 150,
+            "tipo": "Waffle"
+          }
+        ],
+        "incluyeIngredientes": 2,
+        "costoIngredienteExtra": 15,
+        "listaIngredientes": [
+          "Bola de helado",
+          "Miel maple",
+          "Chispas de chocolate",
+          "Lechera",
+          "Jamón",
+          "Queso manchego",
+          "Philadelphia",
+          "Nutella",
+          "Cajeta",
+          "Durazno",
+          "Nuez",
+          "Fresa",
+          "Plátano",
+          "Mermelada",
+          "Champiñones con salsa poblana"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "nombre": "Platillos",
+      "descripcion": "Alimentos salados del menú.",
+      "productos": [
+        {
+          "idMenu": "plat_1",
+          "categoria_id": 4,
+          "subcategoria": null,
+          "sku": "1052001536174",
+          "nombre": "Chilaquiles verdes",
+          "descripcion": "Acompañados con crema, queso y frijoles.",
+          "precio": 100,
+          "imagen": "./imagenes/alimentos-menu/chilaquiles.jpeg",
+          "existencias": 0,
+          "activo": true,
+          "disponible": true,
+          "departamentoCatalogo": "SNACK",
+          "nombreCatalogo": "CHILAQUILES",
+          "precioCatalogo": 130
+        },
+        {
+          "idMenu": "plat_2",
+          "categoria_id": 4,
+          "subcategoria": null,
+          "sku": "menu-plat_2",
+          "nombre": "Molletes",
+          "descripcion": "2 piezas con frijoles, queso gratinado y pico de gallo.",
+          "precio": 80,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tipoPersonalizacion": "extras",
+          "opcionesPersonalizacion": [
+            {
+              "id": "opt_sencillos",
+              "nombre": "Solos (Sencillos)",
+              "precioAdicional": 0
+            },
+            {
+              "id": "opt_jamon",
+              "nombre": "Con Jamón",
+              "precioAdicional": 20
+            }
+          ]
+        },
+        {
+          "idMenu": "plat_3",
+          "categoria_id": 4,
+          "subcategoria": null,
+          "sku": "52001536103",
+          "nombre": "Croissant salado",
+          "descripcion": "Relleno de jamón de pavo, queso y lechuga.",
+          "precio": 100,
+          "imagen": "./imagenes/fotosComidaTop10/Sketch&Coffee_croissant%20salado.png",
+          "existencias": 0,
+          "activo": true,
+          "disponible": true,
+          "departamentoCatalogo": "SNACK",
+          "nombreCatalogo": "CROISSANT salado",
+          "precioCatalogo": 96
+        },
+        {
+          "idMenu": "plat_4",
+          "categoria_id": 4,
+          "subcategoria": null,
+          "sku": "1052001536173",
+          "nombre": "Enchiladas gratinadas",
+          "descripcion": "Rellenas de pollo con salsa suiza especial.",
+          "precio": 100,
+          "imagen": "./imagenes/alimentos-menu/enchiladas.jpeg",
+          "existencias": 0,
+          "activo": true,
+          "disponible": true,
+          "departamentoCatalogo": "SNACK",
+          "nombreCatalogo": "ENCHILADAS GRATINADAS",
+          "precioCatalogo": 120
+        },
+        {
+          "idMenu": "plat_5",
+          "categoria_id": 4,
+          "subcategoria": null,
+          "sku": "menu-plat_5",
+          "nombre": "Huevos al gusto",
+          "descripcion": "Acompañados con frijoles.",
+          "precio": 90,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tipoPersonalizacion": "preparacion",
+          "opcionesPersonalizacion": [
+            "Estrellados",
+            "Revueltos",
+            "Con Jamón",
+            "A la Mexicana"
+          ]
+        },
+        {
+          "idMenu": "plat_6",
+          "categoria_id": 4,
+          "subcategoria": null,
+          "sku": "menu-plat_6",
+          "nombre": "Chapata",
+          "descripcion": "Pan tipo chapata artesanal.",
+          "precio": 100,
+          "imagen": null,
+          "existencias": 0,
+          "activo": true,
+          "tipoPersonalizacion": "sabor",
+          "opcionesPersonalizacion": [
+            "Fajitas de Pollo",
+            "Pizza Peperoni",
+            "Hawaiana"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "Café en grano",
+      "descripcion": "Café de especialidad en distintas presentaciones.",
+      "productos": [
+        {
+          "categoria_id": 5,
+          "subcategoria": null,
+          "sku": "grano-veracruz-500",
+          "nombre": "Café Veracruz Tostado Medio 500g",
+          "descripcion": "Café de especialidad con notas de nuez y cacao. Origen Veracruz, Tostado Medio, Presentación 500g.",
+          "precio": 280,
+          "imagen": "./imagenes/fotosComidaTop10/cafe-veracruz.webp",
+          "existencias": 0,
+          "activo": true,
+          "disponible": true
+        },
+        {
+          "categoria_id": 5,
+          "subcategoria": null,
+          "sku": "grano-chiapas-1kg",
+          "nombre": "Café Chiapas Tostado Oscuro 1kg",
+          "descripcion": "Cuerpo intenso y notas achocolatadas. Origen Chiapas, Tostado Oscuro, Presentación 1kg.",
+          "precio": 450,
+          "imagen": "./imagenes/fotosComidaTop10/cafe-chiapas.webp",
+          "existencias": 0,
+          "activo": true,
+          "disponible": true
+        },
+        {
+          "categoria_id": 5,
+          "subcategoria": null,
+          "sku": "grano-oaxaca-250",
+          "nombre": "Café Oaxaca Tostado Claro 250g",
+          "descripcion": "Perfil cítrico y brillante. Origen Oaxaca, Tostado Claro, Presentación 250g.",
+          "precio": 160,
+          "imagen": "./imagenes/fotosComidaTop10/cafe-oaxaca.avif",
+          "existencias": 0,
+          "activo": true,
+          "disponible": true
+        },
+        {
+          "categoria_id": 5,
+          "sku": "1052001536165",
+          "nombre": "Veracruz Bolsa Cafe en Grano",
+          "descripcion": "Cafe de altura de Veracruz, tostado medio, bolsa de 1 kg.",
+          "precio": 320,
+          "existencias": 8,
+          "activo": true,
+          "imagen": null
+        }
+      ]
+    }
+  ]
+}

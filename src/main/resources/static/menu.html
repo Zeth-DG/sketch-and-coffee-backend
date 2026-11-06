@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú y Catálogo de Productos - Sketch & Coffee</title>
+    <link rel="icon" type="image/x-icon" href="./imagenes/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Caveat:wght@400..700&family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Enlace de salto para accesibilidad -->
+    <a href="#contenedor-principal" class="enlace-salto">Saltar directamente al contenido principal del catálogo</a>
+
+
+    <!--Header global-->
+    <header id="header-global" role="banner" aria-label="Navegación principal del sitio Sketch & Coffee"></header>
+
+    <!--- Contenido principal del catálogo --->
+    <main id="contenedor-principal" class="container-fluid px-3 px-md-4 my-4" tabindex="-1">
+        <section id="encabezado-catalogo" class="mb-4" aria-labelledby="titulo-catalogo">
+            <h1 id="titulo-catalogo">Menú / Catálogo</h1>
+            <p id="subtitulo-catalogo" aria-label="Total de productos disponibles en el catálogo">10 productos
+                disponibles</p>
+
+
+            <!-- Filtro rápido por categoría de productos -->
+            <div id="contenedor-categorias" class="d-flex flex-wrap gap-2" role="group"
+                aria-label="Filtro rápido por categoría de productos">
+                <button id="categoria-todos" class="boton-pildora activo" aria-pressed="true"
+                    aria-label="Mostrar todos los productos del catálogo">Todos</button>
+                <button id="categoria-grano" class="boton-pildora" aria-pressed="false"
+                    aria-label="Filtrar productos por categoría de Café en grano">Café en grano</button>
+                <button id="categoria-bebidas" class="boton-pildora" aria-pressed="false"
+                    aria-label="Filtrar productos por categoría de Bebidas frías y calientes">Bebidas</button>
+                <button id="categoria-reposteria" class="boton-pildora" aria-pressed="false"
+                    aria-label="Filtrar productos por categoría de Snacks">Snack</button>
+                <button id="categoria-accesorios" class="boton-pildora" aria-pressed="false"
+                    aria-label="Filtrar productos por categoría de Postres">Postres</button>
+            </div>
+        </section>
+
+
+
+        <!-- Filtros -->
+        <div class="row g-4" id="disposicion-catalogo">
+            <aside class="col-12 col-lg-3" id="columna-filtros" aria-label="Panel de opciones para filtrar productos">
+                <div id="panel-filtros">
+                    <h2 id="titulo-filtros">FILTROS</h2>
+
+                    <div id="grupo-filtro-tostado" class="grupo-filtro" role="group" aria-labelledby="etiqueta-tostado">
+                        <h3 id="etiqueta-tostado">Tostado</h3>
+                        <div class="form-check">
+                            <input id="filtro-tostado-claro" class="form-check-input" type="checkbox"
+                                aria-label="Filtrar por grado de tostado Claro">
+                            <label class="form-check-label" for="filtro-tostado-claro">Claro</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="filtro-tostado-medio" class="form-check-input" type="checkbox"
+                                aria-label="Filtrar por grado de tostado Medio">
+                            <label class="form-check-label" for="filtro-tostado-medio">Medio</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="filtro-tostado-oscuro" class="form-check-input" type="checkbox"
+                                aria-label="Filtrar por grado de tostado Oscuro">
+                            <label class="form-check-label" for="filtro-tostado-oscuro">Oscuro</label>
+                        </div>
+                    </div>
+
+                    <div id="grupo-filtro-origen" class="grupo-filtro" role="group" aria-labelledby="etiqueta-origen">
+                        <h3 id="etiqueta-origen">Origen</h3>
+                        <div class="form-check">
+                            <input id="filtro-origen-veracruz" class="form-check-input" type="checkbox"
+                                aria-label="Filtrar por café de origen Veracruz">
+                            <label class="form-check-label" for="filtro-origen-veracruz">Veracruz</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="filtro-origen-chiapas" class="form-check-input" type="checkbox"
+                                aria-label="Filtrar por café de origen Chiapas">
+                            <label class="form-check-label" for="filtro-origen-chiapas">Chiapas</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="filtro-origen-oaxaca" class="form-check-input" type="checkbox"
+                                aria-label="Filtrar por café de origen Oaxaca">
+                            <label class="form-check-label" for="filtro-origen-oaxaca">Oaxaca</label>
+                        </div>
+                    </div>
+
+                    <div id="grupo-filtro-presentacion" class="grupo-filtro" role="group"
+                        aria-labelledby="etiqueta-presentacion">
+                        <h3 id="etiqueta-presentacion">Presentación</h3>
+                        <div class="form-check">
+                            <input id="filtro-presentacion-250g" class="form-check-input" type="checkbox"
+                                aria-label="Filtrar por bolsa de 250 gramos">
+                            <label class="form-check-label" for="filtro-presentacion-250g">250 g</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="filtro-presentacion-500g" class="form-check-input" type="checkbox"
+                                aria-label="Filtrar por bolsa de 500 gramos">
+                            <label class="form-check-label" for="filtro-presentacion-500g">500 g</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="filtro-presentacion-1kg" class="form-check-input" type="checkbox"
+                                aria-label="Filtrar por bolsa de 1 kilogramo">
+                            <label class="form-check-label" for="filtro-presentacion-1kg">1 kg</label>
+                        </div>
+                    </div>
+
+                    <div id="grupo-filtro-precio" class="grupo-filtro" role="group" aria-labelledby="etiqueta-precio">
+                        <h3 id="etiqueta-precio">Rango de precio</h3>
+                        <div class="d-flex justify-content-between fw-bold small mb-2">
+                            <span id="precio-minimo" aria-label="Precio mínimo de 50 pesos mexicanos">$50</span>
+                            <span id="precio-maximo" aria-label="Precio máximo seleccionado">$650</span>
+                        </div>
+                        <input type="range" class="form-range" id="rango-precio" min="50" max="650" step="10"
+                            value="650" aria-label="Filtrar por precio máximo">
+                    </div>
+
+                    <!--Botones filtros-->
+                    <div id="acciones-filtros" class="d-flex gap-2">
+                        <button id="boton-aplicar-filtros" class="btn boton-magenta"
+                            aria-label="Aplicar los filtros seleccionados a la lista de productos"
+                            aria-controls="grilla-productos">Aplicar</button>
+                        <button id="boton-limpiar-filtros" class="btn boton-esquema"
+                            aria-label="Restablecer y limpiar todos los filtros aplicados"
+                            aria-controls="grilla-productos">Limpiar</button>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="col-12 col-lg-9" id="seccion-catalogo-productos"
+                aria-label="Listado principal de productos del catálogo">
+                <div id="barra-control-productos"
+                    class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                    <span id="texto-contador-productos" aria-live="polite" aria-atomic="true">Mostrando 9 de 13
+                        productos</span>
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="desplegable-ordenamiento" class="visually-hidden">Ordenar lista de productos
+                            por</label>
+                        <select id="desplegable-ordenamiento" class="form-select form-select-sm w-auto"
+                            aria-label="Seleccionar orden del catálogo de productos">
+                            <option value="relevancia">Ordenar por: Relevancia</option>
+                            <option value="menor-precio">Precio: Menor a Mayor</option>
+                            <option value="mayor-precio">Precio: Mayor a Menor</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <!---Tarjetas de producto--->
+
+                <div id="grilla-productos" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" role="list"
+                    aria-label="Productos del menú en formato de tarjetas">
+
+                </div>
+
+                <!--Navegación de páginas falta agregar el href correspondiente-->
+                <nav id="paginacion-productos" class="d-flex justify-content-center gap-2 mt-4"
+                    aria-label="Paginación de resultados del catálogo">
+                    <a id="boton-pagina-anterior" href="#" class="boton-pagina"
+                        aria-label="Ir a la página anterior de resultados">&lt;</a>
+                    <a id="boton-pagina-1" href="#" class="boton-pagina activo" aria-current="page"
+                        aria-label="Página 1 de resultados, página actual">1</a>
+                    <a id="boton-pagina-2" href="#" class="boton-pagina"
+                        aria-label="Ir a la página 2 de resultados">2</a>
+                    <a id="boton-pagina-3" href="#" class="boton-pagina"
+                        aria-label="Ir a la página 3 de resultados">3</a>
+                    <a id="boton-pagina-4" href="#" class="boton-pagina"
+                        aria-label="Ir a la página 4 de resultados">4</a>
+                    <a id="boton-pagina-siguiente" href="#" class="boton-pagina"
+                        aria-label="Ir a la página siguiente de resultados">&gt;</a>
+                </nav>
+            </section>
+        </div>
+    </main>
+
+    <section class="section-newsletter text-center" aria-labelledby="newsletter-heading"
+        aria-describedby="desc-newsletter">
+        <div class="container">
+            <h2 id="newsletter-heading" class="mb-3">¡Únete a nuestra comunidad!</h2>
+            <p id="desc-newsletter" class="mb-4">
+                Recibe nuestras novedades, promociones y eventos especiales en tu correo.
+            </p>
+
+            <form id="formNewsletter" class="row g-2 justify-content-center align-items-center"
+                aria-label="Formulario de suscripción al boletín informativo" novalidate>
+                <div class="col-12 col-sm-auto">
+                    <label for="inputEmailNewsletter" class="visually-hidden">Ingresa tu correo electrónico</label>
+                    <input id="inputEmailNewsletter" type="email"
+                        class="form-control form-control-lg text-center text-sm-start newsletter-input"
+                        placeholder="ejemplo@correo.com" aria-required="true" required>
+                </div>
+                <div class="col-12 col-sm-auto">
+                    <button type="submit" class="btn btn-custom-magenta w-100"
+                        aria-label="Enviar correo para suscribirme al boletín informativo">Enviar</button>
+                </div>
+            </form>
+            <div id="alertNewsletter" class="mt-3 col-12 col-md-6 mx-auto" role="alert" aria-live="polite"
+                aria-atomic="true"></div>
+        </div>
+    </section>
+
+    <footer id="footer-global" role="contentinfo"
+        aria-label="Pie de página con información corporativa y enlaces de ayuda"></footer>
+
+    <script src="./js/newsletter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="./js/menu-filtros.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
+    <script src="./js/formulario.js" type="module"></script>
+</body>
+
+</html>

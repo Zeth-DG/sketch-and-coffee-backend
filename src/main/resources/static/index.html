@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio</title>
+  <link rel="icon" type="image/x-icon" href="./imagenes/favicon.ico">
+  <!--enlace de bootstrap y estilos de css-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <!--enlace tipografía-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Caveat:wght@400..700&family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <!--Encabezado y menu - Liz-->
+  <!--el header se mueve a un archivo especifico para importarse en cada página-->
+  <header id="header-global"></header>
+
+
+  <!-- HERO -->
+<section class="hero-section" id="encabezado" aria-labelledby="coffe-and-sketch-encabezado">
+
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <!-- TEXTO -->
+      <div class="col-12 col-lg-6">
+
+        <h1 id="coffe-and-sketch-encabezado">
+          Tus mejores ideas empiezan aquí.
+        </h1>
+
+        <p>
+          Entra a un mundo salido de un cuaderno de bocetos:
+          un espacio ilustrado en 2D donde cada rincón despierta
+          tu imaginación y tu bebida favorita sabe aún mejor.
+        </p>
+
+        <p>
+          Ven a inspirarte, crear y disfrutar.
+        </p>
+
+        <!-- Botones -->
+<button
+  type="button"
+  onclick="window.location.href='./menu-interactivo.html'">
+  Ver el menú
+</button>
+
+        <button
+          type="button"
+          onclick="window.open('https://maps.app.goo.gl/6RXA89JKmhyxLhjk8', '_blank', 'noopener,noreferrer')">
+          Ven a visitarnos
+        </button>
+
+      </div>
+
+      <!-- CARRUSEL -->
+      <div class="col-12 col-lg-6">
+
+        <div id="carouselSketchCoffee"
+             class="carousel slide"
+             data-bs-ride="carousel"
+             aria-label="Carrusel de imágenes de Sketch and Coffee">
+
+          <!-- Indicadores -->
+          <div class="carousel-indicators">
+
+            <button type="button"
+                    data-bs-target="#carouselSketchCoffee"
+                    data-bs-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Imagen 1"></button>
+
+            <button type="button"
+                    data-bs-target="#carouselSketchCoffee"
+                    data-bs-slide-to="1"
+                    aria-label="Imagen 2"></button>
+
+            <button type="button"
+                    data-bs-target="#carouselSketchCoffee"
+                    data-bs-slide-to="2"
+                    aria-label="Imagen 3"></button>
+
+            <button type="button"
+                    data-bs-target="#carouselSketchCoffee"
+                    data-bs-slide-to="3"
+                    aria-label="Imagen 4"></button>
+
+            <button type="button"
+                    data-bs-target="#carouselSketchCoffee"
+                    data-bs-slide-to="4"
+                    aria-label="Imagen 5"></button>
+
+          </div>
+
+          <!-- Imágenes -->
+          <div class="carousel-inner">
+
+            <div class="carousel-item active">
+              <img src="./imagenes/logo/logo-fondo-negro.jpg"
+                   class="d-block w-100"
+                   alt="Sketch&Coffee_Barra">
+            </div>
+
+            <div class="carousel-item">
+              <img src="./imagenes/cafeteria_spot/Sketch&Coffee_fachada8.png"
+                   class="d-block w-100"
+                   alt="Sketch&Coffee_Fachada4">
+            </div>
+
+            <div class="carousel-item">
+              <img src="./imagenes/cafeteria_spot/Sketch&Coffee_fachada4.png"
+                   class="d-block w-100"
+                   alt="Sketch&Coffee_Fachada5">
+            </div>
+
+            <div class="carousel-item">
+              <img src="./imagenes/cafeteria_spot/Sketch&Coffee_fachada3.png"
+                   class="d-block w-100"
+                   alt="Sketch&Coffee_Fachada2">
+            </div>
+
+            <div class="carousel-item">
+              <img src="./imagenes/cafeteria_spot/Sketch&Coffee_fachada2.png"
+                   class="d-block w-100"
+                   alt="Sketch&Coffee_Fachada3">
+            </div>
+
+          </div>
+
+          <!-- Flechas -->
+          <button class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselSketchCoffee"
+                  data-bs-slide="prev"
+                  aria-label="Imagen anterior">
+
+            <i class="bi bi-chevron-left"></i>
+
+          </button>
+
+          <button class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselSketchCoffee"
+                  data-bs-slide="next"
+                  aria-label="Imagen siguiente">
+
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!--Fin de la sección hero-->
+
+  <!--Productos Estrella-->
+  <section class="gv-scope gv-seccion" id="gv-productos-estrella" aria-labelledby="gv-titulo-estrella">
+    <div class="gv-contenedor">
+
+
+      <h2 class="solo-lectores" id="gv-titulo-estrella">Productos estrella</h2>
+
+      <div class="gv-seccion__cabecera">
+            <a class="gv-seccion__enlace" href="./detalles_del_producto.html">Ver todos</a>
+      </div>
+      <div class="row row-cols-2 row-cols-lg-4 g-3">
+
+        <!-- ---------- Producto 1 ---------- -->
+        <div class="col">
+          <article class="gv-producto">
+            <div class="gv-producto__media">
+              <img class="gv-producto__img" src="imagenes/cafeteria/cafe_americano.jpg"
+                alt="Café americano de Sketch & Coffee" loading="lazy"
+                onerror="this.closest('.gv-producto__media').classList.add('gv-producto__media--vacio'); this.remove();">
+            </div>
+            <div class="gv-producto__cuerpo">
+              <h3 class="gv-producto__nombre">Café Americano</h3>
+              <p class="gv-producto__precio">$55 MXN</p>
+            </div>
+            <button class="gv-btn gv-btn--primario gv-btn--bloque" type="button"
+              data-agregar-carrito data-id="index-americano" data-nombre="Café Americano" data-precio="55">
+              Añadir al carrito
+            </button>
+          </article>
+        </div>
+
+        <!-- ---------- Producto 2 ---------- -->
+        <div class="col">
+          <article class="gv-producto">
+            <div class="gv-producto__media">
+              <img class="gv-producto__img" src="imagenes/cafeteria/chilaquiles.jpg"
+                alt="Chilaquiles servidos en Sketch & Coffee" loading="lazy"
+                onerror="this.closest('.gv-producto__media').classList.add('gv-producto__media--vacio'); this.remove();">
+            </div>
+            <div class="gv-producto__cuerpo">
+              <h3 class="gv-producto__nombre">Chilaquiles</h3>
+              <p class="gv-producto__precio">$130 MXN</p>
+            </div>
+            <button class="gv-btn gv-btn--primario gv-btn--bloque" type="button"
+              data-agregar-carrito data-id="index-chilaquiles" data-nombre="Chilaquiles" data-precio="130">
+              Añadir al carrito
+            </button>
+          </article>
+        </div>
+
+        <!-- ---------- Producto 3 ---------- -->
+        <div class="col">
+          <article class="gv-producto">
+            <div class="gv-producto__media">
+              <img class="gv-producto__img" src="imagenes/cafeteria/Chapata.jpg" alt="Chapata hawaiana recién horneada"
+                loading="lazy"
+                onerror="this.closest('.gv-producto__media').classList.add('gv-producto__media--vacio'); this.remove();">
+            </div>
+            <div class="gv-producto__cuerpo">
+              <h3 class="gv-producto__nombre">Chapata Hawaiana</h3>
+              <p class="gv-producto__precio">$110 MXN</p>
+            </div>
+            <button class="gv-btn gv-btn--primario gv-btn--bloque" type="button"
+              data-agregar-carrito data-id="index-chapata" data-nombre="Chapata Hawaiana" data-precio="110">
+              Añadir al carrito
+            </button>
+          </article>
+        </div>
+
+        <!-- ---------- Producto 4 ---------- -->
+        <div class="col">
+          <article class="gv-producto">
+            <div class="gv-producto__media">
+              <img class="gv-producto__img" src="./imagenes/cafeteria/Bebida_roja.jpg"
+                alt="Berry Dream Soda It con frutos rojos" loading="lazy">
+            </div>
+            <div class="gv-producto__cuerpo">
+              <h3 class="gv-producto__nombre">Berry Dream Soda It</h3>
+              <p class="gv-producto__precio">$100 MXN</p>
+            </div>
+            <button class="gv-btn gv-btn--primario gv-btn--bloque" type="button"
+              data-agregar-carrito data-id="index-berry-soda" data-nombre="Berry Dream Soda It" data-precio="100">
+              Añadir al carrito
+            </button>
+          </article>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECCIÓN: PROMOCIÓN DE TEMPORADA - Gonzalo -->
+  <section class="gv-scope gv-seccion" id="gv-promocion" aria-labelledby="gv-titulo-promo">
+    <div class="gv-contenedor">
+      <div class="gv-promo">
+        <div class="gv-promo__interior">
+
+          <div>
+            <h2 class="gv-promo__titulo" id="gv-titulo-promo">Promoción de Apertura</h2>
+            <p class="gv-promo__texto">
+              $100 MXN en combo café + alimento seleccionado
+            </p>
+          </div>
+
+          <div class="gv-promo__accion">
+            <a class="gv-btn gv-btn--primario"
+              href="./landingpromociones.html"
+              target="_blank" rel="noopener noreferrer">Aprovechar</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Sobre sketch y coffe-->
+
+  <section class="lf-sobre-sketch" id="sobre-sketch" aria-labelledby="lf-titulo-sobre">
+
+    <div class="container">
+
+      <div class="row align-items-stretch g-4">
+
+        <!-- Imagen -->
+        <div class="col-12 col-lg-6">
+
+          <div class="lf-sobre-sketch__media">
+
+            <img src="./imagenes/cafeteria/Sketch&Coffee_cuadro1.png"
+              alt="Interior temático en estilo 2D de Sketch & Coffee" class="lf-sobre-sketch__imagen">
+
+          </div>
+
+        </div>
+
+
+        <!-- Información -->
+        <div class="col-12 col-lg-6">
+
+          <div class="lf-sobre-sketch__contenido">
+
+            <!-- Título -->
+            <h2 class="lf-sobre-sketch__titulo" id="lf-titulo-sobre">
+              Sobre Sketch & Coffee
+            </h2>
+
+
+            <!-- Descripción -->
+            <p class="lf-sobre-sketch__texto">
+
+              Somos una cafetería temática donde el arte
+              y el café cobran vida en un espacio 2D.
+
+              Ven a disfrutar de nuestras bebidas de
+              especialidad y platillos artesanales.
+
+            </p>
+
+
+            <!-- Botón -->
+            <a href="./acerca_de_nosotros.html" class="lf-sobre-sketch__boton">
+              Conocer más
+            </a>
+
+
+            <!-- Información de ubicación -->
+            <div class="lf-sobre-sketch__info">
+
+              <h3>
+                Visítanos en...
+              </h3>
+
+              <p>
+                Patricio Sanz 242-Loc B, código 2, Col. Del valle, Benito Juárez, 03100 Ciudad de México, CDMX
+              </p>
+
+              <p>
+                <strong>Horario:</strong>
+                Lunes a viernes: de 7:00 am. a 8:30 pm.
+                Sábado : de 8:30 am. a 1:30 pm.
+                Domingo: de 8:30 am. a 1:30 pm.
+
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SECCIÓN NEWSLETTER SUSCRÍBETE -->
+  <section class="section-newsletter text-center" aria-labelledby="newsletter-heading">
+    <div class="container">
+      <h2 id="newsletter-heading" class="mb-4">¡Únete a nuestra comunidad!</h2>
+      <p id="desc-newsletter" class="mb-4">
+        Recibe nuestras novedades, promociones y eventos especiales en tu correo.
+      </p>
+
+      <form id="formNewsletter" class="row g-2 justify-content-center align-items-center" novalidate>
+        <div class="col-12 col-sm-auto">
+          <label for="inputEmailNewsletter" class="visually-hidden">Correo electrónico</label>
+          <input id="inputEmailNewsletter" type="email"
+            class="form-control form-control-lg text-center text-sm-start newsletter-input"
+            placeholder="ejemplo@correo.com">
+        </div>
+        <div class="col-12 col-sm-auto">
+          <button type="submit" class="btn btn-custom-magenta w-100">Enviar</button>
+        </div>
+      </form>
+      <div id="alertNewsletter" class="mt-3 col-12 col-md-6 mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- Footer global para importarse en cada página -->
+  <footer id="footer-global" role="contentinfo">
+    <div class="site-footer">
+      <div class="footer-container">
+        <!-- Información de derechos de autor y marca -->
+        <p>&copy; 2026 Sketch & Coffee. Todos los derechos reservados.</p>
+
+        <!-- Navegación de enlaces legales -->
+        <nav class="footer-legal-nav" aria-label="Enlaces legales">
+          <ul>
+            <li>
+              <a href="terminos.html" title="Ver Términos y Condiciones de Uso">Términos y Condiciones</a>
+            </li>
+            <li>
+              <a href="aviso.html" title="Ver Aviso de Privacidad">Aviso de Privacidad</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/newsletter.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script src="./js/main.js" type="module"></script>
+
+  <!-- Botón -->
+  <button type="button" class="btn btn-primary rounded-circle shadow-lg" id="btnSubir">
+    <svg xmlns="http://w3.org" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+      <path fill-rule="evenodd"
+        d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+    </svg>
+  </button>
+
+</body>
+
+</html>

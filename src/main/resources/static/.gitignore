@@ -1,0 +1,21 @@
+# Dependencias de Node.js 
+node_modules/
+
+# Archivos generados por el build (PurgeCSS, compiladores, etc.)
+dist/
+
+# Archivos de prueba o temporales 
+js/menu/
+menu-pruebas.html
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de tu editor (VS Code)
+.vscode/
+
+# Logs de errores
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

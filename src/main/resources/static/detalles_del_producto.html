@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sketch & Coffee- Detalles del Producto</title>
+    <link rel="icon" type="image/x-icon" href="./imagenes/favicon.ico">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap ICONOS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <!-- Styles.css -->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+ <!-- HEADER GLOBAL -->
+    <header id="header-global" role="banner"></header>
+
+
+  <!--PRODUCTO-->
+<main class="main-container container py-4">
+<div class="product-detail-grid"> 
+     
+    <!-- Galería de imágenes -->
+    <div class="product-gallery">
+      <div class="main-image-box">
+        <img id="main-product-img" src="./imagenes/fotosComidaTop10/Sketch&Coffe_Latte.jpg" alt="Latte">
+      </div>
+      <div id="product-thumbnails" class="thumbnails-grid">
+      </div>
+    </div>
+
+      <!-- Detalles del producto -->
+      <div class="product-info">
+        <h1 id="product-title" class="product-title">Latte</h1>
+        <div id="product-rating" class="product-meta">CALIFICACIÓN • ★★★★★</div>
+        <div id="product-price" class="product-price">$ 85.00 MXN</div>
+
+        <!-- Molienda -->
+        <div id="grupoMolienda" class="option-group">
+          <label class="option-label">Molienda</label>
+          <div class="options-buttons">
+            <button class="btn-option active" onclick="selectOption(this)">Grano entero</button>
+            <button class="btn-option" onclick="selectOption(this)">Fina</button>
+            <button class="btn-option" onclick="selectOption(this)">Media</button>
+            <button class="btn-option" onclick="selectOption(this)">Gruesa</button>
+          </div>
+        </div>
+
+        <!-- Gramaje -->
+        <div id="grupoGramaje" class="option-group">
+          <label class="option-label">Tamaño / gramaje</label>
+          <div class="options-buttons">
+            <button class="btn-option active btn-tamano" onclick="selectOption(this)">250 g</button>
+            <button class="btn-option btn-tamano" onclick="selectOption(this)">500 g</button>
+            <button class="btn-option btn-tamano" onclick="selectOption(this)">1 kg</button>
+          </div>
+        </div>
+
+        <!-- Cantidad y botones -->
+        <div class="action-row">
+          <div class="quantity-picker">
+            <button onclick="updateQty(-1)">-</button>
+            <input type="text" id="qty-input" value="1" readonly>
+            <button onclick="updateQty(1)">+</button>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart()">AÑADIR AL CARRITO</button>
+          <button class="btn-buy-now">Comprar ahora</button>
+        </div>
+
+        <div class="delivery-box">
+          • Envío a domicilio • Recolección en tienda • Facturamos<br>
+          • Indicador de disponibilidad: <strong>En stock</strong>
+        </div>
+      </div>
+
+    </div>
+
+  <!-- PESTAÑAS DE INFORMACIÓN TABS -->
+<section class="product-tabs-section">
+        <div class="tabs-header">
+            <button class="tab-btn active" onclick="openTab(event, 'tab-desc')">Descripción</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-cata')">Notas de cata</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-prep')">Preparación sugerida</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-envio')">Envíos</button>
+        </div>
+        <div id="tab-desc" class="tab-content active">
+            Espresso de altura coronado con una densa capa de microespuma de leche de tu preferencia.
+        </div>
+        <div id="tab-cata" class="tab-content">
+            Perfil suave, cremoso y equilibrado.
+        </div>
+        <div id="tab-prep" class="tab-content">
+            Servir caliente para disfrutar el equilibrio del espresso con la leche vaporizada.
+        </div>
+        <div id="tab-envio" class="tab-content">
+            Disponible para recoger en sucursal.
+        </div>
+    </section>
+
+
+  <!-- RECOMENDACION (TAMBIEN TE PODRIA GUSTAR)  -->
+
+<section class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="mb-0">También te podría gustar</h3>
+    <div>
+      <button class="btn btn-outline-dark btn-sm rounded-circle me-1" onclick="document.getElementById('uniqueProductCarousel').scrollBy({ left: -250, behavior: 'smooth' })">‹</button>
+      <button class="btn btn-outline-dark btn-sm rounded-circle" onclick="document.getElementById('uniqueProductCarousel').scrollBy({ left: 250, behavior: 'smooth' })">›</button>
+    </div>
+  </div>
+
+  <div id="uniqueProductCarousel" class="product-carousel-container">
+    <!-- Producto 1 -->
+    <div class="product-carousel-item">
+      <div class="product-card-custom p-3 text-center border rounded-3 shadow-sm"
+     onclick="loadProduct(1)">
+        <img src="./imagenes/fotosComidaTop10/Sketch&Coffe_Latte.jpg" class="img-fluid mx-auto mb-2" alt="Latte">
+        <div>
+          <hr class="my-1">
+          <p class="fw-bold mb-1 small">Latte</p>
+          <p class="small mb-0">$ 85.00 MXN</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="product-carousel-item">
+      <div class="product-card-custom p-3 text-center border rounded-3 shadow-sm"
+     onclick="loadProduct(2)">
+        <img src="./imagenes/fotosComidaTop10/Sketch&Coffee_IA_Capuchino1.jpg" class="img-fluid mx-auto mb-2" alt="Capuchino">
+        <div>
+          <hr class="my-1">
+          <p class="fw-bold mb-1 small">Capuchino</p>
+          <p class="small mb-0">$ 90.00 MXN</p>
+        </div>
+      </div>
+    </div>
+
+        <!-- Producto 3 -->
+    <div class="product-carousel-item">
+      <div class="product-card-custom p-3 text-center border rounded-3 shadow-sm"
+     onclick="loadProduct(3)">
+        <img src="./imagenes/fotosComidaTop10/Sketch&Coffee_IA_ChaiLatte1.jpg" class="img-fluid mx-auto mb-2" alt="Chai latte">
+        <div>
+          <hr class="my-1">
+          <p class="fw-bold mb-1 small">Chai Latte</p>
+          <p class="small mb-0">$ 95.00 MXN</p>
+        </div>
+      </div>
+    </div>
+
+        <!-- Producto 4 -->
+    <div class="product-carousel-item">
+      <div class="product-card-custom p-3 text-center border rounded-3 shadow-sm"
+     onclick="loadProduct(4)">
+        <img src="./imagenes/fotosComidaTop10/Sketch&Coffee_croissant salado.png" class="img-fluid mx-auto mb-2" alt="Croissant salado">
+        <div>
+          <hr class="my-1">
+          <p class="fw-bold mb-1 small">Croissant salado</p>
+          <p class="small mb-0">$ 95.00 MXN</p>
+        </div>
+      </div>
+    </div>
+
+        <!-- Producto 5 -->
+    <div class="product-carousel-item">
+      <div class="product-card-custom p-3 text-center border rounded-3 shadow-sm"
+     onclick="loadProduct(5)">
+        <img src="./imagenes/fotosComidaTop10/Sketch&Coffee_Enchiladas_gratinadas.png" class="img-fluid mx-auto mb-2" alt="Enchiladas">
+        <div>
+          <hr class="my-1">
+          <p class="fw-bold mb-1 small">Enchiladas</p>
+          <p class="small mb-0">$ 95.00 MXN</p>
+        </div>
+      </div>
+    </div>
+
+        <!-- Producto 6 - CHILAQUILES-->
+    <div class="product-carousel-item">
+      <div class="product-card-custom p-3 text-center border rounded-3 shadow-sm"
+     onclick="loadProduct(6)">
+        <img src="./imagenes/fotosComidaTop10/Sketch&Coffee_Chilaquiles.png" class="img-fluid mx-auto mb-2" alt="Chilaquiles">
+        <div>
+          <hr class="my-1">
+          <p class="fw-bold mb-1 small">Chilaquiles</p>
+          <p class="small mb-0">$ 95.00 MXN</p>
+        </div>
+      </div>
+    </div>
+
+        <!-- Producto 7 - AMERICANO-->
+    <div class="product-carousel-item">
+      <div class="product-card-custom p-3 text-center border rounded-3 shadow-sm"
+     onclick="loadProduct(7)">
+        <img src="./imagenes/alimentos-menu/americano.jpeg" class="img-fluid mx-auto mb-2" alt="Americano">
+        <div>
+          <hr class="my-1">
+          <p class="fw-bold mb-1 small">Americano</p>
+          <p class="small mb-0">$ 95.00 MXN</p>
+        </div>
+      </div>
+    </div>
+
+        <!-- Producto 8 - CHOCOLATE CALIENTE-->
+    <div class="product-carousel-item">
+      <div class="product-card-custom p-3 text-center border rounded-3 shadow-sm"
+     onclick="loadProduct(8)">
+        <img src="./imagenes/fotosComidaTop10/Sketch&Coffee_Chocolate.png" class="img-fluid mx-auto mb-2" alt="Chocolate caliente">
+        <div>
+          <hr class="my-1">
+          <p class="fw-bold mb-1 small">Chocolate caliente</p>
+          <p class="small mb-0">$ 95.00 MXN</p>
+        </div>
+      </div>
+    </div>
+
+        <!-- Producto 9 - TISANA PINK BLOSSOM-->
+    <div class="product-carousel-item">
+      <div class="product-card-custom p-3 text-center border rounded-3 shadow-sm"
+     onclick="loadProduct(9)">
+        <img src="./imagenes/fotosComidaTop10/Sketch&Coffee_Tisana_Pink_Blossom.png" class="img-fluid mx-auto mb-2" alt="Tisana Pink Blossom">
+        <div>
+          <hr class="my-1">
+          <p class="fw-bold mb-1 small">Tisana Pink Blossom</p>
+          <p class="small mb-0">$ 95.00 MXN</p>
+        </div>
+      </div>
+    </div>
+
+        <!-- Producto 10 - CREPA CON NUTELLA Y PHILADELPHIA-->
+    <div class="product-carousel-item">
+      <div class="product-card-custom p-3 text-center border rounded-3 shadow-sm"
+     onclick="loadProduct(10)">
+        <img src="./imagenes/menu-interactivo/crepas.jpg" class="img-fluid mx-auto mb-2" alt="Crepa con Nutella y Philadelphia">
+        <div>
+          <hr class="my-1">
+          <p class="fw-bold mb-1 small">Crepa con Nutella y Philadelphia</p>
+          <p class="small mb-0">$ 95.00 MXN</p>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</section>
+
+  </main>
+
+
+  <!-- FOOTER GLOBAL  -->
+    <footer id="footer-global" role="contentinfo"></footer>
+
+<!-- SCRIPTS  -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+   <script src="./js/newsletter.js"></script>
+   <script src="./js/main.js" type="module"></script>
+   <script src="./js/detallesDelProducto.js"></script>
+
+    
+</body>
+</html>

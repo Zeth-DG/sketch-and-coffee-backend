@@ -1,0 +1,112 @@
+<!-- NOTAS IMPORTANTES
+Cada HTML que se crean las páginas debe contener → <footer id="footer-global" role="contentinfo"></footer>
+
+footer.html → guarda todo el contenido del footer (columnas, enlaces, derechos legales, botón subir, botón WhatsApp).
+
+footer.js → hace el fetch("componentes/footer.html") y mete ese contenido dentro del contenedor.
+
+main.js → importa footer.js y lo ejecuta junto con el header y las validaciones.
+
+-->
+
+<!-- Footer Global -->
+<footer class="footer-global">
+    <div class="container">
+
+        <div class="row g-4">
+            <!-- Columna 1 -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <h3 class="h5">Sketch & Coffee</h3>
+                <ul class="list-unstyled">
+                    <li><a href="./acerca_de_nosotros.html#titulo-proyecto">Nuestra Historia</a></li>
+                    <li><a href="./acerca_de_nosotros.html#titulo-pilares">Prensa y Galería 2D</a></li> 
+                </ul>
+            </div>
+
+            <!-- Columna 2 -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <h3 class="h5">Tienda</h3>
+                <ul class="list-unstyled">
+                    <li><a href="./menu.html">Menú en línea</a></li>
+                    <li><a href="./menu.html?cat=grano">Café en grano</a></li> 
+                </ul>
+            </div>
+
+            <!-- Columna 3 -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <h3 class="h5">Ayuda</h3>
+                <ul class="list-unstyled">
+                    <li><a href="contacto.html#faq">Preguntas frecuentes</a></li>
+                    <li><a href="#">Facturación</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 4: Síguenos -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <h3 class="h5">Síguenos</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="https://www.instagram.com/sketchandcoffe" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                            Instagram
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="https://www.facebook.com/profile.php?id=61561271356592" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-facebook" aria-hidden="true"></i>
+                            Facebook
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="https://www.tiktok.com/@sketch.coffee" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-tiktok" aria-hidden="true"></i>
+                            TikTok
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="https://www.ubereats.com" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-bag-fill" aria-hidden="true"></i>
+                            Uber Eats
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div> 
+
+       <!-- Derechos y Enlaces Legales Inferiores -->
+<div class="footer-bottom d-flex flex-wrap justify-content-center justify-content-md-start align-items-center gap-2">
+    <p class="mb-0">&copy; 2026 Sketch & Coffee</p>
+    <span class="separator" aria-hidden="true">|</span>
+    <a href="aviso.html">Aviso de Privacidad</a>
+    <span class="separator" aria-hidden="true">|</span>
+    <a href="terminos.html">Términos y Condiciones</a>
+</div>
+        </div>
+
+    </div> 
+</footer>
+
+<!-- Botón Subir -->
+<button type="button" class="btn shadow-lg d-flex" id="btnSubir">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+    <path fill-rule="evenodd"
+      d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+  </svg>
+</button>
+
+<!-- Botón WhatsApp -->
+<a href="https://wa.me/message/OWORZUE72MF6F1" 
+   target="_blank" 
+   id="btnWhatsapp" 
+   class="btn shadow-lg d-flex"
+   role="button"
+   aria-label="Abrir chat de WhatsApp con Sketch and Coffee para pedidos o informes">
+  <i class="bi bi-whatsapp" aria-hidden="false"></i>
+</a>
+
+
+
+
+
+
+

@@ -1,0 +1,495 @@
+{
+    "categorias": [
+        {
+            "id": "bebidas",
+            "nombre": "Bebidas",
+            "subcategorias": [
+                {
+                    "nombre": "Frías",
+                    "items": [
+                        {
+                            "id": "beb_f_1",
+                            "nombre": "Chai latte",
+                            "precio": 80,
+                            "descripcion": "Bebida fría a base de té chai y leche.",
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_f_2",
+                            "nombre": "Latte",
+                            "precio": 80,
+                            "descripcion": "Espresso con leche fría y hielo.",
+                            "tieneCafe": true
+                        },
+                        {
+                            "id": "beb_f_3",
+                            "nombre": "Capuchino",
+                            "precio": 80,
+                            "descripcion": "Clásico capuchino frío.",
+                            "tieneCafe": true
+                        },
+                        {
+                            "id": "beb_f_4",
+                            "nombre": "Matcha",
+                            "precio": 90,
+                            "descripcion": "Té matcha ceremonial frío.",
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_f_5",
+                            "nombre": "Chocolate",
+                            "precio": 90,
+                            "descripcion": "Chocolate frío de la casa.",
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_f_6",
+                            "nombre": "Tés fríos",
+                            "precio": 60,
+                            "descripcion": "Refrescante infusión de té.",
+                            "opcionesSabores": [
+                                "Zarzamora",
+                                "Frutos rojos",
+                                "Menta",
+                                "Matcha"
+                            ],
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_f_7",
+                            "nombre": "Tisanas frías",
+                            "precio": 80,
+                            "descripcion": "Mezcla frutal reconfortante.",
+                            "opcionesSabores": [
+                                "Pink blossom",
+                                "Guava spice",
+                                "Kiwi berry splash",
+                                "Golden bee"
+                            ],
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_f_8",
+                            "nombre": "Frapes",
+                            "precio": 100,
+                            "descripcion": "Bebida helada batida.",
+                            "opcionesSabores": [
+                                "Capuchino",
+                                "Chocolate",
+                                "Oreo",
+                                "Matcha"
+                            ],
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_f_9",
+                            "nombre": "Soda italiana",
+                            "precio": 100,
+                            "descripcion": "Bebida con agua mineral y jarabe frutal.",
+                            "opcionesSabores": [
+                                "Berry dream",
+                                "Passion breeza",
+                                "Blueberry boom"
+                            ],
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_f_10",
+                            "nombre": "Smoothies",
+                            "precio": 85,
+                            "descripcion": "Batido cremoso de fruta.",
+                            "opcionesSabores": [
+                                "Mango",
+                                "Chamoyada",
+                                "Blueberry",
+                                "Fresa"
+                            ],
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_f_11",
+                            "nombre": "Bubble tea",
+                            "precio": 125,
+                            "descripcion": "Bebida con perlas de tapioca o poppings.",
+                            "opcionesSabores": [
+                                "Mango storm",
+                                "Pink velvet milk tea",
+                                "Berry smoothie"
+                            ],
+                            "tieneCafe": false
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Calientes",
+                    "items": [
+                        {
+                            "id": "beb_c_1",
+                            "nombre": "Vaso de leche",
+                            "precio": 20,
+                            "descripcion": "Leche fresca.",
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_c_2",
+                            "nombre": "Espresso caliente",
+                            "precio": 45,
+                            "descripcion": "Shot de espresso puro.",
+                            "tieneCafe": true
+                        },
+                        {
+                            "id": "beb_c_3",
+                            "nombre": "Macchiato",
+                            "precio": 48,
+                            "descripcion": "Espresso manchado con espuma.",
+                            "tieneCafe": true
+                        },
+                        {
+                            "id": "beb_c_4",
+                            "nombre": "Americano",
+                            "precio": 55,
+                            "descripcion": "Café americano tradicional.",
+                            "tieneCafe": true
+                        },
+                        {
+                            "id": "beb_c_5",
+                            "nombre": "Americano cortado",
+                            "precio": 58,
+                            "descripcion": "Americano con un toque de leche.",
+                            "tieneCafe": true
+                        },
+                        {
+                            "id": "beb_c_6",
+                            "nombre": "Flat White",
+                            "precio": 65,
+                            "descripcion": "Doble espresso con microespuma de leche.",
+                            "tieneCafe": true
+                        },
+                        {
+                            "id": "beb_c_7",
+                            "nombre": "Chai latte caliente",
+                            "precio": 70,
+                            "descripcion": "Té chai especiado con leche caliente.",
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_c_8",
+                            "nombre": "Latte caliente",
+                            "precio": 70,
+                            "descripcion": "Café con leche texturizada.",
+                            "tieneCafe": true
+                        },
+                        {
+                            "id": "beb_c_9",
+                            "nombre": "Capuchino caliente",
+                            "precio": 70,
+                            "descripcion": "Con abundante espuma y arte latte.",
+                            "tieneCafe": true
+                        },
+                        {
+                            "id": "beb_c_10",
+                            "nombre": "Mocha",
+                            "precio": 80,
+                            "descripcion": "Espresso, chocolate y leche.",
+                            "tieneCafe": true
+                        },
+                        {
+                            "id": "beb_c_11",
+                            "nombre": "Taro",
+                            "precio": 80,
+                            "descripcion": "Bebida caliente sabor taro.",
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_c_12",
+                            "nombre": "Matcha caliente",
+                            "precio": 80,
+                            "descripcion": "Té matcha tradicional caliente.",
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_c_13",
+                            "nombre": "Chocolate caliente",
+                            "precio": 80,
+                            "descripcion": "Chocolate espeso de la casa.",
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_c_14",
+                            "nombre": "Dirty Chai",
+                            "precio": 85,
+                            "descripcion": "Chai latte con un shot de espresso.",
+                            "tieneCafe": true
+                        },
+                        {
+                            "id": "beb_c_15",
+                            "nombre": "Tisanas calientes",
+                            "precio": 60,
+                            "descripcion": "Mezcla frutal reconfortante.",
+                            "opcionesSabores": [
+                                "Pink blossom",
+                                "Guava spice",
+                                "Kiwi berry splash",
+                                "Golden bee"
+                            ],
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_c_16",
+                            "nombre": "Tés calientes",
+                            "precio": 60,
+                            "descripcion": "Bebida caliente con diversos sabores.",
+                            "opcionesSabores": [
+                                "Zarzamora",
+                                "frutos rojos",
+                                "menta",
+                                "matcha"
+                            ],
+                            "tieneCafe": false
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Otras bebidas",
+                    "items": [
+                        {
+                            "id": "beb_o_1",
+                            "nombre": "Agua natural - Sketch & coffee",
+                            "precio": 25,
+                            "descripcion": "Botella 1 litro.",
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_o_2",
+                            "nombre": "Agua mineral - Peñafiel",
+                            "precio": 30,
+                            "descripcion": "Botella 296 ml.",
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_o_3",
+                            "nombre": "Suero",
+                            "precio": 35,
+                            "descripcion": "Bebida hidratante.",
+                            "tieneCafe": false
+                        },
+                        {
+                            "id": "beb_o_4",
+                            "nombre": "Refresco",
+                            "precio": 38,
+                            "descripcion": "Refresco 335 ml.",
+                            "tieneCafe": false,
+                            "opcionesSabores": [
+                                "Coca-Cola original",
+                                "Coca-Cola light",
+                                "Coca-Cola zero",
+                                "Fanta",
+                                "Sidral Mundet",
+                                "Fresca",
+                                "Jarrito naranja",
+                                "Jarrito piña",
+                                "Jarrito limón"
+                            ]
+                        },
+                        {
+                            "id": "beb_o_5",
+                            "nombre": "Jugo Del Valle",
+                            "precio": 38,
+                            "descripcion": "Jugo 355 ml.",
+                            "tieneCafe": false,
+                            "opcionesSabores": [
+                                "Mango",
+                                "Manzana",
+                                "Durazno"
+                            ]
+                        },
+                        {
+                            "id": "beb_o_6",
+                            "nombre": "Limonada natural",
+                            "precio": 45,
+                            "descripcion": "Preparada al momento.",
+                            "tieneCafe": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "postres",
+            "nombre": "Postres",
+            "items": [
+                {
+                    "id": "pos_1",
+                    "nombre": "Pan",
+                    "precio": 30,
+                    "descripcion": "Pieza de pan artesanal del día."
+                },
+                {
+                    "id": "pos_2",
+                    "nombre": "Bolsa de galletas",
+                    "precio": 60,
+                    "descripcion": "Galletas caseras de mantequilla/chocolate."
+                },
+                {
+                    "id": "pos_3",
+                    "nombre": "Panqué",
+                    "precio": 65,
+                    "descripcion": "Delicioso panqué casero.",
+                    "opcionesSabores": [
+                        "Nata",
+                        "Limón",
+                        "Elote",
+                        "Plátano"
+                    ]
+                },
+                {
+                    "id": "pos_4",
+                    "nombre": "Flan",
+                    "precio": 65,
+                    "descripcion": "Flan cremoso de la casa.",
+                    "opcionesSabores": [
+                        "Cajeta",
+                        "Caramelo"
+                    ]
+                },
+                {
+                    "id": "pos_5",
+                    "nombre": "Brownie",
+                    "precio": 75,
+                    "descripcion": "Brownie de chocolate húmedo."
+                },
+                {
+                    "id": "pos_6",
+                    "nombre": "Pay",
+                    "precio": 120,
+                    "descripcion": "Porción de pay artesanal.",
+                    "opcionesSabores": [
+                        "Limón",
+                        "Queso"
+                    ]
+                },
+                {
+                    "id": "pos_7",
+                    "nombre": "Croissant dulce",
+                    "precio": 110,
+                    "descripcion": "Relleno con compota de frutos rojos y queso philadelphia."
+                }
+            ]
+        },
+        {
+            "id": "platillos",
+            "nombre": "Platillos",
+            "precioPaquete": 60,
+            "items": [
+                {
+                    "id": "plat_1",
+                    "nombre": "Chilaquiles verdes",
+                    "precio": 100,
+                    "descripcion": "Acompañados con crema, queso y frijoles."
+                },
+                {
+                    "id": "plat_2",
+                    "nombre": "Molletes",
+                    "precio": 80,
+                    "descripcion": "2 piezas con frijoles, queso gratinado y pico de gallo.",
+                    "tipoPersonalizacion": "extras",
+                    "opcionesPersonalizacion": [
+                        {
+                            "id": "opt_sencillos",
+                            "nombre": "Solos (Sencillos)",
+                            "precioAdicional": 0
+                        },
+                        {
+                            "id": "opt_jamon",
+                            "nombre": "Con Jamón",
+                            "precioAdicional": 20
+                        }
+                    ]
+                },
+                {
+                    "id": "plat_3",
+                    "nombre": "Croissant salado",
+                    "precio": 100,
+                    "descripcion": "Relleno de jamón de pavo, queso y lechuga."
+                },
+                {
+                    "id": "plat_4",
+                    "nombre": "Enchiladas gratinadas",
+                    "precio": 100,
+                    "descripcion": "Rellenas de pollo con salsa suiza especial."
+                },
+                {
+                    "id": "plat_5",
+                    "nombre": "Huevos al gusto",
+                    "precio": 90,
+                    "descripcion": "Acompañados con frijoles.",
+                    "tipoPersonalizacion": "preparacion",
+                    "opcionesPersonalizacion": [
+                        "Estrellados",
+                        "Revueltos",
+                        "Con Jamón",
+                        "A la Mexicana"
+                    ]
+                },
+                {
+                    "id": "plat_6",
+                    "nombre": "Chapata",
+                    "precio": 100,
+                    "descripcion": "Pan tipo chapata artesanal.",
+                    "tipoPersonalizacion": "sabor",
+                    "opcionesPersonalizacion": [
+                        "Fajitas de Pollo",
+                        "Pizza Peperoni",
+                        "Hawaiana"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "crepas-waffles",
+            "nombre": "Crepas y Waffles",
+            "esPersonalizable": true,
+            "bases": [
+                {
+                    "nombre": "Crepa tradicional",
+                    "precioBase": 120,
+                    "tipo": "Crepa"
+                },
+                {
+                    "nombre": "Crepa red velvet con chispas de chocolate",
+                    "precioBase": 120,
+                    "tipo": "Crepa"
+                },
+                {
+                    "nombre": "Waffle tradicional",
+                    "precioBase": 120,
+                    "tipo": "Waffle"
+                },
+                {
+                    "nombre": "Waffle sin gluten",
+                    "precioBase": 150,
+                    "tipo": "Waffle"
+                }
+            ],
+            "incluyeIngredientes": 2,
+            "costoIngredienteExtra": 15,
+            "listaIngredientes": [
+                "Bola de helado",
+                "Miel maple",
+                "Chispas de chocolate",
+                "Lechera",
+                "Jamón",
+                "Queso manchego",
+                "Philadelphia",
+                "Nutella",
+                "Cajeta",
+                "Durazno",
+                "Nuez",
+                "Fresa",
+                "Plátano",
+                "Mermelada",
+                "Champiñones con salsa poblana"
+            ]
+        }
+    ]
+}
