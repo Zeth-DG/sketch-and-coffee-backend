@@ -360,6 +360,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
+        // El select guarda el nombre de la categoría; el backend pide
+        // el id numérico. Se resuelve antes que nada para no subir la
+        // imagen si el guardado está condenado a fallar.
+        const categoriaId = idDeCategoria(categoria);
+        if (categoriaId === null) {
+            mostrarResultado('No se encontró la categoría en la base de datos. Recarga la página e intenta de nuevo.', false);
+            return;
+        }
+
         // La imagen (si el usuario eligió una) se sube primero con multipart;
         // la ruta que devuelve el backend viaja después en el producto.
         let rutaImagen = null;
