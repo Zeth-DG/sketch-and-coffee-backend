@@ -1,20 +1,19 @@
 package com.sketchandcoffee.project.servicio;
 
+import com.sketchandcoffee.project.dtos.LoginRequest;
 import com.sketchandcoffee.project.dtos.PasswordDto;
 import com.sketchandcoffee.project.modelo.Usuario;
 import com.sketchandcoffee.project.repositorio.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
-    @Autowired
+    // Inyección de dependencias limpia por constructor (Spring Boot moderno)
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
@@ -35,15 +34,10 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    // --- MÉTODO ACTUALIZADO ---
+    // --- ACTUALIZAR CONTRASEÑA ---
     public Usuario actualizarUsuario(Integer id, PasswordDto dto) {
-        // 1. Buscamos si el usuario existe en la base de datos
         Usuario usuarioExistente = obtenerPorId(id);
-
-        // 2. Actualizamos el password_hash utilizando la nueva contraseña del DTO
         usuarioExistente.setPasswordHash(dto.getPasswordNuevo());
-
-        // 3. Guardamos los cambios actualizados en la base de datos MySQL
         return usuarioRepository.save(usuarioExistente);
     }
 
@@ -55,20 +49,18 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    // --- MÉTODOS DE REGISTRO Y LOGIN ---
+    // --- REGISTRO Y LOGIN ---
     public Usuario registrar(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario login(String correo, String passwordHash) {
-        Optional<Usuario> usuarioOpt = usuarioRepository.findAll().stream()
-                .filter(u -> u.getCorreo().equals(correo) && u.getPasswordHash().equals(passwordHash))
-                .findFirst();
+    public Usuario login(LoginRequest request) {
+        // Buscamos directamente el correo en la base de datos (Nota: asegúrate de tener findByCorreo en tu UsuarioRepository)
+        Usuario usuario = usuarioRepository.findAll().stream()
+                .filter(u -> u.getCorreo().equals(request.getCorreo()) && u.getPasswordHash().equals(request.getPassword()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Credenciales inválidas o usuario no encontrado"));
 
-        if (usuarioOpt.isPresent()) {
-            return usuarioOpt.get();
-        } else {
-            throw new RuntimeException("Credenciales inválidas o usuario no encontrado");
-        }
+        return usuario;
     }
 }

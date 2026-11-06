@@ -2,29 +2,42 @@ package com.sketchandcoffee.project.dtos;
 
 public class LoginRequest {
 
-    private String email;
+    private String correo;
     private String password;
 
-    public LoginRequest(String email, String password) {
-        this.email = email;
+    // Constructor vacío
+    public LoginRequest() {
+    }
+
+    // Constructor con parámetros
+    public LoginRequest(String correo, String password) {
+        this.correo = correo;
         this.password = password;
-    }// constructor
+    }
 
-    public LoginRequest() { }// constructor vacío
-
-    public String getEmail() {
-        return email;
-    }// getEmail
+    // Getters
+    public String getCorreo() {
+        return correo;
+    }
 
     public String getPassword() {
         return password;
-    }// getPassword
+    }
+
+    // Setters
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
     public String toString() {
         return "LoginRequest{" +
-                "email='" + email + '\'' +
+                "correo='" + correo + '\'' +
                 ", password='" + password + '\'' +
                 '}';
-    }// toString
-}// class LoginRequest
+    }
+}
